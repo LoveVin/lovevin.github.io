@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
+    <title type="text">LoveVin</title>
+    <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
+    <updated>2020-01-28T12:06:38+08:00</updated>
+    <id>https://example.com/</id>
+    <link rel="alternate" type="text/html" href="https://example.com/" />
+    <link rel="self" type="application/atom+xml" href="https://example.com/atom.xml" />
+    <author>
+            <name>LoveVin</name>
+            <uri>https://example.com/</uri>
+            
+                <email>twinkelixn@qq.com</email>
+            </author>
+    <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    <generator uri="https://gohugo.io/" version="0.63.0">Hugo</generator>
+        <entry>
+            <title type="text">HTML基本标签篇</title>
+            <link rel="alternate" type="text/html" href="https://example.com/posts/html-basic-tags/" />
+            <id>https://example.com/posts/html-basic-tags/</id>
+            <updated>2020-01-28T12:06:25+08:00</updated>
+            <published>2020-01-28T12:04:43+08:00</published>
+            <author>
+                    <name>LoveVin</name>
+                    <uri>https://io-oi.me/</uri>
+                    <email>twinkelixn@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    
+    <summary type="html"><![CDATA[1.结构标签 html文件的基本结构为： 1 2 3 4 5 <!DOCTYPE html> <html lang="zh-CN"> <head> </head> <body> </body> </html> 其中head标签部……]]></summary>
+            
+                <content type="html"><![CDATA[<h3 id="1结构标签">1.结构标签</h3>
+<p>html文件的基本结构为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;zh-CN&#34;</span><span class="p"></span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span> <span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>其中head标签部分一般放看不见的相关设置内容，页面显示的内容是在body中编写，在body标签中body被一些标签划分成有结构的部分。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">header</span><span class="p"></span><span class="p">&gt;</span>头部<span class="p">&lt;</span><span class="p">/</span><span class="nt">header</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p"></span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">main</span><span class="p"></span><span class="p">&gt;</span>页面主要部分<span class="p">&lt;</span><span class="p">/</span><span class="nt">main</span><span class="p">&gt;</span>
+        <span class="p">&lt;</span><span class="nt">aside</span><span class="p"></span><span class="p">&gt;</span>次要部分<span class="p">&lt;</span><span class="p">/</span><span class="nt">aside</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="p">/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">footer</span><span class="p"></span><span class="p">&gt;</span>尾部<span class="p">&lt;</span><span class="p">/</span><span class="nt">footer</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>除此之外还有的结构标签有：<br>
+<strong>h1~h6</strong>：加粗标题</p>
+<p><strong>section</strong>：划分文档中的一个独立部分  ，一般包含一个h标题和一p段等。</p>
+<p><strong>article</strong>：划分文档中的文章部分，一篇文章又可包含多个section部分。</p>
+<p><strong>p</strong>：块级元素，表示文本的一个段落。</p>
+<p><strong>div</strong>：是一个无实义容器标签，将文档分区。</p>
+<h3 id="2内容标签">2.内容标签</h3>
+<p><strong>ol+li</strong>：ol即ordered list，li即list-item。该组合是编写有序列表内容的。ol标签为列表，li标签为列表项。ol中只能有li列表项，列表项中才能写内容 。</p>
+<p><strong>ul+li</strong>：ul即unordered list，与ol相对应的无序列表。</p>
+<p><strong>dl+dt+dd</strong>：dl即description-list描述列表，dt即description-term写描述的对象是谁，dd即description-data对该对象的描述内容</p>
+<p><strong>pre</strong>：html默认多个空格或tab或回车都显示为一个空格，添加pre标签包裹内容可以保留多个空格、tab、回车等样式。</p>
+<p><strong>code</strong>：code标签是用来包裹代码片段的，代码的字母一般是等宽的，如不加code，字母不等宽，代码不好看。用pre+code写代码片段。</p>
+<p><strong>hr</strong>：水平分割线</p>
+<p><strong>br</strong>：br即break，换行。</p>
+<p><strong>em</strong>：em即emphasis强调的意思，可用于强调一句话中的某个词，显示样式为斜体，样式可改。</p>
+<p><strong>strong</strong>：给一句话加上Strong表示该句是重点，显示样式为加粗，样式可改。</p>
+<p><strong>quote</strong>：内联引用，如果想换行用块行引用，即用blockquote标签</p>
+]]></content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/categories/html/" term="HTML" label="HTML" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">HTML发展概况</title>
+            <link rel="alternate" type="text/html" href="https://example.com/posts/html_history/" />
+            <id>https://example.com/posts/html_history/</id>
+            <updated>2020-01-28T12:05:08+08:00</updated>
+            <published>2020-01-27T22:22:26+08:00</published>
+            <author>
+                    <name>LoveVin</name>
+                    <uri>https://io-oi.me/</uri>
+                    <email>twinkelixn@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    
+    <summary type="html"><![CDATA[1.万维网和互联网 互联网——互联网是指我们整个网络系统的总称，自网络的出现就叫互联网……]]></summary>
+            
+                <content type="html"><![CDATA[<h3 id="1万维网和互联网">1.万维网和互联网</h3>
+<p><strong>互联网</strong>——互联网是指我们整个网络系统的总称，自网络的出现就叫互联网，最初是指一个IP与一个IP通过网络发送消息传递信息，将人与人之间相互连接起来，因此叫互联网。</p>
+<p><strong>万维网</strong>——万维网简称WWW(World-Wide-Web)，是指输入一个网址(URL)，以HTTP传输协议传输，返回一个网页的上网方式，是由万维网之父Tim-Berners-Lee（蒂姆·伯纳斯·李）发明的，返回的该网页页面是用HTML(Hypertext-Marked-Language)超文本标记语言编写的，通过浏览器识别并以网页形式展现给人们的。</p>
+<h3 id="2html标准制定者">2.HTML标准制定者</h3>
+<p>HTML标准是由W3C，即 World-Wide-Web-Consortium(W3C)万维网联盟建立的，W3C的创立者是Tim-Berners-Lee（蒂姆·伯纳斯·李）</p>
+<h3 id="3html5和h5">3.HTML5和H5</h3>
+<p><strong>HTML5</strong>——html5是html超文本语言的进化版，在原有的html语言上加入了新的标签和新的标准，是一套新的web开发标准。</p>
+<p><strong>H5</strong>——h5不是html5的简称，和html5完全没有关系。h5是中国人自己造的专有名词，就是指手机版本的网页页面，实现语法不一定要用html5。简单说做一个h5就是指做个手机页面。</p>
+<h3 id="4html特殊语法">4.HTML特殊语法</h3>
+<ul>
+<li><code>&lt;!DOCTYPE html&gt;</code> 是标明以下语法是html语法，DOCTYPE是文档类型的意思。</li>
+<li>标签有双闭合标签和单闭合标签之分。</li>
+<li>标签属性有两种，一种是赋值型，attr=xxx或attr='xxx'或attr=&quot;xxx&quot;，当属性值中无特殊字符时，有引号、单引号、双引号都可以，有特殊字符时必须加引号。</li>
+<li>注释语法：<code>&lt;!-- --&gt;</code></li>
+</ul>
+<h3 id="5html基本语句解释">5.HTML基本语句解释</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>//标记文档类型为html
+<span class="p">&lt;</span><span class="nt">html</span> <span class="na">lang</span><span class="o">=</span><span class="s">&#34;en&#34;</span><span class="p"></span><span class="p">&gt;</span>//文档使用语言，有en英文，和zh-CN中文
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">charset</span><span class="o">=</span><span class="s">&#34;UTF-8&#34;</span> <span class="p">/</span><span class="p">&gt;</span>//定义编码方式为UTF-8
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">name</span><span class="o">=</span><span class="s">&#34;viewport&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;width=device-width, initial-scale=1.0&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">meta</span> <span class="na">http-equiv</span><span class="o">=</span><span class="s">&#34;X-UA-Compatible&#34;</span> <span class="na">content</span><span class="o">=</span><span class="s">&#34;ie=edge&#34;</span> <span class="p">/</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">title</span><span class="p"></span><span class="p">&gt;</span>Document<span class="p">&lt;</span><span class="p">/</span><span class="nt">title</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="p">/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p"></span><span class="p">&gt;</span><span class="p">&lt;</span><span class="p">/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/categories/html/" term="HTML" label="HTML" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/tags/html%E5%8F%91%E5%B1%95%E5%8F%B2/" term="HTML发展史" label="HTML发展史" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">如何使用GitHub Pages预览 HTML</title>
+            <link rel="alternate" type="text/html" href="https://example.com/posts/how-to-use-githubpages/" />
+            <id>https://example.com/posts/how-to-use-githubpages/</id>
+            <updated>2020-01-27T22:16:14+08:00</updated>
+            <published>2020-01-08T12:15:31+08:00</published>
+            <author>
+                    <name>LoveVin</name>
+                    <uri>https://io-oi.me/</uri>
+                    <email>twinkelixn@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    
+    <summary type="html"><![CDATA[1.GitHub提供免费域名 GitHub可以预览HTML文件，同时只要有一个GitH……]]></summary>
+            
+                <content type="html"><![CDATA[<h3 id="1github提供免费域名">1.GitHub提供免费域名</h3>
+<p>GitHub可以预览HTML文件，同时只要有一个GitHub账号，用户就有一个特定的免费域名，即用户名.github.io，比如我的GitHub账号名字为LoveVin，则全部换成小写后，我的免费域名为lovevin.github.io。</p>
+<h3 id="2最短域名网站">2.最短域名网站</h3>
+<p>用户可在GitHub创建一个与免费域名同名的仓库，如我的同名仓库为lovevin.github.io，然后将网站文件夹push进该仓库，然后在该仓库的settings里往下翻找到GitHub Pages 一项可以看到一个网址，该仓库对应的为用户网页，默认只能是master分支，点击该网址即可看到自己的网站，即通过免费域名访问的最短网址。</p>
+<p><img src="/imgs/hugo14.JPG" alt="这图片"></p>
+<p><img src="/imgs/hugo15.JPG" alt="这图片"></p>
+<h3 id="3发布项目网站">3.发布项目网站</h3>
+<p>GitHub预览HTML不仅仅局限于免费域名同名仓库，用户可建立其他HTML项目仓库，通过GitHub Pages访问，也是进入settings里，找到GitHub Pages，不过这里用户要自己选择分支。我这里选择的是master分支，好像可以选择其他分支，具体其他情况未尝试过。然后会得到一个网址，点击该网址即可访问，若不能访问就在该网址后加?...或者加具体网页名，如index.html。而且具体观察会发现，该项目仓库的网址也是免费域名/仓库名，像是域名下的一个文件夹，所以还是用户还是只有一个特定的GitHub免费域名。</p>
+<p><img src="/imgs/hugo16.JPG" alt="这图片"></p>
+<p><img src="/imgs/hugo17.JPG" alt="这图片"></p>
+<h3 id="4绑定自定义域名">4.绑定自定义域名</h3>
+<p>如果觉得GitHub的免费域名不够炫酷，可以自定义域名绑定在GitHub的域名上，自己买一个域名，添加至GitHub Pages里的Custom domain选项里保存即可。如上述2，图中红线圈出的位置。</p>
+]]></content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" term="博客搭建" label="博客搭建" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/tags/github/" term="GitHub" label="GitHub" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/tags/html/" term="HTML" label="HTML" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">如何使用GitHub直接预览Markdown文件</title>
+            <link rel="alternate" type="text/html" href="https://example.com/posts/github-preview-markdown/" />
+            <id>https://example.com/posts/github-preview-markdown/</id>
+            <updated>2020-01-27T22:15:31+08:00</updated>
+            <published>2020-01-08T12:15:31+08:00</published>
+            <author>
+                    <name>LoveVin</name>
+                    <uri>https://io-oi.me/</uri>
+                    <email>twinkelixn@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    
+    <summary type="html"><![CDATA[GitHub 是可以直接预览 markdown 文件的，也就是说可以直接在 GitHub 上写博客，具体操作如下： 在 GitHub 新建一个仓……]]></summary>
+            
+                <content type="html"><![CDATA[<p>GitHub 是可以直接预览 markdown 文件的，也就是说可以直接在 GitHub 上写博客，具体操作如下：</p>
+<ol>
+<li>在 GitHub 新建一个仓库，并在新建的仓库点击新创建一个 README.md 文件</li>
+</ol>
+<p><img src="/imgs/hugo11.JPG" alt="这图片"></p>
+<ol start="2">
+<li>然后用 markdown 语法写 README.md 文件，可一边写，一边右边 preview 预览效果。写完后保存，即可用该 markdown 文件所在的网址发给别人看自己的博客。同时也可在其他地方写好 markdown 文件，push 进 GitHub 仓库。</li>
+</ol>
+<p><img src="/imgs/hugo12.JPG" alt="这图片"></p>
+<p><img src="/imgs/hugo13.JPG" alt="这图片"></p>
+]]></content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" term="博客搭建" label="博客搭建" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/tags/github/" term="GitHub" label="GitHub" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/tags/markdown/" term="Markdown" label="Markdown" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">如何用hugo搭建个人博客</title>
+            <link rel="alternate" type="text/html" href="https://example.com/posts/how-to-use-hugo/" />
+            <id>https://example.com/posts/how-to-use-hugo/</id>
+            <updated>2020-01-27T22:16:52+08:00</updated>
+            <published>2020-01-08T11:54:33+08:00</published>
+            <author>
+                    <name>LoveVin</name>
+                    <uri>https://io-oi.me/</uri>
+                    <email>twinkelixn@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    
+    <summary type="html"><![CDATA[1.hugo 的安装 方法一 去 hugo 官网按照教程找对应版本的安装方法 hugo 各系统安装 其他 windows 安装方法 直接在 hugo……]]></summary>
+            
+                <content type="html"><![CDATA[<h3 id="1hugo-的安装">1.hugo 的安装</h3>
+<h4 id="方法一">方法一</h4>
+<p>去 hugo 官网按照教程找对应版本的安装方法 <a href="https://gohugo.io/getting-started/installing">hugo 各系统安装</a></p>
+<h4 id="其他-windows-安装方法">其他 windows 安装方法</h4>
+<p>直接在 hugo 的 github 里下载资源包<a href="https://github.com/gohugoio/hugo/releases">hugo-github-release</a>，在其中找到 windows 版本的 Assets，如下图：</p>
+<p><img src="/imgs/hugo1.JPG" alt="本图片"></p>
+<p>下载后解压到自定义的软件文件夹内，然后解压后的如下图：</p>
+<p><img src="/imgs/hugo2.JPG" alt="本图片"></p>
+<p>然后复制该.exe 文件所在的路径，添加至环境变量的 path 中，不知道环境变量配置的看文章最后图解。</p>
+<p>配置成功后在命令窗口运行
+<code>hugo version</code>
+若能成功出现版本号，则表示安装成功，如下图所示：
+<img src="/imgs/hugo8.png" alt="本图片"></p>
+<h3 id="2hugo-创建博客">2.hugo 创建博客</h3>
+<p>可按照 hugo 官方教程的创建步骤进行 <a href="https://gohugo.io/getting-started/quick-start/">hugo 快速搭建博客</a></p>
+<p>具体创建代码和过程如下：</p>
+<ol>
+<li>
+<p>hugo new site 路径/创建的文件名 //在该指定路径下创建一个 hugo 工作文件夹，不加路径默认在命令行当前目录下创建，运行代码如下：</p>
+<p><img src="/imgs/hugo9.png" alt="本图片"></p>
+</li>
+<li>
+<p>创建完成后的文件夹里的文件如下：</p>
+<p><img src="/imgs/hugo10.JPG" alt="本图片"></p>
+<p>themes 文件夹里是放下载的博客主题，static 文件夹下放写博客需要的图片资源，content 文件夹下放写的博客内容</p>
+</li>
+<li>
+<p>进入创建的文件里，安装主题，可去网上找到想要的 hugo 主题，用 hugo clone 到 themes 中即可，不同主题的配置方式不同，具体按照找到主题的方式配置，本主题选择的教程为<a href="https://github.com/xianmin/hugo-theme-jane">Jane 主题教程</a>。</p>
+</li>
+<li>
+<p>然后就根据选择的主题进行更改，每个主题要更改的方式不同，比较复杂。。。。我自己也没完全搞懂，待后续完善！</p>
+</li>
+<li>
+<p>hugo 中创建一篇博客语句为<code>hugo new posts/my-first-post.md</code>，md 文件的编写语言是 markdown 语言的语法。</p>
+</li>
+<li>
+<p>在该文件夹下运行<code>hugo</code>命令会生成一个 public 文件夹，该文件夹就是将你写的 md 文件转化为可以在网页上运行的 html、css 文件等，是可以完整发布在 github 的。</p>
+</li>
+<li>
+<p>然后运行<code>hugo server</code>或者<code>hugo server -D</code>根据提示按住 ctrl 键点击生成的本地网址，预览生成的网页。注意要运行在 public 文件夹外的目录下</p>
+<p><code>hugo server</code>：预览不包含草稿状态的页面</p>
+<p><code>hugo server -D</code>：预览包含草稿状态的页面</p>
+</li>
+<li>
+<p>发布到 github 的时候只发布 public 文件夹即可，该文件夹另存储一下，该文件夹是博客页面生成源码，public 丢失时，再 hugo 一下本文件夹即可再生成 public 文件夹。</p>
+</li>
+</ol>
+<h3 id="3环境变量配置图解">3.环境变量配置图解</h3>
+<p><img src="/imgs/hugo3.png" alt="本图片"></p>
+<p><img src="/imgs/hugo4.JPG" alt="本图片"></p>
+<p><img src="/imgs/hugo5.JPG" alt="本图片"></p>
+<p><img src="/imgs/hugo6.JPG" alt="本图片"></p>
+<p><img src="/imgs/hugo7.JPG" alt="本图片"></p>
+]]></content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" term="博客搭建" label="博客搭建" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/tags/hugo/" term="hugo" label="hugo" />
+                            
+                        
+                            
+                            
+                            
+                                <category scheme="https://example.com/tags/%E5%8D%9A%E5%AE%A2/" term="博客" label="博客" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+</feed>

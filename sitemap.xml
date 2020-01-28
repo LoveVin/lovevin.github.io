@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://example.com/categories/</loc>
+    <lastmod>2020-01-28T12:06:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/categories/html/</loc>
+    <lastmod>2020-01-28T12:06:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/html-basic-tags/</loc>
+    <lastmod>2020-01-28T12:06:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/</loc>
+    <lastmod>2020-01-28T12:06:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/</loc>
+    <lastmod>2020-01-28T12:06:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/tags/</loc>
+    <lastmod>2020-01-28T12:06:25+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/tags/html%E5%8F%91%E5%B1%95%E5%8F%B2/</loc>
+    <lastmod>2020-01-28T12:05:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/html_history/</loc>
+    <lastmod>2020-01-28T12:05:08+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/about/</loc>
+    <lastmod>2020-01-28T10:20:11+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/tags/github/</loc>
+    <lastmod>2020-01-27T22:16:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/tags/html/</loc>
+    <lastmod>2020-01-27T22:16:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/tags/markdown/</loc>
+    <lastmod>2020-01-27T22:15:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/</loc>
+    <lastmod>2020-01-27T22:16:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/how-to-use-githubpages/</loc>
+    <lastmod>2020-01-27T22:16:14+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/github-preview-markdown/</loc>
+    <lastmod>2020-01-27T22:15:31+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/tags/hugo/</loc>
+    <lastmod>2020-01-27T22:16:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/tags/%E5%8D%9A%E5%AE%A2/</loc>
+    <lastmod>2020-01-27T22:16:52+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://example.com/posts/how-to-use-hugo/</loc>
+    <lastmod>2020-01-27T22:16:52+08:00</lastmod>
+  </url>
+  
+</urlset>
