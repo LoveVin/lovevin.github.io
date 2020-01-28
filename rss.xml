@@ -23,10 +23,984 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 28 Jan 2020 12:06:38 +0800</lastBuildDate>
+        <lastBuildDate>Tue, 28 Jan 2020 16:32:40 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="https://example.com/rss.xml" />
         
+        
+            <item>
+                <title>JavaScript的发展</title>
+                <link>https://example.com/posts/javascript-history/</link>
+                <guid isPermaLink="true">https://example.com/posts/javascript-history/</guid>
+                <pubDate>Tue, 28 Jan 2020 12:44:03 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-javascript的诞生">1. JavaScript的诞生</h2>
+<p>JavaScript，简称JS(以下均用JS代替)。JS之父是美国的Brendan Eich(中文翻译：布兰登·艾克，以下简称布兰登)发明的。在1995年，html和css刚被发明后不久，布兰登被只靠一款浏览器(Netscape Navigator)发家的网景公司雇佣为其浏览器开发一些附加功能，JS随即诞生。JavaScript脚本名字的由来是被要求要蹭Java的热度，当时sun公司将Oak语言改名为Java，正式向市场推出并大肆宣传。当时的网景公司就和Java的母公司合作，并要求布兰登开发的浏览器脚本的名字要和Java有关，因此才叫JavaScript。但实际上，二者除了一开始命名有合作外，两种脚本语言上没有任何关系，JS是一个全新的脚本语言。因为两个公司有合作，因此浏览器一开始是同时支持Java和JavaScript语言的，只是使用Java要安装插件，后来Java被从浏览器端淘汰，浏览器前端就只留下了JavaScript。</p>
+<h2 id="2-es标准的诞生">2. ES标准的诞生</h2>
+<p>一开始的时候JS只是网景公司浏览器的一个附加功能，而且是JS之父布兰登在时间紧、任务重、自己也不想好好搞的情况下创造的，并未申请成为一个脚本语言标准，但随着JS的用户体验越来越好，每家浏览器公司就开始各种开发JS的山寨版本，因此每家浏览器的JS脚本都不太一样，网景公司一看这种情况得要立马维权啊，毕竟JS是它公司首创的，因此网景公司便立马向ECMA(欧洲计算机制造联合会)提交JS语言标准，由于不能和Java语言标准命名冲突，不能叫JavaScript标准，故改叫ECMAScript标准，从此JS就成了一个脚本和标准命名不一样的编程语言。因此我们常听到的ES6就是ECMAScript6，是JavaScript语言标准的第六版本。也就是说，JS在才是个没有好好搞的初始版本的情况下就被写入了标准，因此存在着很多的问题，在后续会慢慢暴露出来。</p>
+<p>JS与ES的主要区别是，JS是在浏览器上具体实现的语言，ES是JS完整实现后总结规定的语法标准，也就是说，一般是先用JS具体开发实现某些功能，然后总结写成标准的，JS发展先于ES，但JS语法要遵循ES标准。</p>
+<p>后来网景公司死了，其旗下的网景浏览器涅磐重生，改造成firefox火狐浏览器，由JS之父布兰登参与联合创建的Mozilla基金会维护。</p>
+<h2 id="2-es标准的发展">2. ES标准的发展</h2>
+<p>ECMAScript标准，简称ES标准，在其发展历程中，使用范围最广的版本是在1999年12月发布的第三版，ES3，并且这个版本ie6是支持的。然后其第四版因为增加的功能太多，而且是在ie6如日中天的统治时期，未能成功问世，直接跳到了在2009年12月发布的第五版，ES5。再到2015年6月发布的第六版，ES6，大多数最新的浏览器都支持。自ES6开始，ES标准每年更新一个版本，并以当年的年号命名。如2017年是ES8或者说是ES2017。</p>
+<h2 id="3-js的自我证明">3. JS的自我证明</h2>
+<p>自从JS申请了ES标准后，其要想在浏览器功能中占据一席之地，得拿出来相比于基于html和css的网页，除了速度快之外的特征性优势。那就是谷歌Gmail在线邮件系统网页的出现，让开发者眼前一亮，因为早期人们只认为网页只能看新闻、图片等，使用某个应用软件必须要下载，但Gmail是一个在线的应用，不需下载，直接在线登录邮箱使用。且JS相比于在浏览器上运行的其他技术来说，更能支持移动端的运行，这使得JS的优势逐渐突出，逐渐得到发展。</p>
+<h2 id="4-js的爆发式发展">4. JS的爆发式发展</h2>
+<p>2009年，Ryan基于JS引擎V8开发了node.js，在随后的一年，即2010年，Isaac基于node.js开发了npm。然后两人进行合作，将npm嵌入node.js，也就是我们目前安装node.js就自动带有npm，组合出强大的功能。使得前端工程师可以在浏览器之外运行JS了，也就是说可以用node.js做http-server，可以做后端开发。再后来，TJ发布了Express.js框架，使得node.js火起来。从2010年开始，各种前端技术框架大爆发，快速更替发展。直到目前仍存活且流行的有React、Vue、Angular等。node.js引导前端变成全栈开发，也就是说node.js拓宽了JS的发展之路，使得JS爆发式发展。</p>
+<h2 id="5-js的发展趋势">5. JS的发展趋势</h2>
+<p>一开始的时候，浏览器不只是支持JS脚本语言，也支持Java、Flash、VBScript等脚本语言，但最后只有JS语言在浏览器上存活下来，并且一直在发展。在2015年发布的ES6之前的JS语言确实有些混乱，相比于其他语言来说JS并不是一个很好的语言，毕竟其在一开始被开发的时候时间短任务重，创建者也没好好搞，就被推着火了。但是在2015的ES6版本后，随着node.js技术的发展，JS发展空间更大了，发展前景也很大。</p>
+<h4 id="参考和推荐">参考和推荐</h4>
+<p>发展史来源于维基百科和其他JS历史参考，以下推荐一些大佬写的比较好全面的历史介绍：</p>
+<p><a href="http://www.ruanyifeng.com/blog/2011/06/designing_ideas_of_inheritance_mechanism_in_javascript.html">推荐1</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2011/06/birth_of_javascript.html">推荐2</a></p>
+<p><a href="http://www.ruanyifeng.com/blog/2011/06/10_design_defects_in_javascript.html">推荐3</a></p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/categories/javascript/">JavaScript</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/javascript/">JavaScript</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>CSS动画</title>
+                <link>https://example.com/posts/css-animation/</link>
+                <guid isPermaLink="true">https://example.com/posts/css-animation/</guid>
+                <pubDate>Tue, 28 Jan 2020 12:41:25 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-浏览器渲染原理">1. 浏览器渲染原理</h2>
+<p>浏览器提供的所有功能中有一个非常重要的功能机制即渲染页面功能，使用渲染引擎实现，浏览器的渲染原理是不断擦掉重绘的过程，渲染过程如下：</p>
+<p><strong>1) 根据HTML构建HTML树(DOM)</strong></p>
+<p><strong>2) 根据CSS构建CSS树(CSSDOM)</strong></p>
+<p><strong>3) 将两棵树合成一棵渲染树(render tree)</strong></p>
+<p><strong>4) layout确定布局定位</strong></p>
+<p><strong>5) Paint绘制上色</strong></p>
+<p><strong>6) 根据层叠上下文进行Composite合成</strong></p>
+<p>在绘制完成后，可通过JS改变CSS样式，通过JS引擎与渲染引擎进行通信，告诉渲染引擎重新绘制页面，一般进行4、5、6过程，即layout、paint、composite，根据JS改变的情况确定重新渲染的步骤。可在该网站查看哪些属性触发哪些步骤<a href="https://csstriggers.com/">CSSTriggers</a></p>
+<p><strong>关于浏览器渲染原理的三个推荐网站</strong></p>
+<p><a href="https://developers.google.com/web/fundamentals/performance/critical-rendering-path/render-tree-construction">推荐1</a></p>
+<p><a href="https://developers.google.com/web/fundamentals/performance/rendering/">推荐2</a></p>
+<p><a href="https://developers.google.com/web/fundamentals/performance/rendering/stick-to-compositor-only-properties-and-manage-layer-count">推荐3</a></p>
+<h2 id="2-css性能问题">2. CSS性能问题</h2>
+<p>在开发者工具中，按下Esc键，出来新的控制台面板，再按Esc键取消。在...more tool中选择Rendering，勾选Paint Flashing，刷新页面，看到绿色的块快在闪，说明浏览器在重新渲染绘制页面。</p>
+<p>在开发者工具中调试数据值时，鼠标光标放置在数字上，按上下可增1减1,按住shift键再按上下可增10减10</p>
+<p><strong>1) 优化方法1</strong></p>
+<p>运用translate平移，而不用left平移。</p>
+<h2 id="3-css之transform属性">3. CSS之transform属性</h2>
+<p>transform即变形的意思，元素在该属性下，可进行平移、旋转、缩放等变形，具体变形方式如下：</p>
+<h3 id="translate平移属性">translate平移属性</h3>
+<p><strong>1) 常用属性值</strong></p>
+<p>translateX：向X轴横轴方向平移，若平移的值为百分数，则表示的是移动本元素X轴方向长度的百分比数。</p>
+<p>translateY：向Y轴纵轴方向平移</p>
+<p>translateZ：向三维空间的Z轴方向平移，需要配合视图框和视点，在移动元素的父元素中的属性中确定视点距离屏幕的距离，视点的平面位置是父元素的正中心，Z轴值的变化是元素逐渐向视点靠近或远离的，如下图所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">wrapper</span><span class="p">{</span>
+  <span class="k">perspective</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span><span class="err">/</span><span class="err">/</span><span class="err">视</span><span class="err">点</span><span class="err">距</span><span class="err">离</span><span class="err">屏</span><span class="err">幕</span><span class="err">平</span><span class="err">面</span><span class="err">的</span><span class="err">距</span><span class="err">离</span>
+  <span class="k">border</span><span class="p">:</span> <span class="mi">2</span><span class="kt">px</span> <span class="kc">solid</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>translate：X轴和Y轴方向的变化值</p>
+<p>translate3d：X轴、Y轴和Z轴的变化值</p>
+<p><strong>2) translate的巧用</strong></p>
+<p>可结合绝对定位设置元素绝对居中，具体设置如下：</p>
+<p>设置元素为绝对定位，设置其父元素为绝对定位（根据CSS定位的原理设置的，可参考CSS定位原理），然后在绝对定位设置left: 50%，top: 50%，此时元素的锚点所在位置即左上角点即在父元素正中心，再利用transform的百分数值平移，translateX(-50%)和translateY(-50%)，或者简写形式，如下图所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">父元素</span>
+<span class="p">.</span><span class="nc">wrapper</span><span class="p">{</span>
+  <span class="k">border</span><span class="p">:</span> <span class="mi">2</span><span class="kt">px</span> <span class="kc">solid</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">300</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">定位子元素</span>
+<span class="p">#</span><span class="nn">demo</span><span class="p">{</span>
+  <span class="k">border</span><span class="p">:</span> <span class="mi">2</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">red</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">left</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">top</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">translateX</span><span class="p">(</span><span class="mi">-50</span><span class="kt">%</span><span class="p">)</span> <span class="nb">translateY</span><span class="p">(</span><span class="mi">-50</span><span class="kt">%</span><span class="p">)</span><span class="p">;</span>
+  <span class="c">/*或transform: translate(-50%, -50%);*/</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="rotate旋转属性">rotate旋转属性</h4>
+<p><strong>1)常用属性值</strong></p>
+<p>rotate：默认绕着垂直于屏幕的Z轴旋转，值的单位为度，deg，如rotate(30deg)。</p>
+<p>rotateX：绕着X轴旋转，要想象XYZ的立体空间。</p>
+<p>rotateY：绕着Y轴旋转</p>
+<p>rotateZ：默认旋转方向。</p>
+<h3 id="scale缩放属性">scale缩放属性</h3>
+<p><strong>1) 常用属性值</strong></p>
+<p>scale：X轴和Y轴同时缩放</p>
+<p>scaleX：X轴缩放</p>
+<p>scaleY：Y轴缩放</p>
+<p>可配合transition: all 1s; 属性设置过渡缩放效果。</p>
+<h4 id="skew倾斜属性">skew倾斜属性</h4>
+<p>skew、skewX、skewY，均尝试下可看到效果，取值单位也是度deg。</p>
+<h4 id="总结">总结</h4>
+<p>以上的transform属性可同时使用，直接空格隔开即可，不能写两个tranform，那样会覆盖的。</p>
+<h2 id="4-css之transition属性">4. CSS之transition属性</h2>
+<p>transition即过渡的意思，该属性设置语句要加在要使用的元素本体上，功能是在元素的初始状态和结束状态之间添加过渡帧，使之过渡流畅。具体语法为：</p>
+<p>transition: 属性名(all/其他) 时长(m/ms) 过渡方式 延迟(m/ms);</p>
+<p>语法解读为：当该元素的该属性变化时，在设置的时长内，以该种过渡方式慢慢变化至末尾状态，若设置了延迟时间，则要等待延迟时间结束后执行该变化。</p>
+<p><strong>过渡方式</strong>：</p>
+<p>linear：线性过渡</p>
+<p>ease：非线性过渡</p>
+<p>ease-in / ease-out / ease-in-out / cubic-bezier / step-star / step-end / steps</p>
+<p>具体过渡函数的解释可看如下链接<a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/timing-function">mdn</a></p>
+<p><strong>无法过渡的属性：</strong></p>
+<ol>
+<li>display: block 到display: none，或者反过来，无法过渡</li>
+</ol>
+<h2 id="5-css之animation属性">5. CSS之animation属性</h2>
+<p><strong>1) 定义关键帧</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="p">@</span><span class="k">keyframes</span> <span class="nt">自定义动画名</span><span class="p">{</span>
+    <span class="nt">0</span><span class="o">%</span><span class="p">{</span>
+        <span class="err">位</span><span class="err">置</span><span class="err">变</span><span class="err">化</span><span class="err">1</span>
+    <span class="p">}</span>
+    <span class="nt">50</span><span class="o">%</span><span class="p">{</span>
+        <span class="err">位</span><span class="err">置</span><span class="err">变</span><span class="err">化</span><span class="err">2</span>
+    <span class="p">}</span>
+    <span class="nt">100</span><span class="o">%</span><span class="p">{</span>
+        <span class="err">位</span><span class="err">置</span><span class="err">变</span><span class="err">化</span><span class="err">3</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>2) 调用帧动画</strong></p>
+<p>animation: 时长 | 过渡方式 | 延迟时长 | 次数 | 方向 | 填充模式 | 是否暂停 动画名</p>
+<p>动画名：是必须有的选项。</p>
+<p>时长 / 延迟时长：以m秒和ms毫秒为单位</p>
+<p>过渡方式：和transition的过渡方式一样</p>
+<p>次数：数值，无数次是 infinite</p>
+<p>方向：reverse、alternate、alternate-reverse。</p>
+<p>填充模式：none、forwards、backwards、both。</p>
+<p>是否暂停：paused、running。</p>
+<p>每个对应属性都有自己的单独属性。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/categories/css/">CSS</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/css/">CSS</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>CSS标准文档流</title>
+                <link>https://example.com/posts/css-normal-flow/</link>
+                <guid isPermaLink="true">https://example.com/posts/css-normal-flow/</guid>
+                <pubDate>Tue, 28 Jan 2020 12:37:54 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-标准文档流是什么">1. 标准文档流是什么？</h2>
+<p>标准文档流(normal-flow)是学习css的重要概念之一，css是用来装饰html元素的样式，标准文档流指的就是css规定的html元素之间排布方向的标准流向，即css规定html元素之间为从左到右、从上到下的流向排布，如下图所示排布：</p>
+<p><img src="/imgs/flow_pic01.JPG" alt="flow_pic01"></p>
+<h2 id="2-文档流中的元素分类">2. 文档流中的元素分类</h2>
+<p>由上图可看出，有的元素是横向排布直至占满一行后才换行，而有的元素是自己就占了一行，新增元素直接占据下一行，这样的排布将元素分成了两大类。</p>
+<h4 id="内联元素">内联元素</h4>
+<p>内联即inline元素，特点是元素大小由其内联内容(如文字)的长宽决定的，典型的有span元素，其排布顺序为从左到右、从上到下排布，不浪费空间，直到达到最右边才换行，因此会存在将元素分成两半的情况，如下图所示：</p>
+<p><img src="/imgs/flow_pic02.JPG" alt="flow_pic02"></p>
+<p><strong>特点</strong>：</p>
+<ol>
+<li>
+<p>无法设置其宽width和高height，只能由其内联内容的大小决定，即不接受自定义宽高。</p>
+</li>
+<li>
+<p>该元素下的自定义上下margin值没有用，左右margin值有用。</p>
+</li>
+<li>
+<p>padding的左右值会改变实际宽度，但padding的上下值只是会改变可视高度，不会改变文档流中定义的元素的实际高度。可能有点抽象，我也觉得有点难以理解，看图解释如下：给内联元素设置了padding从视觉上看其变大了，但是文档流认识其宽度，但不认识其高度，还是以其原来的高度来定位其位置，因此给下一个div元素分配空间时也是以span占据的原来的高度往下分配的，因此称为padding只是改变内联元素视觉高度，不改变其实际高度。内联元素的实际大小只能由其内联内容决定。</p>
+</li>
+</ol>
+<p><img src="/imgs/flow_pic03.JPG" alt="flow_pic03"></p>
+<ol start="4">
+<li>内联元素的实际高度由其行高属性间接决定，即{line-height: 100px}，与height的值无关，如下图所示设置了span元素的行高后，实际高度变高，但视觉高度没有变高。之所以说是间接影响，是因为如果换个字体，高度就会改变了。(css的属性间不正交引起的)</li>
+</ol>
+<p><img src="/imgs/flow_pic07.JPG" alt="flow_pic07"></p>
+<h4 id="块级元素">块级元素</h4>
+<p>块级即block元素，特点是每一个元素都自己占一行，典型的有div元素，其排布顺序默认是从上往下一行行排布，新增一个就向下排布一个，如下图所示：</p>
+<p><img src="/imgs/flow_pic04.JPG" alt="flow_pic04"></p>
+<p><strong>特点</strong>：</p>
+<ol>
+<li>
+<p>默认高度由其包含的文档流内容的高度决定，若里面的内容不是文档流元素，如脱离了文档流的元素，则不规块级元素管，不包含在块级元素的高度范围内。 默认宽度为auto，即要多宽有多宽，默认占满一行，但宽度不是100%。</p>
+</li>
+<li>
+<p>可以自定义宽度和高度，宽度不满一行整个元素也占一行。即只要是块级元素，即属性值为block，则就是自己独占一行。</p>
+</li>
+</ol>
+<h4 id="实际不区分">实际不区分</h4>
+<p>实际上，html元素根本没有内联元素和块级元素之分，只是如果不自行设置，某些元素会被浏览器默认以某种类型展示，如span元素即默认是内联类型，div元素默认是块级类型。但其实任何一个html元素都可通过设置对应的css属性来设置其需要的流动类型。这个css属性就是{display: inline / block / inline-block}，每个属性值解释为：</p>
+<p><strong>display: inline</strong>：设置为该属性值后，元素即拥有内联的属性，排布样式和特点即为上述内联元素的排布样式和特点。</p>
+<p><strong>display: block</strong>：设置该属性值后，元素即成了块级元素，遵循块级元素的排布顺序和特点。</p>
+<p><strong>display: inline-block</strong>：内联块，这个属性值是综合了内联元素和块级元素的特点，不会将一个元素分成两半，始终维持元素成块的特点，即inline值下的元素直至铺满才换行，存在元素分成两半的情况，但inline-block值下的元素若该行放不下该元素就会另起一行，如下图所示：</p>
+<p><img src="/imgs/flow_pic05.JPG" alt="flow_pic05"></p>
+<p>与此同时，其拥有的特点也区分于inline，继承了block的一些特点，具体如下：</p>
+<p><strong>特点</strong>：</p>
+<ol>
+<li>
+<p>和inline元素一样默认大小为内联内容大小，但是inline-block元素允许设置width、height来自定义宽度和高度。</p>
+</li>
+<li>
+<p>自定义margin的上下左右值均有效。</p>
+</li>
+<li>
+<p>padding值会改变元素的实际大小。如下图所示：</p>
+</li>
+</ol>
+<p><img src="/imgs/flow_pic06.JPG" alt="flow_pic06"></p>
+<h2 id="3-补充说明">3. 补充说明</h2>
+<p>以上所指的在文档流中的元素分为实际大小和视觉大小，其中的实际大小是指，css按照标准文档流规则排布元素时看到的元素所占据的大小，除去元素占据的大小，将剩余的空间再次分配。而视觉高度是指，加了border后人眼看到的元素大小，可能因为和实际大小不符合而遮盖下面的元素。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/categories/css/">CSS</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/css/">CSS</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/%E6%96%87%E6%A1%A3%E6%B5%81/">文档流</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>CSS盒模型</title>
+                <link>https://example.com/posts/css-box-model/</link>
+                <guid isPermaLink="true">https://example.com/posts/css-box-model/</guid>
+                <pubDate>Tue, 28 Jan 2020 12:34:37 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-是什么">1. 是什么</h2>
+<p>css在为html元素设置样式时，将每一个html元素看作一个盒子，在css根据文档流标准为元素分配空间时是根据元素的盒子大小分配的，在任意一个网页上打开开发者工具，选择页面一个元素，都可看到如下的盒模型：</p>
+<p><img src="/imgs/box_pic01.JPG" alt="box_pic01"></p>
+<h2 id="2-由外向内的内容组成">2. 由外向内的内容组成</h2>
+<h4 id="margin外边距">margin—外边距</h4>
+<p>如上图的盒模型所示的位置，margin是盒模型最外面一层的空间区域，可自定义设置上下左右大小，一般看不见，但确实存在，用于排布元素与其他元素的间隔距离。</p>
+<h4 id="border边框">border—边框</h4>
+<p>如上图的盒模型所示的位置，border是可以用设置{border: 1px solid red}样式看到的，也是盒模型的组成中唯一可以明显看到大小的一项，是视觉上可以看到的元素的大小。</p>
+<h4 id="padding内边距">padding—内边距</h4>
+<p>如上图的盒模型所示的位置，内边距padding和外边距一样也是看不到但真实存在的元素中的空间组成部分，用于设置元素的边界和内容content之间的距离。</p>
+<h4 id="content内容">content—内容</h4>
+<p>如上图的盒模型所示的位置，padding里面的部分是内容content，是元素里面的文字或者其他元素内容。其大小也是视觉上看不到的，若padding值为0时，内容大小是border内线围成的大小。</p>
+<h2 id="3-盒模型分类">3. 盒模型分类</h2>
+<p>盒模型分为两种，一种是内容盒(content-box)，一种是边界盒(border-box)，两者的区别如下：</p>
+<h4 id="1-content-box">1. content-box</h4>
+<p>conten-box，是浏览器设置的默认值，每个html元素浏览器默认设置看作是内容盒子，属性设置语句为{box-sizing: content-box;}，用法是，针对元素的width、height属性，设置的大小是设置的盒模型中的content部分的大小，设置元素的width: 200px ，得到的盒模型如下图所示，可知是content内容的宽度为200px。</p>
+<p><img src="/imgs/box_pic02.JPG" alt="box_pic02"></p>
+<h4 id="2-border-box">2. border-box</h4>
+<p>通过设置元素的样式为{box-sizing: border-box;}，则可将元素设置为边界盒，则针对元素的width、height属性，设置的大小是设置的盒模型中的border外边框包含的所有里面的大小，设置元素的width: 200px ，得到的盒模型如下图所示，则200 = border(1+1)+padding(20+20)+content(158)，除去border和padding大小剩余的即为content大小。</p>
+<p><img src="/imgs/box_pic03.JPG" alt="box_pic03"></p>
+<h4 id="3-哪个好用些">3. 哪个好用些？</h4>
+<p>我觉得因人而异吧，我觉得border-box好用些，因为在盒模型的组成部分中，只有边界border可显示出来视觉上明显看到，使用边界盒可以看到使用width和height属性设置的元素大小。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/categories/css/">CSS</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/css/">CSS</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/%E7%9B%92%E6%A8%A1%E5%9E%8B/">盒模型</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>CSS布局</title>
+                <link>https://example.com/posts/css-layout/</link>
+                <guid isPermaLink="true">https://example.com/posts/css-layout/</guid>
+                <pubDate>Tue, 28 Jan 2020 12:29:49 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>CSS页面布局方式有多种，这里介绍三种针对不同需求的布局方式，分别为float布局、flex布局、grid布局，每种布局属性的浏览器支持程度可通过<a href="https://caniuse.com/">caniuse</a>网站进行查询，这三种布局的具体使用方式和区别如下：</p>
+<h2 id="1-float布局方式">1. float布局方式</h2>
+<h4 id="需求分析">需求分析</h4>
+<p>float布局是专门用于兼容ie浏览器的一种布局，几乎所有浏览器都支持float，但是float布局其相比于其他布局方式有点复杂，所以用float布局一般是为了兼容ie浏览器和其旧版本，若不必兼容ie，可使用下列比较简单好用的布局方式，float布局具体使用方式如下：</p>
+<h4 id="float的常用三种取值">float的常用三种取值</h4>
+<p><strong>float: none</strong>：</p>
+<p>float的浏览器默认值，即不自定义float属性值时，该属性值为none，意味着该元素没有脱离标准文档流。只要自定义设置了float的属性值为非none值，则该元素就脱离了标准文档流的流向，成为了浮动元素。</p>
+<p><strong>float: left</strong>：</p>
+<p>设置float值为left时，首先意味着该元素脱离文档流成为了浮动元素，其次是该值含义是该元素必须浮动在其所在块级容器剩余可用空间的最左侧，即该元素被移出正常的文档流向，一直向左移动，直到碰到了所处容器剩余可用空间的最左端边框或者碰到了另外一个浮动元素。如下图的左浮动示例图所示：</p>
+<p><img src="/imgs/layout_pic01.JPG" alt="layout_pic01"></p>
+<p><strong>float: right</strong>：</p>
+<p>同left值的变化类似，该值的含义是该元素必须浮动在其所在块级容器剩余可用空间的最右侧，脱离文档流后一直向右移动，直到碰到所在容器剩余可用空间的最右端边框或者碰到另外一个浮动元素。如下图的右浮动示例图所示：</p>
+<p><img src="/imgs/layout_pic02.JPG" alt="layout_pic02"></p>
+<h4 id="脱离文档流后再归父元素管理">脱离文档流后再归父元素管理</h4>
+<p>浮动元素脱离文档流后由于其流向不再符合正常文档流向，所以可能会出现一些布局交叉乱掉的情况，如下图所示，这些元素都有一个共同的父元素，父元素的边框为蓝色，如下图所示，只有非浮动元素在父元素中，浮动元素不被包含在父元素中，也就是说，脱离文档流的元素不再归其父元素管了。</p>
+<p><img src="/imgs/layout_pic03.JPG" alt="layout_pic03"></p>
+<p>若想让浮动元素也归父元素管理，则只需在父元素中添加class=&quot;clearfix&quot;的class属性，然后设置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">clearfix</span><span class="p">:</span><span class="nd">after</span><span class="p">{</span>
+	<span class="k">content</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+    <span class="k">display</span><span class="p">:</span> <span class="kc">block</span><span class="p">;</span>
+    <span class="k">clear</span><span class="p">:</span> <span class="kc">both</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>设置后的效果如下图所示，可看出，浮动元素也归父元素管理了。</p>
+<p><img src="/imgs/layout_pic04.JPG" alt="layout_pic04"></p>
+<h4 id="自定义float值后的一些变化">自定义float值后的一些变化</h4>
+<p>自定义float值后左浮、右浮成为浮动元素后，由于css属性的非正交性(即一个属性的改变会影响另外一个属性的改变，即非正交)，会改变一些属性，目前我知道的其改变的属性如下：</p>
+<ol>
+<li>
+<p>改变了该元素的display属性值，若该元素的display属性值原本是inline或者inline-block，都会被改成了block值，成为块级元素。</p>
+</li>
+<li>
+<p>block块级元素的属性中自己占据一行的特点被改变，不再是自己占据一行，而是根据其内容大小确定其宽度，当然也可自定义宽度，而且若不自定义宽度width，可能还会出一些问题，所以最好设置了float浮动后加上width属性值。</p>
+</li>
+</ol>
+<h4 id="float布局的使用总结">float布局的使用总结</h4>
+<ol>
+<li>
+<p>在子元素上加上float: left / right，和width属性。</p>
+</li>
+<li>
+<p>在父元素上加上.clearfix属性，并添加对应属性值。</p>
+</li>
+</ol>
+<h2 id="2-flex布局方式">2. flex布局方式</h2>
+<h4 id="需求分析-1">需求分析</h4>
+<p>flex布局，又称弹性布局，是目前使用最广泛的布局方式，除了ie浏览器外，大多数浏览器和其新版本都支持。这里有个英文网站介绍flex布局介绍得很详细，可参考这个<a href="https://css-tricks.com/snippets/css/a-guide-to-flexbox/#flexbox-basics">css-tricks</a>网站。</p>
+<h4 id="工作原理">工作原理</h4>
+<p>flex布局采取容器(container)和项目(item)结合的方式进行布局，容器是父元素，项目是多个子元素，为父元素启用flex属性，就意味着要对该元素内的物体进行flex布局，以下便从容器(container)和项目(item)两个方面各自具有的属性进行介绍。</p>
+<h4 id="flexcontainer属性">flex—container属性</h4>
+<p><strong>1) 让一个元素变成flex容器</strong></p>
+<p>给父元素加一个class=&quot;container&quot;的class属性名，然后设置如下即可变成一个容器：(一般容器父元素是块级元素或者内联块元素)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="p">.</span><span class="nc">container</span><span class="p">{</span>
+    <span class="k">display</span><span class="p">:</span> <span class="kc">flex</span> <span class="o">/</span> <span class="kc">inline</span><span class="o">-</span><span class="kc">flex</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>flex和inline-flex的区别：</p>
+<p>这两个属性值对其里面的项目子元素的布局没有任何影响，是对具有该容器属性的父元素类型的一个定义，flex是块级元素，inline-flex是内联块元素。对父元素同级的周围的元素有影响。</p>
+<p><strong>2) 主轴方向：flex-direction</strong></p>
+<p>flex布局默认是元素一字排开，flex布局下的元素没有块级元素、内联元素之分，经测试，flex布局下容器里的所有元素的{display: block / inline; }属性都没有任何作用，div也不再默认独占一行，而是根据其内容定大小，span的width、height属性也都起作用，可自定义其大小。</p>
+<p>主轴方向属性是flex-direction，是用来定义一字排开的元素的方向是横着还是竖着。属性值如下：</p>
+<p>**row：**默认值，主轴方向为从左向右，即将元素正向横着排布，如下图所示：</p>
+<p><img src="/imgs/layout_pic05.JPG" alt="layout_pic05"></p>
+<p>**row-reverse：**主轴方向为从右向左，即将元素逆向横着排布，如下图所示：</p>
+<p><img src="/imgs/layout_pic06.JPG" alt="layout_pic06"></p>
+<p>补充：在主轴方向为横向时，可看到所有元素都被挤在了一行，哪怕该元素设置了宽度也不起作用，文字都被挤成了竖着的，那是因为flex布局下的元素默认是一字排开，不换行。所以可以通过设置{flex-wrap: wrap;}属性来设置其换行，默认值是nowrap不换行，加入该属性后的样子如下图，可看到根据元素的内容大小或宽度进行换行。</p>
+<p><img src="/imgs/layout_pic09.JPG" alt="layout_pic09"></p>
+<p>**column：**主轴方向为从上往下，即将元素竖着正向排布，如下图所示：</p>
+<p><img src="/imgs/layout_pic07.JPG" alt="layout_pic07"></p>
+<p>**column-reverse：**主轴方向为从下往上，即将元素竖着逆向排布，如下图所示：</p>
+<p><img src="/imgs/layout_pic08.JPG" alt="layout_pic08"></p>
+<p><strong>3) 横向对齐：justify-content</strong></p>
+<p>这个属性一般用于主轴方向为横向，且加入了自动换行属性的容器，自动换行后该行可能会出现一些空隙，如何处理这些空隙，让元素在有空隙的情况下以何种方式分布，正是justify-content属性所处理的。具体属性值如下：</p>
+<p>**flex-start：**默认属性值，即每行所有元素向左边靠拢，如下图所示：</p>
+<p><img src="/imgs/layout_pic10.JPG" alt="layout_pic10"></p>
+<p><strong>flex-end</strong>：每行所有元素向右边靠拢，如下图所示：</p>
+<p><img src="/imgs/layout_pic11.JPG" alt="layout_pic11"></p>
+<p>**center：**每行所有元素居中靠拢，如下图所示：</p>
+<p><img src="/imgs/layout_pic12.JPG" alt="layout_pic12"></p>
+<p>**space-between：**每行元素在两边对齐，中间平分空隙，如下图所示：</p>
+<p><img src="/imgs/layout_pic13.JPG" alt="layout_pic13"></p>
+<p>**space-around：**每行元素的左右两边均有同等大小的空隙，所以中间元素的两个空隙挨着时空隙要大些，如下图所示：</p>
+<p><img src="/imgs/layout_pic14.JPG" alt="layout_pic14"></p>
+<p>**space-evenly：**空隙空间平均分，两边也有空隙，如下图所示：</p>
+<p><img src="/imgs/layout_pic15.JPG" alt="layout_pic15"></p>
+<p><strong>4) 纵向对齐：align-content</strong></p>
+<p>该属性用于主轴方向为横向，且容器的高度高于多行元素的总高度，即纵向方向有空隙时，如何对纵向方向的空隙进行划分的布局方式，具体属性值如下：</p>
+<p>**stretch：**当子元素没有自定义高度时，该属性值起作用，会将元素的高度拉伸，填满整个高度，如下图所示：</p>
+<p><img src="/imgs/layout_pic20.JPG" alt="layout_pic20"></p>
+<p>**flex-start：**同justify-content类似，如下图所示：</p>
+<p><img src="/imgs/layout_pic21.JPG" alt="layout_pic21"></p>
+<p>**flex-end：**同justify-content类似，如下图所示：</p>
+<p><img src="/imgs/layout_pic22.JPG" alt="layout_pic22"></p>
+<p>**center：**同justify-content类似，如下图所示：</p>
+<p><img src="/imgs/layout_pic23.JPG" alt="layout_pic23"></p>
+<p>**space-between：**同justify-content类似，如下图所示：</p>
+<p><img src="/imgs/layout_pic24.JPG" alt="layout_pic24"></p>
+<p>**space-around：**同justify-content类似，如下图所示：</p>
+<p><img src="/imgs/layout_pic25.JPG" alt="layout_pic25"></p>
+<p>**space-evenly：**同justify-content类似，如下图所示：</p>
+<p><img src="/imgs/layout_pic26.JPG" alt="layout_pic26"></p>
+<p><strong>5) 次轴对齐：align-items</strong></p>
+<p>这个属性是用于主轴方向为横向，而且每一行的每个元素的高度不同的情况的样式设置。具体属性值如下：</p>
+<p>**flex-start：**默认属性值，即每行所有元素顶部对齐，如下图所示：</p>
+<p><img src="/imgs/layout_pic17.JPG" alt="layout_pic17"></p>
+<p>**flex-end：**即每行元素底部对齐，如下图所示：</p>
+<p><img src="/imgs/layout_pic18.JPG" alt="layout_pic18"></p>
+<p>**center：**即每行元素中间对齐，如下图所示：</p>
+<p><img src="/imgs/layout_pic19.JPG" alt="layout_pic19"></p>
+<p><strong>stretch：</strong></p>
+<p><strong>baseline：</strong></p>
+<h4 id="flexitem属性">flex—item属性</h4>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/categories/css/">CSS</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/css/">CSS</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>浅析HTTP</title>
+                <link>https://example.com/posts/http-http/</link>
+                <guid isPermaLink="true">https://example.com/posts/http-http/</guid>
+                <pubDate>Tue, 28 Jan 2020 12:24:33 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-http">1. HTTP</h2>
+<p>HTTP是www万维网中的重要组成部分，全称为Hyper Text Transfer Protocol，即超文本传输协议。是万维网中进行数据传输时规定的相互之间遵守的一定协议，HTTP的作用是用来负责客户端和服务器端数据传送的，不遵循HTTP协议就无法浏览网页。</p>
+<h2 id="2-ip">2. IP</h2>
+<p>IP全称为Internet Protocol，即互联网协议，是整个互联网正常运行需要遵循的一定协议，IP的作用是用来定位一个设备，没有IP就无法上网。</p>
+<h2 id="3-端口">3. 端口</h2>
+<p>一个服务器对应一个IP，但是一个服务器可以提供很多种功能，每一类功能都由一个号码确定，该号码就是端口号。要想获得某种服务就必须开通相应的端口，常见的服务对应的端口有：</p>
+<p>http服务：80端口</p>
+<p>https服务：443端口</p>
+<p>ftp端口：21端口</p>
+<p>一台服务器一共有65535个端口服务，通过维基百科搜索&quot; tcp端口 &quot;可查看0-1023号系统端口，只有管理员才能使用，其他端口是留给普通用户使用的。</p>
+<p>因此有了端口后，通过IP和端口号可以定位一个设备提供的一个服务。</p>
+<h2 id="4-域名">4. 域名</h2>
+<p>域名是IP的字符串形式的别称，由于IP是一串数字，不好记忆，因此发明了可以自定义的好记的域名与IP进行映射，在命令行通过ping命令可查看域名对应的IP，如ping baidu.com可以查看到百度服务器的IP。</p>
+<p>1）一个域名可以对应多个不同的IP</p>
+<p>为了防止多用户同时访问服务器造成服务器的崩溃，设置一个域名可以对应多个服务器，即对应多个IP，来减少服务器的压力，这种操作称为负载均衡。</p>
+<ol start="2">
+<li>一个IP可以对应多个不同的域名</li>
+</ol>
+<p>可以共享主机</p>
+<h2 id="5-dns">5. DNS</h2>
+<p>IP和域名需要一个将其连接起来的设备，那就是DNS，全称为Domain Name System，即域名服务系统。域名服务器是将域名与IP对应起来的，在地址栏输入域名，会先询问DNS服务器查询具体IP，然后再通过IP找到该服务器。</p>
+<p><strong>域名分类</strong></p>
+<ol>
+<li>
+<p>com / cn等顶级域名</p>
+</li>
+<li>
+<p>baidu.com是二级域名(俗称一级域名)</p>
+</li>
+<li>
+<p><a href="http://www.baidu.com">www.baidu.com</a>是三级域名(俗称二级域名)，且www.baidu.com是baidu.com的子域名，且二者并不一定有关系，可能是两个独立的域名。如今很多网站的前面都会加www，是因为早期的网站为了注明是万维网，就会加www，但现在很多网站都不需要加www。</p>
+</li>
+</ol>
+<p><strong>PS：</strong></p>
+<p>像github网站，它的网站是github.com，它会将其所有的子域名免费分配给用户，以用户名为三级域名名，如我的用户名为LoveVin，我的免费域名为 lovevin.github.com。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/categories/http/">HTTP</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/http/">HTTP</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>浅析URL</title>
+                <link>https://example.com/posts/http-url/</link>
+                <guid isPermaLink="true">https://example.com/posts/http-url/</guid>
+                <pubDate>Tue, 28 Jan 2020 12:19:24 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-url是什么">1. URL是什么</h2>
+<p>URL全称为Uniform Resource Locator，即统一资源定位符，是www万维网中的重要组成部分。万维网中的每一个页面都有一个对应的url，通过输入url地址向服务器发起页面请求。通过url，不仅可以访问到不同的页面，也可以访问到同一页面的不同内容，或者同一页面同一内容的不同内容块，这些均由url管理，那么url是怎么实现这些区分的呢？</p>
+<h2 id="2-url的重要组成">2. URL的重要组成</h2>
+<p>万维网上的任何一个网站的正常运行都离不开服务器，万维网的运行原理就是，输入一个地址，通过该地址找到对应的服务器，向该服务器请求html页面，并交由浏览器解析，然后浏览器负责将页面以可视化的形式展示出来。这个找到服务器的地址就是ip，难记的ip一般会绑定到一个好记的域名上，因此URL的重要组成部分就是域名，或ip。通过URL中的域名即可找到要请求的服务器，然后进行更细一步的划分。</p>
+<h2 id="3-如何请求不同的页面">3. 如何请求不同的页面</h2>
+<p>向服务器请求的html页面其实是存储在服务器端的文件内容，通过向服务器发送请求即可下载该文件并进行解析。因此不同的页面的请求可以通过路径得到，就像访问我们自己的电脑的文件夹一样。&quot; / &quot;是根目录的意思。例如访问百度页面时，在地址栏显示的是&quot; <a href="https://www.baidu.com/">https://www.baidu.com/</a> &quot;，跟在百度域名后面的&quot; / &quot;，即是访问百度服务器根目录的意思。如在百度搜索栏输入搜索词进入的页面的地址栏的前面部分为&quot; <a href="https://www.baidu.com/s?wd=">https://www.baidu.com/s?wd=</a>测试数据) &quot;，可以看到百度的搜索页面在根目录下的s文件目录下。</p>
+<h2 id="4-如何请求到同一页面的不同内容">4. 如何请求到同一页面的不同内容</h2>
+<p>有时候仔细查看会发现相同路径目录下的页面内容是不一样的，如百度，输入不同的关键字，细看地址栏可以看到前缀是一样的，页面的排版和构成是一样的。例如在百度搜索哈哈哈，得到的url是&quot; <a href="https://www.baidu.com/s?wd=">https://www.baidu.com/s?wd=</a>哈哈哈 &quot;，可以看到也是根目录的s文件目录下。那是因为可以通过不同的查询参数获得不同的页面内容，查询参数的写法即&quot; ?参数名=参数 &quot;等等形式。参数传参可以有多个，通过 &amp; 符号连接。在url中没有搜索功能的可没有该参数。</p>
+<h2 id="5-如何请求到同一页面同一内容的不同内容块">5. 如何请求到同一页面同一内容的不同内容块</h2>
+<p>有时候在同一个页面同一个搜索结果页面下，有时候页面内容过长，页面内容会根据标题等分模块，便可通过搜索或者目录的形式跳转到对应的模块，url便为该部分流出空间，语法格式为&quot; #内容块名 &quot;，称为锚点，点击可跳转到对应的内容块。例如 <a href="https://developer.mozilla.org/zh-CN/docs/Learn#">https://developer.mozilla.org/zh-CN/docs/Learn#</a>参见 ，即可跳到该页面的&quot; 参见 &quot;内容块。</p>
+<h2 id="6-url完整构成">6. URL完整构成</h2>
+<p>综上所述，URL的完整构成为：协议(http或https)://域名(或ip):端口号(可省略,默认是80端口)/路径/查询参数/锚点。</p>
+<h2 id="7-注意事项">7. 注意事项</h2>
+<ol>
+<li>
+<p>锚点是不允许有中文的，我们在地址栏看到的中文锚点名实际存储并传输的是一串乱码似的字符串，如上述的中文锚点，从地址栏复制黏贴下来，得到的是 <a href="https://developer.mozilla.org/zh-CN/docs/Learn#%E5%8F%82%E8%A7%81">https://developer.mozilla.org/zh-CN/docs/Learn#%E5%8F%82%E8%A7%81</a> ，可以看到&quot; 参见 &quot;是一串乱码字符串。</p>
+</li>
+<li>
+<p>锚点的参数值是不会传递给服务器的，锚点是由浏览器负责执行对应功能的，不归服务器管理。</p>
+</li>
+</ol>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/categories/http/">HTTP</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/url/">URL</category>
+                                
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/http/">HTTP</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>HTML重点标签篇</title>
+                <link>https://example.com/posts/html-key-tags/</link>
+                <guid isPermaLink="true">https://example.com/posts/html-key-tags/</guid>
+                <pubDate>Tue, 28 Jan 2020 12:15:01 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-a-标签">1. a 标签</h2>
+<p><strong>href 属性</strong>：href即hyper(超级)-reference(链接/引用)的缩写，即为超链接的意思。该属性值为超链接地址名。该属性值的取值形式为：</p>
+<p>1）网络地址：</p>
+<ul>
+<li>&quot;https://baidu.com&quot;：</li>
+<li>&quot;http://baidu.com&quot;：</li>
+<li>&quot;//baidu.com&quot;：无协议网址</li>
+</ul>
+<p>2）文件路径：</p>
+<ul>
+<li>相对路径：同一文件内的本地html页面所在的相对路径名作为链接地址。</li>
+<li>绝对路径：当前打开的文件为根目录</li>
+</ul>
+<p>3）伪协议：</p>
+<ul>
+<li>&quot; javescript:代码; &quot;：可用于写一个a标签但又不想做任何操作，就用href=&quot;javascript:;&quot;。若用href=&quot;&quot;，点击会刷新页面，href=&quot;#&quot;点击不会刷新页面但是会跳转至顶部。因此，只有用js伪协议才能真正做到点击a标签什么都不做。</li>
+<li>&quot;#id值&quot;：可跳转到该id值标签的内容所在部分。</li>
+<li>&quot; mailto:邮箱 &quot;：打开邮箱并自动填入邮箱地址</li>
+<li>&quot; tel:手机号&quot;：打开拨号页面并自动填入号码</li>
+</ul>
+<p><strong>target 属性</strong>：该属性是指跳转方向的意思，即将在哪个窗口打开该链接地址。基本属性值有五类，分别为</p>
+<ul>
+<li>&quot;_self&quot;：在当前页面打开超链接</li>
+<li>&quot;_blank&quot;：在新的空白页面打开超链接</li>
+<li>&quot;_parent&quot;：若有iframe包含的子窗口、孙窗口等，在当前窗口的上一层父窗口打开超链接</li>
+<li>&quot;_top&quot;：若有iframe包含的子窗口、孙窗口等，在最外层窗口即祖宗窗口打开超链接。</li>
+<li>&quot;xxx&quot;：会先检查有没有叫xxx名字的窗口，若没有则新建一个窗口命名为xxx，当后面再有一个值为xxx时便是该窗口打开。可用于设置利用同一个窗口打开覆盖多个页面。也可给iframe窗口的name命名为xxx，则打开的页面就是在iframe窗口打开了。</li>
+</ul>
+<p><strong>download 属性</strong>：非赋值属性，开启后点击该链接会下载超链接地址中的网页，而不是查看，但浏览器大部分不支持。</p>
+<h2 id="2-table-标签">2. table 标签</h2>
+<p>tabel中常用的结构标签有三个，分别是：</p>
+<pre><code>&lt;table&gt;
+      &lt;thead&gt;表头&lt;/thead&gt;
+      &lt;tbody&gt;主体&lt;/tbody&gt;
+      &lt;tfoot&gt;表尾&lt;/tfoot&gt;
+    &lt;/table&gt;
+</code></pre><p>然后是表项标签分别有：</p>
+<ul>
+<li>tr：即table row，是表中的一行</li>
+<li>th：即table header，是指表头，默认会加粗显示。</li>
+<li>td：即table data：表中的一项数据</li>
+</ul>
+<p><strong>table的几个样式</strong>：</p>
+<ul>
+<li>table-layout：可用于定义每列宽度是相等还是根据字数大小分布。auto和fixed。</li>
+<li>border-collapse：取值为collapse，则可合并单元格去除表项内边界。</li>
+<li>border-spacing：一般设置边界间隔为0。</li>
+</ul>
+<h2 id="3-img-标签">3. img 标签</h2>
+<p>该标签会发出一个get请求，返回一张图片。</p>
+<p><strong>属性</strong></p>
+<p><strong>src 属性</strong>：属性值为图片的地址，可为网络地址也可为相对或者绝对路径。</p>
+<p><strong>alt属性</strong>：即alternative，可供选择的，当图片加载失败后，显示该部分内容。</p>
+<p><strong>width</strong>：只写宽度，高度会自适应等比缩放。</p>
+<p><strong>height</strong>：只写高度，宽度会自适应等比缩放。</p>
+<p><strong>事件</strong></p>
+<p>onload和onerror，其中onerror可用于加载图片加载失败的图片。</p>
+<h2 id="4-form-标签">4. form 标签</h2>
+<p>该标签会发送一个get或者post请求然后刷新页面</p>
+<p><strong>属性</strong></p>
+<p><strong>action属性</strong>：以get或者post的方式请求到action属性值里对应的页面。</p>
+<p><strong>method属性</strong>：请求方式的设置，get和post。</p>
+<p><strong>autocomplete属性</strong>：设置form的autocomplete属性值为&quot;on&quot;，然后在表单的input的输入标签中设置input的name=&quot;username&quot;，则输入框获得焦点后会显示用户在该浏览器上曾经输入过的用户名。可选择并自动填充。</p>
+<p><strong>target属性</strong>：和a标签的target属性类型，设置提交到哪个页面。</p>
+<p><strong>事件</strong></p>
+<p>onsubmit事件</p>
+<p><strong>from相关的其他知识</strong>：</p>
+<p>form中一定要有个type=&quot;submit&quot;的提交按钮，可以是<code>&lt;input type=&quot;submit&quot;/&gt;</code>也可以是<code>&lt;button type=&quot;submit&quot;&gt;提交&lt;/button&gt;</code>，其中button不写类型默认是type=&quot;submit&quot;。两个按钮的区别是，input标签里不能有其他内容，但button标签里可以再包含其他标签，也可用图片做按钮等。</p>
+<h2 id="5-input-标签">5. input 标签</h2>
+<p>该标签的主要目的是让用户输入内容</p>
+<p><strong>属性</strong>：</p>
+<p><strong>type 属性</strong>：</p>
+<ul>
+<li>text：默认属性值，为输入文本框</li>
+<li>button：为按钮</li>
+<li>color：为一个颜色选择器</li>
+<li>password：为输入密码，不显示输入内容，以······代替</li>
+<li>radio：单选，要设置多个radio类型的input的name属性值相同，归为一组，在一组中单选</li>
+<li>checkbox：多选，一组checkbox类型的input也要name相同，便于后续获取该选择的数组。</li>
+<li>file：选择一个文件，在其后再加multiple即<code> &lt;input type=&quot;file&quot; multiple/&gt;</code>，可同时选择多个文件内容。</li>
+<li>hidden：隐藏文本框</li>
+<li>number：只能输入数字，且可从输入的数字连续点击增1减1。</li>
+<li>search：搜索框，会有x号出现删除搜索内容</li>
+</ul>
+<p><strong>required 属性</strong>：
+非赋值属性，启用该属性则点击提交时提示请填写此字段，HTML自带的验证功能。</p>
+<p><strong>事件</strong>：</p>
+<ul>
+<li>onchange：内容改变时触发的事件</li>
+<li>onfocus：文本框获得焦点时触发的事件</li>
+<li>onblur：文本框失去焦点时触发的事件</li>
+</ul>
+<h2 id="6-textarea-标签">6. textarea 标签</h2>
+<p>input是单行输入，textarea是多行输入，且什么属性不设置的话，该文本框可被拖动放大缩小。可设置其style属性为<code>&lt;textarea style=&quot;resize: none;&quot;&gt;&lt;/textarea&gt;</code>可固定该文本框大小禁止拖动。</p>
+<h2 id="7-selectoption-标签">7. select+option 标签</h2>
+<p>可用于做选择列表，option标签是每一项内容。</p>
+<p>未完待续。。。。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/categories/html/">HTML</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/html%E9%87%8D%E7%82%B9%E6%A0%87%E7%AD%BE/">HTML重点标签</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>HTML属性篇</title>
+                <link>https://example.com/posts/html-property/</link>
+                <guid isPermaLink="true">https://example.com/posts/html-property/</guid>
+                <pubDate>Tue, 28 Jan 2020 12:10:13 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h3 id="1属性分类">1.属性分类</h3>
+<p>标签的属性按设置方式分为赋值型属性和非赋值型属性（即bool属性）</p>
+<ul>
+<li>赋值属性语法：<code>&lt;tag attr=value&gt;&lt;/tag&gt;</code></li>
+<li>非赋值型语法：<code>&lt;tag attr&gt; //写attr即为开启该属性，不写attr即为不开启该属性</code></li>
+</ul>
+<h3 id="2全局属性">2.全局属性</h3>
+<p>全局属性即所有标签都有的属性，如下：</p>
+<p><strong>class</strong>：给标签分类，即给该标签下的内容块做个标记，便于对该块内容设置样式。多个标签可以有相同的class名字，则可通过相同class名给多个内容设置相同的样式等。同时，class名字也可有多个，如class=&quot;middle top&quot;，名字用空格隔开，可用.class部分匹配，但其实名字是一个整体。<br>
+class属性的两种取法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">style</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="o">[</span><span class="nt">class</span><span class="o">=</span><span class="s2">&#34;middle&#34;</span><span class="o">]</span><span class="p">{</span>
+    <span class="p">}</span> <span class="o">/</span><span class="o">/</span><span class="nt">该方法无效</span><span class="err">，</span><span class="nt">用</span><span class="o">[</span><span class="nt">class</span><span class="o">=</span><span class="o">]</span><span class="nt">的取法属性名必须为全名匹配</span><span class="err">。</span>
+    <span class="p">.</span><span class="nc">middle</span><span class="p">{</span>
+    <span class="p">}</span> <span class="o">/</span><span class="o">/</span><span class="nt">该方法可以根据class属性名中的空格进行部分匹配</span><span class="err">，</span><span class="nt">有效</span><span class="err">。</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>id</strong>：标记该元素为全页面唯一，但其实唯一性根本不起作用，在css中两个id名相同也不报错，但在js中获取会报错，而且也难保证id名不会重复，因此尽量用class。<br>
+id属性名的两种取法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">style</span><span class="p"></span><span class="p">&gt;</span>
+    <span class="o">[</span><span class="nt">id</span><span class="o">=</span><span class="nt">xxx</span><span class="o">]</span><span class="p">{</span>
+    <span class="p">}</span>
+    <span class="p">#</span><span class="nn">xxx</span><span class="p">{</span>
+    <span class="p">}</span>
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">style</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>contenteditable</strong>：非赋值型属性，标签开启该属性可使该标签内的内容可在页面被编辑。</p>
+<p><strong>hidden</strong>：非赋值型属性，标签开启该属性可使该标签内容存在但是是隐藏状态。hidden是可以用style样式的<code>display:block</code>样式挽回的，即显示。</p>
+<p><strong>style</strong>：设置标签样式的属性，属性值和<code>&lt;style&gt;</code>样式标签里的写法一样。style的优先级为&quot; js&gt;style属性&gt;css &quot;</p>
+<p><strong>tabindex</strong>：为页面内容每块设置tabindex值，可响应tab键切换页面选中的内容，该属性值有三种赋值情况：</p>
+<ul>
+<li>正数值：不需连续，按照从小到大顺序切换</li>
+<li>0：是最后一个访问的块</li>
+<li>负数：不选中到该块。</li>
+</ul>
+<p><strong>title</strong>：鼠标放置该标签的内容模块时显示title的内容。可用于提示，例如一段话中未显示完全时，可用title属性值放剩余完整内容。</p>
+<p>待更新。。。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/categories/html/">HTML</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://example.com/tags/html%E5%B1%9E%E6%80%A7/">HTML属性</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>HTML基本标签篇</title>
@@ -118,6 +1092,8 @@
                                 
                                 
                                 
+                                    <category domain="https://example.com/tags/html%E5%9F%BA%E6%9C%AC%E6%A0%87%E7%AD%BE/">HTML基本标签</category>
+                                
                             
                         
                     
@@ -126,8 +1102,8 @@
         
             <item>
                 <title>HTML发展概况</title>
-                <link>https://example.com/posts/html_history/</link>
-                <guid isPermaLink="true">https://example.com/posts/html_history/</guid>
+                <link>https://example.com/posts/html-history/</link>
+                <guid isPermaLink="true">https://example.com/posts/html-history/</guid>
                 <pubDate>Mon, 27 Jan 2020 22:22:26 +0800</pubDate>
                 
                     <author>twinkelixn@qq.com (LoveVin)</author>
@@ -198,7 +1174,7 @@
                                 
                                 
                                 
-                                    <category domain="https://example.com/tags/html%E5%8F%91%E5%B1%95%E5%8F%B2/">HTML发展史</category>
+                                    <category domain="https://example.com/tags/html%E5%8F%91%E5%B1%95/">HTML发展</category>
                                 
                             
                         
