@@ -23,10 +23,1931 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Tue, 28 Jan 2020 16:52:51 +0800</lastBuildDate>
+        <lastBuildDate>Fri, 31 Jan 2020 19:57:01 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="https://twinklelixn.top/rss.xml" />
         
+        
+            <item>
+                <title>JS对象分类之数组</title>
+                <link>https://twinklelixn.top/posts/javascript-object-array/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/javascript-object-array/</guid>
+                <pubDate>Fri, 31 Jan 2020 19:56:02 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-写在前面">1. 写在前面</h2>
+<p>在JS语言中，其实没有真正的数组这个数据类型，JS是用对象模拟数组的形式，在JS中，数组是一种对象下的一个分类，但在其他语言中，数组可能是一个数据类型，要区分开。典型的数组是严格要求数据的数据类型是统一 的，并且可以用下标获取。但JS中的数组中存放的数据的数据类型可以不统一，比如第一个放数字，第二个放字符串，第三个放对象等等都是可以的，JS是通过键值对的方式来模拟数组的。</p>
+<h2 id="2-数组的定义">2. 数组的定义</h2>
+<h4 id="21-数组的常规定义方法">2.1 数组的常规定义方法：</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span> <span class="c1">//只有一个参数时为数组长度，此句为创建一个长度为3的数组
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Array</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="p">;</span> <span class="c1">//超过一个参数时为属性值，此为创建一个长度为3且其中值为1,2,3的数组
+</span><span class="c1"></span><span class="kd">var</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span><span class="p">;</span> <span class="c1">//上一种形式的简写
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="22-数组的非常规定义方法">2.2 数组的非常规定义方法：</h4>
+<p><strong>1) 分割符：array = string.split</strong></p>
+<p>将字符串进行分割，分割的字符组成一个字符串</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;a,b,c&#39;</span>
+<span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;,&#39;</span><span class="p">)</span>  <span class="c1">//根据逗号将字符串分割形成数组arr
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">str2</span> <span class="o">=</span> <span class="s1">&#39;abc&#39;</span>
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="nx">str2</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="c1">//分割符为空，根据字符分割成数组arr2
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2) Array的API：array = Array.from(string)</strong></p>
+<p>Array.from是最新的JS语法提供的API，作用是将不是数组的东西变成数组形式</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr3</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="s1">&#39;123&#39;</span><span class="p">)</span> <span class="c1">//可以将字符串变成数组
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">arr4</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="mi">123</span><span class="p">)</span> <span class="c1">//不可以将数字变成数组
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">arr5</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="kc">true</span><span class="p">)</span> <span class="c1">//不可以将bool变成数组
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">arr6</span> <span class="o">=</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">from</span><span class="p">(</span><span class="p">{</span><span class="mi">0</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="nx">length</span><span class="o">:</span><span class="mi">3</span><span class="p">}</span><span class="p">)</span> <span class="c1">//这样形式的对象可以变成数组，必须加length属性
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3) 数组合并：array = array1.concat(array2)</strong></p>
+<p>通过两个array的合并得到新的数组，并且不会改变原有数组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">arr3</span> <span class="o">=</span> <span class="nx">arr1</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">arr2</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>4)数组切割： array = array1.slice(切割位置)</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">arr1</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="c1">//从第二个位置开始切割，得到arr1 = [3,4,5,6]，并且不会改变原数组
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">arr2</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1">//从第0个位置切割，即不切割，原样复制，常用于复制一个数组
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="23-伪数组">2.3 伪数组</h4>
+<p>伪数组指的是该对象类似于数组对象，但是其原型链中没有数组的原型，该对象也就没有数组对应的属性和API。如下所示创建的数组就是伪数组</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr8</span> <span class="o">=</span> <span class="p">{</span><span class="mi">0</span><span class="o">:</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="o">:</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="o">:</span><span class="mi">3</span><span class="p">,</span><span class="nx">length</span><span class="o">:</span><span class="mi">3</span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上的2.1和2.2的常规和非常规定义的数组都是真数组，伪数组可以通过Array.from变成真数组</p>
+<h2 id="3-数组的自身属性">3. 数组的自身属性</h2>
+<ol>
+<li>
+<p>'0'、'1'、'2'、'3'、、、、：index属性，只要是属性名，都是字符串，因此index也是字符串</p>
+</li>
+<li>
+<p>length：长度属性</p>
+</li>
+</ol>
+<h2 id="4-数组的公有属性">4. 数组的公有属性</h2>
+<p>数组的公有属性有很多，列举以下常用的属性</p>
+<ol>
+<li>
+<p>push(value)：往数组添加一个值，在栈顶进行。</p>
+</li>
+<li>
+<p>pop()：与push相反，从数组弹出一个值，在栈顶进行。</p>
+</li>
+<li>
+<p>shift()：提高数组栈底部基线，即删除栈底元素。</p>
+</li>
+<li>
+<p>unshift(value)：与shift相反，从栈底插入一个元素。</p>
+</li>
+<li>
+<p>join('x')：在数组字符间用x连接起来并返回连接后形成的字符串，不会影响原有数组。</p>
+</li>
+<li>
+<p>arr1.concat(arr2)：将arr1数组和arr2数组连接起来<strong>返回一个新的数组</strong>，不会影响原有数组。且concat不仅可以接受一个数组，也可接受一个数，就是将该数push进数组的意思</p>
+</li>
+</ol>
+<h2 id="5-数组的操作">5. 数组的操作</h2>
+<h4 id="51-删除操作">5.1 删除操作</h4>
+<ol>
+<li>删除属性(错误)</li>
+</ol>
+<p>数组也是对象，数组属性的删除可用对象属性删除的方法。如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="k">delete</span> <span class="nx">arr</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="c1">// delete arr[&#39;0&#39;] 是一样的，不加引号，也会自定将下标转为字符串
+</span><span class="c1"></span><span class="c1">//这样删除，原有数组的length长度不会改变，还会留出一个empty空位置，这样就成了稀疏数组
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>改length(错误)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">lenght</span> <span class="o">=</span> <span class="mi">2</span> <span class="c1">//这样就把后面的3和4删除了，length也修改为了2
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>用shift删除第一个元素</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">shift</span><span class="p">(</span><span class="p">)</span> <span class="c1">//arr = [2,3,4]，从栈底删除一个元素，且长度会变
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>用pop删除最后一个元素</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">pop</span><span class="p">(</span><span class="p">)</span> <span class="c1">//arr = [1,2,3]，从栈顶删除一个元素，且长度会变
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="5">
+<li>用splice删除中间元素(<strong>splice强大且重要</strong>)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1">//意思是从下标为2的位置开始删除1个元素得到 arr = [1,2,4,5,6]
+</span><span class="c1"></span><span class="c1">//arr.splice(2,3) //意思是从下标为2的位置删除3个元素得到 arr = [1,2,6]
+</span><span class="c1"></span><span class="c1">//arr.splice()
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>用splice修改或添加中间元素</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">222</span><span class="p">)</span> <span class="c1">//意思是从下标为2的位置删除一个元素，并添加一个222,得到
+</span><span class="c1"></span><span class="c1">//arr = [1,2,222,4,5,6]
+</span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">222</span><span class="p">,</span><span class="mi">333</span><span class="p">)</span><span class="c1">//意思是从下标为2的位置删除一个元素，并添加222和333，得到
+</span><span class="c1"></span><span class="c1">//arr = [1,2,222,333,4,5,6]
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="52-遍历操作">5.2 遍历操作</h4>
+<ol>
+<li>属性keys查看(不推荐)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="c1">//查看arr数组的所有属性名
+</span><span class="c1"></span><span class="nb">Object</span><span class="p">.</span><span class="nx">values</span><span class="p">(</span><span class="nx">arr</span><span class="p">)</span> <span class="c1">//查看那arr数组的所有属性值
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>对象属性in查看(不推荐)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">arr</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>for循环查看</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">arr</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="4">
+<li>forEach遍历查看(数组的API)</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">,</span><span class="nx">index</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">index</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span> <span class="c1">//item是数组内容，index是数组下标
+</span><span class="c1"></span>
+<span class="c1">//forEach接口的实现
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">forEach</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="nx">fn</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">array</span><span class="p">.</span><span class="nx">lenght</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+        <span class="nx">fn</span><span class="p">(</span><span class="nx">array</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">,</span><span class="nx">i</span><span class="p">,</span><span class="nx">array</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>for循环和forEach遍历的区别：</p>
+<p>for循环中可以使用break和continue停止，但forEach不行。</p>
+<ol start="5">
+<li>indexOf查看元素是否在数组中</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">22</span><span class="p">)</span> <span class="c1">//返回-1,说明22不在数组中
+</span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>  <span class="c1">//返回5，说明6在数组中，且下标为5
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="6">
+<li>find函数是否查找到</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="p">}</span><span class="p">)</span> <span class="c1">//find里面是函数，只要里面是真就返回符合条件的第一个值
+</span><span class="c1"></span>
+<span class="c1">//以上只能返回找到符合要求的值，若想返回符合条件值所在的下标，如下：
+</span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">findIndex</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">return</span> <span class="nx">x</span><span class="o">%</span><span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="p">}</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="53-增加操作">5.3 增加操作</h4>
+<ol>
+<li>尾部添加元素</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="s1">&#39;10&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>头部添加元素</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="mi">7</span><span class="p">)</span> <span class="c1">//得到arr = [7,1,2,3,4,5,6]
+</span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">unshift</span><span class="p">(</span><span class="mi">8</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">)</span> <span class="c1">//得到arr = [8,9,10,7,1,2,3,4,5,6]
+</span></code></pre></td></tr></table>
+</div>
+</div><ol start="3">
+<li>中间添加元素</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mf">3.5</span><span class="p">)</span> <span class="c1">//在下标为3的位置不删除元素，添加一个3.5得到 arr = [1,2,3,3.5,4,5,6]
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="54-其他操作">5.4 其他操作</h4>
+<ol>
+<li>反转操作</li>
+</ol>
+<p>数组可以进行反转操作，倒置排序</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">reverse</span><span class="p">(</span><span class="p">)</span> <span class="c1">//得到 arr=[6,5,4,3,2,1]，修改原来数组
+</span><span class="c1"></span>
+<span class="c1">//利用数组的reverse可以操作字符串反转问题，如下所示：
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">str</span> <span class="o">=</span> <span class="s1">&#39;abcde&#39;</span>
+<span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">reverse</span><span class="p">(</span><span class="p">)</span>
+<span class="nx">str</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="c1">//得到arr = &#39;edcba&#39;
+</span><span class="c1"></span>
+<span class="c1">//或直接写为
+</span><span class="c1"></span><span class="nx">str</span> <span class="o">=</span> <span class="nx">str</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="p">.</span><span class="nx">reverse</span><span class="p">(</span><span class="p">)</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><ol start="2">
+<li>排序</li>
+</ol>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="p">)</span> <span class="c1">//得到数组从小到大的排序 arr=[1,2,3,4,5,6]
+</span><span class="c1"></span>
+<span class="c1">//JS默认是小的放前面，但是到底谁小它不知道，它也不知道要比谁，我们可以定义数值大的是小的，则就是从数值大的到小排序了。若想自定义是从大到小还是从小到大，如下：
+</span><span class="c1"></span>
+<span class="c1">//从小到大排序
+</span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="nx">b</span><span class="p">)</span>
+       <span class="k">return</span> <span class="mi">1</span><span class="p">(</span><span class="nx">or正值</span><span class="p">)</span> <span class="c1">//意思是谁值大就是大的
+</span><span class="c1"></span>    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span> 
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="nx">or负值</span><span class="p">)</span>  
+    <span class="p">}</span>
+    <span class="c1">// return a-b //简写形式
+</span><span class="c1"></span><span class="p">}</span><span class="p">)</span>
+<span class="c1">//从大到小排序：
+</span><span class="c1"></span><span class="nx">arr</span><span class="p">.</span><span class="nx">sort</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="p">{</span>
+   <span class="k">if</span><span class="p">(</span><span class="nx">a</span> <span class="o">&gt;</span> <span class="nx">b</span><span class="p">)</span>
+       <span class="k">return</span> <span class="o">-</span><span class="mi">1</span><span class="p">(</span><span class="nx">or正值</span><span class="p">)</span> <span class="c1">//意思是谁值大就是小的
+</span><span class="c1"></span>    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">a</span> <span class="o">==</span> <span class="nx">b</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="mi">0</span>  
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="k">return</span> <span class="mi">1</span><span class="p">(</span><span class="nx">or负值</span><span class="p">)</span>  
+    <span class="p">}</span>
+    <span class="c1">// return b-a //简写形式
+</span><span class="c1"></span><span class="p">}</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="6-数组的变换">6. 数组的变换</h2>
+<p>以下变换都是不会改变原来数组，是返回执行该变换操作后形成的新数组</p>
+<h4 id="61-mapn-n">6.1 map(n-&gt;n)</h4>
+<p>map是表示一一映射关系，参数为函数，一项项操作后返回，如想把数组中的每一项变成平方，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="nx">arr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span><span class="p">{</span>
+      <span class="k">return</span> <span class="nx">item</span><span class="o">*</span><span class="nx">item</span>
+<span class="p">}</span><span class="p">)</span> <span class="c1">//这是详写
+</span><span class="c1"></span>
+<span class="nx">arr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="nx">item</span><span class="o">*</span><span class="nx">item</span><span class="p">)</span> <span class="c1">//这是简写
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="62-filtern-少">6.2 filter(n-&gt;少)</h4>
+<p>filter是对array进行一个过滤的操作，参数也为函数，一项项判断后返回真和假，真就要这个元素，返回假就舍弃这个函数。如想获得数组中的偶数，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="nx">arr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">return</span> <span class="nx">item</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">?</span> <span class="kc">true</span><span class="o">:</span> <span class="kc">false</span>
+<span class="p">}</span><span class="p">)</span> <span class="c1">//这是详写
+</span><span class="c1"></span>
+<span class="nx">arr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="nx">item</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="o">?</span> <span class="kc">true</span><span class="o">:</span> <span class="kc">false</span><span class="p">)</span> <span class="c1">//这是简写
+</span><span class="c1"></span><span class="nx">arr</span> <span class="o">=</span> <span class="nx">arr</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">item</span> <span class="p">=&gt;</span> <span class="nx">item</span><span class="o">%</span><span class="mi">2</span><span class="o">==</span><span class="mi">0</span><span class="p">)</span> <span class="c1">//简写中的简写
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="63-reducen-1强大且重要">6.3 reduce(n-&gt;1)(强大且重要)</h4>
+<p>reduce是这一次会用到上一次的值，形参第一个是函数，第二个是变化的值的初始值，如下为求和实例：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">sum</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">return</span> <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">item</span>
+<span class="p">}</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1">//这是详写 sum初始值为0
+</span><span class="c1"></span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="p">(</span><span class="nx">sum</span><span class="p">,</span><span class="nx">item</span><span class="p">)</span><span class="p">=&gt;</span><span class="p">{</span><span class="k">return</span> <span class="nx">sum</span> <span class="o">+=</span> <span class="nx">item</span><span class="p">}</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="c1">//这是简写
+</span></code></pre></td></tr></table>
+</div>
+</div><p>将map实现的数组元素全部平方用reduce方法实现为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">recuce</span><span class="p">(</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">itme</span><span class="p">)</span><span class="p">=&gt;</span><span class="p">{</span> <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">item</span><span class="o">*</span><span class="nx">item</span><span class="p">)</span><span class="p">}</span><span class="p">,</span><span class="p">[</span><span class="p">]</span><span class="p">)</span>
+
+<span class="c1">//以上之所以要用concat连接的方法是因为想要返回一个数组，结果值result是个数组
+</span></code></pre></td></tr></table>
+</div>
+</div><p>将filter实现的过滤偶数的操作用reduce方法实现为：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">arr</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">6</span><span class="p">]</span>
+
+<span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span> <span class="nx">item</span><span class="p">)</span><span class="p">=&gt;</span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">item</span> <span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="nx">result</span>
+    <span class="p">}</span>  
+    <span class="k">else</span><span class="p">{</span>
+        <span class="k">return</span> <span class="nx">result</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span><span class="p">,</span><span class="p">[</span><span class="p">]</span><span class="p">)</span> <span class="c1">//详写版
+</span><span class="c1"></span>
+<span class="nx">arr</span><span class="p">.</span><span class="nx">reduce</span><span class="p">(</span><span class="p">(</span><span class="nx">result</span><span class="p">,</span><span class="nx">item</span><span class="p">)</span><span class="p">=&gt;</span> <span class="nx">result</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">item</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span><span class="o">?</span> <span class="p">[</span><span class="p">]</span><span class="o">:</span><span class="nx">item</span><span class="p">)</span><span class="p">,</span><span class="p">[</span><span class="p">]</span><span class="p">)</span> <span class="c1">//这是简写
+</span></code></pre></td></tr></table>
+</div>
+</div>]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/javascript/">JavaScript</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/array/">Array</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>JS对象之普通对象</title>
+                <link>https://twinklelixn.top/posts/javascript-object-common/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/javascript-object-common/</guid>
+                <pubDate>Fri, 31 Jan 2020 19:54:57 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-对象的定义">1. 对象的定义</h2>
+<h4 id="属性名和属性值">属性名和属性值</h4>
+<p>对象是用来描述一个物体及其相关属性的集合体，里面是以键值对表示的无序的数据集合，键值对是指用键值名:键值的方式存储数据，在JS中又称之为属性名：属性值。且JS中的属性名是普通字符串而不是标识符，可以是任意字符，但如果属性名省略引号，则必须是标识符了。而属性值根据传入的数据类型定义类型，如数字、字符串、对象等等类型。(标识符与字符串的区别看XXX)</p>
+<p>对象的定义方式如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">(</span><span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;haha&#39;</span><span class="p">,</span> <span class="s1">&#39;gender&#39;</span><span class="o">:</span> <span class="s1">&#39;man&#39;</span><span class="p">}</span><span class="p">)</span> <span class="c1">//对象的正确创建方法
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="o">:</span> <span class="s1">&#39;haha&#39;</span><span class="p">}</span> <span class="c1">//对象的简写创建方法
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>Object.keys(obj)可以得到obj这个对象的全部键值名</strong></p>
+<p><strong>键值对在对象中成为属性名: 属性值，属性名一定为字符串，若想以变量的值作为属性名可以用[变量]取到该变量对应的值，也就是说，不加[]是将属性名自动变成字符串，加了[]就取变量中的值转为字符串</strong></p>
+<p><strong>各属性间用逗号','分隔开</strong></p>
+<h4 id="属性值可以为函数">属性值可以为函数</h4>
+<p>在JS中，属性的值可以为函数，此时称该属性为方法。具体书写方式如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//在对象创建时添加方法
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">myObj</span> <span class="o">=</span> <span class="p">{</span>
+  <span class="nx">myMethod</span><span class="o">:</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...do something
+</span><span class="c1"></span>  <span class="p">}</span> <span class="c1">//这是实际完整写法
+</span><span class="c1"></span>  
+  <span class="c1">// 或者 这样写也可以
+</span><span class="c1"></span>  
+  <span class="nx">myOtherMethod</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// ...do something
+</span><span class="c1"></span>  <span class="p">}</span> <span class="c1">//该方法是ES5之后的更为简洁的定义方法的语法
+</span><span class="c1"></span><span class="p">}</span><span class="p">;</span>
+
+
+<span class="c1">//在对象创建完后添加方法
+</span><span class="c1"></span><span class="kd">let</span> <span class="nx">myObj</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+<span class="nx">myObj</span><span class="p">.</span><span class="nx">myNewMethod</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">params</span><span class="p">)</span><span class="p">{</span>
+    <span class="c1">// ...do something
+</span><span class="c1"></span><span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="2-对象的组成">2. 对象的组成</h2>
+<p>每个对象在被创建后，其中包含的内容除了用户自定义的属性外，还都有一个共同的属性名&quot;_<em>proto</em>_&quot;，该属性值是一个对象的地址，这个对象是该类对象的共同属性组成的对象，在JS中称之为该类对象的原型。隐藏属性存储着原型对象的地址。只要包含该隐藏属性，就可以直接使用原型对象中的属性和函数。</p>
+<h2 id="3-对象属性的操作">3. 对象属性的操作</h2>
+<h4 id="31-删除操作">3.1 删除操作</h4>
+<h5 id="删除xxx属性值">删除xxx属性值</h5>
+<p>obj.xxx = undefined</p>
+<p>该操作实际上是将obj对象的xxx属性值删除，其实是赋值为空</p>
+<h5 id="删除xxx属性">删除xxx属性</h5>
+<ol>
+<li>
+<p>delete obj.xxx</p>
+</li>
+<li>
+<p>delete obj['xxx']</p>
+</li>
+</ol>
+<p>以上两种操作会将obj这个对象的xxx属性删除，属性删除，该属性值也不存在，且在JS中delete操作就是用来删除对象的属性的</p>
+<h5 id="检测删除是否成功">检测删除是否成功</h5>
+<ol>
+<li>
+<p>'xxx' in obj == false //查看xxx是不是obj的属性名，返回值为false表示该属性删除成功</p>
+</li>
+<li>
+<p>'xxx' in obj &amp;&amp; obj.xxx === undefined  //查看xxx是不是obj的属性，并且属性值是否是undefined</p>
+</li>
+<li>
+<p>只用obj.xxx === undefined，无法判断obj对象中是否含有xxx属性，因为当没有该属性时，其值自然是undefined，若有该属性，属性值为undefined，因此两种情况无法区分。</p>
+</li>
+</ol>
+<h4 id="32-读操作">3.2 读操作</h4>
+<ol>
+<li>
+<p>Object.keys(obj)：查看obj对象的所有属性名</p>
+</li>
+<li>
+<p>Object.values(obj)：查看obj对象的所有属性值</p>
+</li>
+<li>
+<p>obj | Object.entries(obj)：查看obj对象的所有属性和属性值</p>
+</li>
+</ol>
+<p>以上三种方法仅仅可以看到对象自己定义的属性，看不到所在原型中的公共属性，若想查看公共属性，如下：</p>
+<ol>
+<li>
+<p>console.dir(obj) //以目录形式输出obj</p>
+</li>
+<li>
+<p>obj._<em>proto</em>_</p>
+</li>
+</ol>
+<p>查看某属性是自己的属性还是公有的属性的方法：</p>
+<p>obj.hasOwnProperty('xxx')   //是自己的属性返回true，共有属性返回false</p>
+<h5 id="js中的任何对象都有原型原型也是个对象原型对象也有原型只不过被人为定义为null空">JS中的任何对象都有原型，原型也是个对象，原型对象也有原型，只不过被人为定义为null空</h5>
+<h5 id="查看单个属性">查看单个属性</h5>
+<p>1)中括号法： obj['属性名']      (中括号内为字符串)</p>
+<ol start="2">
+<li>
+<p>点法：obj.属性名 (属性名是字符串)</p>
+</li>
+<li>
+<p>变量中括号法  obj[name]    (中括号内为变量名，且则此变量要已经赋值，最终会变成字符串)</p>
+</li>
+</ol>
+<h5 id="注意objname和objname的区别objname中的name是变量可改变而objname是指的就是字符串为name的属性因此若想动态获取属性则可选择中括号的方式">注意：obj['name']和obj.name的区别，obj[name]中的name是变量，可改变，而obj.name是指的就是字符串为name的属性。因此，若想动态获取属性则可选择中括号的方式。</h5>
+<h4 id="33-写操作">3.3 写操作</h4>
+<p>写操作的语法和读操作的语法是一样的，读出来直接赋值即可，如obj.name = 'hehe'，obj['name'] = 'hehe'，且对象属性写入时无法修改原型的属性，只能修改自己的属性。</p>
+<p><strong>批量赋值</strong>：</p>
+<p>JS的批量赋值是ES6新出的一个功能API，具体用法为Object.assign(对象名, {属性: 属性值})，例如：</p>
+<p>Object.assign(obj, {name: 'hehe', age: 18})</p>
+<p>若想要修改对象的原型，则可通过以下方式：</p>
+<ol>
+<li>
+<p>obj._<em>proto</em>_.toString(原型属性名) = 'xxx'   //这样会轻易改变所有原型的属性，使得原型会乱</p>
+</li>
+<li>
+<p>Object.prototype.toString(原型属性名) = 'xxx'</p>
+</li>
+</ol>
+<h2 id="4-原型链">4. 原型链</h2>
+<p>由上述操作可知，每一个对象都有一个隐藏属性__proto__，该属性存储的是一个对象的地址，该对象里是该类型对象的公共属性，因此称__proto__指向的对象为原型。原型对象可通过修改__proto__属性值来修改，指向另外一个自定义的公共属性对象，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">common</span> <span class="o">=</span> <span class="p">{</span><span class="nx">nation</span><span class="o">:</span> <span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="nx">eyecolor</span><span class="o">:</span> <span class="s1">&#39;black&#39;</span><span class="p">}</span>
+<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="s1">&#39;hehe&#39;</span><span class="p">,</span> <span class="nx">gender</span><span class="o">:</span> <span class="s1">&#39;man&#39;</span><span class="p">}</span>
+<span class="nx">person</span><span class="p">.</span><span class="nx">__proto__</span> <span class="o">=</span> <span class="nx">common</span>
+
+<span class="nx">得到的person的组成为</span><span class="err">：</span>
+
+<span class="nx">person</span><span class="p">{</span>
+   <span class="nx">name</span><span class="o">:</span> <span class="s2">&#34;hehe&#34;</span>
+   <span class="nx">gender</span><span class="o">:</span> <span class="s2">&#34;man&#34;</span>
+    <span class="nx">__proto__</span><span class="o">:</span>
+		<span class="nx">nation</span><span class="o">:</span> <span class="s2">&#34;China&#34;</span>
+		<span class="nx">eyecolor</span><span class="o">:</span> <span class="err">&#34;</span><span class="nx">black</span>
+        <span class="nx">__proto__</span><span class="o">:</span> <span class="nb">Object</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>这样就自定义了直接原型对象，但每一个对象都有原型，自定义的原型对象也有一个原型是Object，因此这样就成了在对象和原型之间添加了自定义的原型对象，形成了原型链。但是，直接修改__proto__属性是不安全的，因此在新版的ES6中新增了一种创建自定义原型的方法，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">var</span> <span class="nx">common</span> <span class="o">=</span> <span class="p">{</span><span class="nx">nation</span><span class="o">:</span> <span class="s1">&#39;China&#39;</span><span class="p">,</span> <span class="nx">eyecolor</span><span class="o">:</span> <span class="s1">&#39;black&#39;</span><span class="p">}</span>
+<span class="kd">var</span> <span class="nx">person</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">common</span><span class="p">,</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;hehe&#39;</span><span class="p">}</span><span class="p">,</span><span class="nx">gender</span><span class="o">:</span> <span class="p">{</span><span class="nx">value</span><span class="o">:</span> <span class="s1">&#39;man&#39;</span><span class="p">}</span><span class="p">}</span><span class="p">)</span>
+<span class="c1">// var person = Object.create(common)
+</span><span class="c1"></span><span class="c1">// person.name = &#39;hehe&#39;
+</span><span class="c1"></span><span class="c1">// person.gender = &#39;man&#39;
+</span><span class="c1"></span>
+<span class="c1">//也会得到和上述一样的person组成，这样在创建对象时就指定原型，而不是先创建对象，再修改原型，这样更安全，是最新版本的创建原型的方法，推荐使用
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="5--原型与对象">5 . 原型与对象</h2>
+<ol>
+<li>以下方法创建对象是修改了直接原型并创建的其原型的属性</li>
+</ol>
+<p>var person = Object.create({nation: 'China'})</p>
+<ol start="2">
+<li>以下方法创建对象是创建的自己本身的属性</li>
+</ol>
+<p>var person = new Object({name: 'hehe'})</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/javascript/">JavaScript</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/js%E5%AF%B9%E8%B1%A1/">JS对象</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>JS对象分类</title>
+                <link>https://twinklelixn.top/posts/javascript-object-class/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/javascript-object-class/</guid>
+                <pubDate>Fri, 31 Jan 2020 19:53:30 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-为什么要分类">1. 为什么要分类？</h2>
+<p>JS将数据分为七种数据类型，四基两空一对象，即四个基本数据类型number、string、bool、symbol，两个空数据类型undefined、null，一个对象数据类型。对象数据类型很复杂，但对象数据类型与现实生活的数据信息表示地最为准确，因此用到更广泛。根据实际生活中的数据有分类，JS也将对象数据类型再次细分为不同类型的对象，每类对象抽象出共同属性存放至其原型中。</p>
+<p>JS将对象进行分类方便于管理对象，并且JS的创建之初就已经划分出了几类对象，如普通对象Object、数组队形Array、函数对象Function、日期对象Date等等。并且，JS允许用户自定义一类对象，具体实现方法可以用构造函数实现。</p>
+<h2 id="2-构造函数">2. 构造函数</h2>
+<p>首先介绍一个问题引出构造函数，例如要创建5个不同宽度的正方形对象，并且每个正方形对象都有求周长和求面积的两个方法，可以想到用for循环的方式进行如下创建：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">squareList</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">widthList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span><span class="o">&lt;</span><span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">squareList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="nx">width</span><span class="o">:</span> <span class="nx">widthList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">,</span>
+        <span class="nx">getArea</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        	<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span>
+        <span class="p">}</span><span class="p">,</span>
+        <span class="nx">getLength</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        	<span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="mi">4</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上方法会浪费内存，重复创建getArea()函数和getLength()各5次，但其实这些正方形的求面积和求周长的方法是一样的，因此可以抽象出来放到正方形的原型函数中，修改后如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">squareList</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">widthList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">squarePrototype</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">getArea</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">getLength</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">squareList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">squarePrototype</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">squareList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">widthList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上借助原型的概念将正方形的共同属性抽象出来放到原型中，大大节省了内存空间，但以上代码还可以通过传参的形式再优化修改如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">squareList</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">widthList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">squarePrototype</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">getArea</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">getLength</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">createSquare</span><span class="p">(</span><span class="nx">width</span><span class="p">)</span><span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">squarePrototype</span><span class="p">)</span><span class="p">;</span>
+    <span class="nx">obj</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">squareList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">createSquare</span><span class="p">(</span><span class="nx">widthList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上代码看起来优化很多，但存在的问题是构造函数和原型函数之前看起来没有什么关系，因此可以将构造函数和其原型函数之间联系起来，采取的方法是将原型函数作为构造函数对象的一个方法，并在原型函数中记录其对应的构造函数是谁，继续修改如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">squareList</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">widthList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="nx">createSquare</span><span class="p">.</span><span class="nx">squarePrototype</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">getArea</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span>
+    <span class="p">}</span><span class="p">,</span>
+    <span class="nx">getLength</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="p">}</span>
+    <span class="nx">constructor</span><span class="o">:</span> <span class="nx">createSquare</span>
+<span class="p">}</span>
+<span class="kd">function</span> <span class="nx">createSquare</span><span class="p">(</span><span class="nx">width</span><span class="p">)</span><span class="p">{</span>
+    <span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">create</span><span class="p">(</span><span class="nx">createSquare</span><span class="p">.</span><span class="nx">squarePrototype</span><span class="p">)</span><span class="p">;</span> <span class="c1">//new字符会帮忙写
+</span><span class="c1"></span>    <span class="nx">obj</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span><span class="p">;</span>
+    <span class="k">return</span> <span class="nx">obj</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">squareList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="nx">createSquare</span><span class="p">(</span><span class="nx">widthList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>因此根据以上优化后的代码，JS将其封装起来统一定义，用new操作符调用构造函数创建对象，并且将每个构造函数中的指向原型函数的属性统一定义为prototype属性，将每个prototype中指向其构造函数的属性统一定义为constructor，将构造函数和原型函数相互联系了起来，并且prototyp的constructor指向构造函数自己。因此JS在设计的过程中，给每个函数对象都添加了一个prototype属性，指向其作为构造函数时的原型对象用于存放公共属性，和__proto__属性没有什么关系，<strong>例如Object 的原型是指 Object.<strong>proto</strong>，不是 Object.prototype，因为 Object.prototye 是 Object 构造出来的对象的原型</strong>，__proto__是JS规定每个对象都必须有原型并用该属性存储，函数对象也属于对象，才会有此属性。因此  构造函数的prototype === 实例对象的__proto__，因此写一个构造函数定义一类对象的方式如下所示，这样定义的构造函数命名首字母一般大写。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">squareList</span> <span class="o">=</span> <span class="p">[</span><span class="p">]</span>
+<span class="kd">let</span> <span class="nx">widthList</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">]</span>
+<span class="kd">function</span> <span class="nx">Square</span><span class="p">(</span><span class="nx">width</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span>
+    <span class="k">this</span><span class="p">.</span><span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="c1">//do something
+</span><span class="c1"></span>    <span class="p">}</span>
+<span class="p">}</span> <span class="c1">//构造函数，其中属性为=赋值语句，添加新对象自身属性或方法
+</span><span class="c1"></span><span class="nx">Square</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getArea</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span>
+<span class="p">}</span>
+<span class="nx">Square</span><span class="p">.</span><span class="nx">prototype</span><span class="p">.</span><span class="nx">getLength</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="mi">4</span>
+<span class="p">}</span>  <span class="c1">//添加新对象共用属性
+</span><span class="c1"></span><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">squareList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Square</span><span class="p">(</span><span class="nx">widthList</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上就是正确定义构造函数自定义一类对象的方法，通过new操作符省略用原型创造对象并返回对象的操作，直接让用户在构造函数中定义自己的属性，在其prototype属性中定义公共属性，并用new操作符创建对象即可。那么操作符在创建对象时做了什么？如下：</p>
+<p>let obj = new X()</p>
+<ol>
+<li>
+<p>自动创建空对象</p>
+</li>
+<li>
+<p>将空对象与原型关联，空对象原型地址__proto__值指定为X.prototype值</p>
+</li>
+<li>
+<p>自动将新创建的空对象作为this关键字运行构造函数</p>
+</li>
+<li>
+<p>自动return this</p>
+</li>
+</ol>
+<p>得到以下公式：</p>
+<h5 id="对象-__proto__-其构造函数prototype">对象. __proto__=== 其构造函数.prototype</h5>
+<h2 id="3-代码规范">3. 代码规范</h2>
+<p>由以上构造函数的形成过程可得出一般约定俗成的命名规法如下：</p>
+<ol>
+<li>
+<p>构造函数的命名为名词，且首字母大写</p>
+</li>
+<li>
+<p>普通函数的命名以动词开头，且首字母小写</p>
+</li>
+<li>
+<p>所有被构造出来的实例对象，首字母小写。</p>
+</li>
+</ol>
+<h2 id="4-class新语法">4. class新语法</h2>
+<p>class语法是ES6新增加的语法，将上述构造函数代码修改如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kr">class</span> <span class="nx">Square</span><span class="p">{</span>
+    
+    <span class="nx">constructor</span><span class="p">(</span><span class="nx">width</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="nx">width</span>
+    <span class="p">}</span> <span class="c1">//构造函数
+</span><span class="c1"></span>    
+    <span class="nx">kind</span> <span class="o">=</span> <span class="s1">&#39;shape&#39;</span> <span class="c1">//公有属性为赋值语句，且每个属性之间没有逗号
+</span><span class="c1"></span>    <span class="s1">&#39;kind2&#39;</span> <span class="o">=</span> <span class="s1">&#39;Rectangle&#39;</span>
+    
+    <span class="nx">getLength</span><span class="o">:</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="mi">4</span>
+    <span class="p">}</span> <span class="c1">//公有方法，且每个方法之间没有逗号
+</span><span class="c1"></span>
+    <span class="nx">getArea</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span>
+    <span class="p">}</span> <span class="c1">//公有方法，简写定义方法，常用。
+</span><span class="c1"></span>
+    <span class="nx">get</span> <span class="nx">area2</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span> <span class="o">*</span> <span class="k">this</span><span class="p">.</span><span class="nx">width</span>
+    <span class="p">}</span>  <span class="c1">//get 函数名，该函数设置为只读属性，调用函数area2时不用加()，只需.area2即可调用
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/javascript/">JavaScript</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/js%E5%AF%B9%E8%B1%A1/">JS对象</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>JS数据类型</title>
+                <link>https://twinklelixn.top/posts/javascript-data-type/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/javascript-data-type/</guid>
+                <pubDate>Fri, 31 Jan 2020 19:51:52 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1四基两空一对象">1.四基两空一对象</h2>
+<p>在JavaScript脚本语言中，一共有7种数据类型，分别是数字number、字符串string、布尔bool、符号symbol、空undefined、空null、对象object。总结起来就是<strong>四基两空一对象</strong>。</p>
+<h2 id="2-数字number">2. 数字number</h2>
+<p>JS中的数字是严谨的，如0就有三种，+0、0、-0，值的大小是没有区别，但是当其做分母时，就会得到三个不同的值，+Infinity、Infinity(无穷大)、-Infinity，这些在电脑中存储的方式是不一样的。</p>
+<p>JS中还有一种数字是无法表示的数字NAN(not a number)，NAN一般用来表示数学上暂时无法认知的数字，如0/0=NAN。</p>
+<h4 id="存储方式">存储方式</h4>
+<p>JS中的number数据类型都是以一个64位的浮点数进行存储的，所谓浮点数就是小数点可以移动的数。JS中的数字都统一用二进制的科学记数法表示，如101.01=1.0101*2<sup>2</sup>，则存储是，第一位为正0，中间为2(转为二进制)，后52位为0101，第一位为正JS存储数字时的具体存法为：</p>
+<p>0(正)/1(负) (1位)         指数部分(11位)           有效数字(52位)</p>
+<p>如上所示，二进制位为64位，第一位用来表示正负，中间11位用来表示指数部分，并且指数部分有正负之分，正负各占一半。后52位用来表示有效数字，由于二进制位的科学计数法的小数点前面的都是1，就为了节省空间不将小数点前的1放入后52位，只放小数点后的。总的来说64位的存储分布为：</p>
+<p>符号占1位，指数占11位(表示的范围为-1023~1024)，有效数字占52位(去掉小数点前的1)。</p>
+<h4 id="表示范围">表示范围</h4>
+<p>表示范围指的是包括正负、指数部分和有效数字部分都用上所能表示的最大数值。</p>
+<p>Number.Max_VALUE：可查看number能表示的最大数字转换为十进制为1.7976931348623157e+308</p>
+<p>Number.MIN_VALUE：可查看number能表示的最小数字转换为十进制为5e-324</p>
+<h4 id="精确度">精确度</h4>
+<p>精确度指的是有效数字部分能表示的数字的大小，即转为科学计数法后小数点后的有效位。加上未存入后52位的小数点前的数字1，共2<sup>53</sup>=9007199254740992。所有对于15位有效数字都能表示，16位有效数字的必须以90开头的才能存储，超过精确度的数字存储时会有丢失。这只是说的有效位，如果后面加0是可以存储的。</p>
+<h2 id="3-字符串string">3. 字符串string</h2>
+<h4 id="字符串写法">字符串写法</h4>
+<p>JS中的字符串是用定长的两个字节进行存储的。ES6最新版本的JS的字符串的写法如下：</p>
+<ol>
+<li>
+<p>单引号 'hello'</p>
+</li>
+<li>
+<p>双引号 &quot;hello&quot;</p>
+</li>
+<li>
+<p>反引号  `hello` ，(就是感叹号!左边的`，且最新版本的反引号的好处是可以在字符串中有回车，但单引号和双引号中字符中的回车不起作用)</p>
+</li>
+</ol>
+<p>并且，这些引号不属于字符串的一部分，若想在字符串中出现这些引号，需要用转义字符或其他方式，如下：</p>
+<ol>
+<li>
+<p>用转义字符\     'it\'s ok'</p>
+</li>
+<li>
+<p>引号交替使用，如&quot;it's ok&quot;。</p>
+</li>
+</ol>
+<h4 id="转义字符">转义字符</h4>
+<p>转义字符指的是在ES6中有特殊含义的字符若想显示出来必须要告诉系统自己此时不再是特殊作用的字符，而是普通字符，那就是通过转义的方式，在特殊作用字符前加 \ ，用两个字符表示一个字符。如下：</p>
+<ol>
+<li>
+<p>\'表示 '</p>
+</li>
+<li>
+<p>\&quot;表示&quot;</p>
+</li>
+<li>
+<p>\\表示\</p>
+</li>
+<li>
+<p>\n表示换行</p>
+</li>
+<li>
+<p>\r 表示回车</p>
+</li>
+<li>
+<p>\t表示Tab制表符</p>
+</li>
+<li>
+<p>\Unicode编号</p>
+</li>
+</ol>
+<h4 id="字符串属性">字符串属性</h4>
+<p>string.length：获得字符串的长度</p>
+<p>string[index]：通过下标获取字符串数组中的单一字符</p>
+<h4 id="字符串可再编码">字符串可再编码</h4>
+<p>字符串可以通过 base64转码 进行字符串转码，用法如下：</p>
+<ol>
+<li>
+<p>window.btoa(&quot;正常字符串&quot;) = &quot;base64编码的字符串&quot;</p>
+</li>
+<li>
+<p>window.atob(&quot;base64编码的字符串&quot;) = &quot;正常字符串&quot;</p>
+</li>
+</ol>
+<h2 id="4-布尔boolean">4. 布尔boolean</h2>
+<h4 id="布尔值">布尔值</h4>
+<p>boolean只有两个值，true和false(全是小写)，表示真和假。</p>
+<p>可以得到bool布尔值的运算有：</p>
+<ol>
+<li>
+<p>否定运算，如!value</p>
+</li>
+<li>
+<p>相等运算，如2==1、1!=2、3===4等</p>
+</li>
+<li>
+<p>比较运算，如2&gt;3等</p>
+</li>
+</ol>
+<h4 id="五个falsy值">五个falsy值</h4>
+<p>falsy值指的是不是false但是相当于false的值，JS中一共有5个，分别是<strong>undefined</strong>、<strong>null</strong>、<strong>0</strong>、<strong>NAN</strong>、<strong>''</strong>(注意中间没有空格，空字符串)。一旦运算获得的值是这5个，则布尔值均为false。除此之外的值都被认为是true值。</p>
+<h2 id="5-符号symbol">5. 符号Symbol</h2>
+<p>不怎么常用，有以下大佬写的博客可供参考学习链接：</p>
+<p><a href="https://zhuanlan.zhihu.com/p/22652486">学习1</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Symbol">学习2</a></p>
+<p><a href="http://es6.ruanyifeng.com/#docs/symbol">学习3</a></p>
+<h2 id="6-两个空undefined和null">6. 两个空undefined和null</h2>
+<p>JS在设计的时候是有两种类型的空值，虽然二者在意义上没区别，但在细节上有区别，一般来说，undefined是被动的空值，null是主动赋予的空值。具体情况如下例所示：</p>
+<ol>
+<li>
+<p>变量声明未赋值，默认变量值是undefined，而不是null</p>
+</li>
+<li>
+<p>函数没有return，默认return值是undefined，而不是null</p>
+</li>
+<li>
+<p>一般习惯上将非对象的空值写为undefined，把对象的空值写为null</p>
+</li>
+</ol>
+<h2 id="6-对象object">6. 对象object</h2>
+<p>函数、数组、日期都是对象object。对象比较复杂，用一篇博客专门写对象。</p>
+<h2 id="7-变量声明">7. 变量声明</h2>
+<p>旧版本的JS的变量声明的关键字是var，ES6后的新版本的变量声明的关键字多了两个，分别为let和const，具体区别如下：</p>
+<h4 id="var">var</h4>
+<p>var是过时的变量声明方式，而且在函数外只要是用var声明过的变量都会被挂在window上，变成window的属性，可用window.变量名获取得到，也就是所谓的全局变量，但在函数内声明的局部变量不会被挂碍window上。</p>
+<h4 id="let">let</h4>
+<p>let是ES6新版本的JS变量声明的方式。在同一作用域不能有重复变量名的声明。可以在声明时赋值，或先声明后赋值。但有一点是必须变量先声明再使用。新版本的let和var不同之处在于，全局声明的let变量不会挂在window上成为window的属性，用window.变量名获取不到。let可以与for循环配合，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="p">(</span><span class="p">)</span><span class="p">=&gt;</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span><span class="c1">//结果会打出5个5,i会被挂到window上
+</span><span class="c1"></span>
+<span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="p">(</span><span class="p">)</span><span class="p">=&gt;</span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span><span class="c1">//结果会打出0到4，是期望的效果
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="const">const</h4>
+<p>const是ES6新版本的变量声明的方式，特点是该类型的变量在声明时必须赋值，且是不能再改的常量，因此const用来声明定义一个不可改变的常量</p>
+<h4 id="js中的变量是在赋值时才确定的变量的类型">JS中的变量是在赋值时才确定的变量的类型</h4>
+<h2 id="8-类型转换">8. 类型转换</h2>
+<p>数据类型间可以进行数据转换，如下所示：</p>
+<h4 id="numberstring">number==&gt;string</h4>
+<ol>
+<li>
+<p>string = String(number)</p>
+</li>
+<li>
+<p>string = number + ''(空字符串)(加法会将数字转化为字符串)</p>
+</li>
+</ol>
+<h4 id="stringnumber">string==&gt;number</h4>
+<ol>
+<li>
+<p>number = Number(string)</p>
+</li>
+<li>
+<p>number = string - 0 (减法会将字符串转化为数字)</p>
+</li>
+<li>
+<p>number = +string (正号将字符串转化为数字)</p>
+</li>
+<li>
+<p>number = parseInt(string, [进制类型])，在旧版本的JS中，后面的进制类型必须加，如十进制就必须加10，否则以0开头的数字会被认为是八进制数字，但是新版本的进制类型不需要加，会默认是10进制。</p>
+</li>
+</ol>
+<h4 id="x任意类型bool">x(任意类型)==&gt;bool</h4>
+<ol>
+<li>
+<p>bool = Boolean(x)</p>
+</li>
+<li>
+<p>bool = !!x</p>
+</li>
+</ol>
+<h4 id="x任意类型string">x(任意类型)==&gt;string</h4>
+<ol>
+<li>
+<p>string = String(x)</p>
+</li>
+<li>
+<p>string = x.toString()        但是在该种情况下有个bug，就是如1.toString()会报错，1.会触发小数点的逻辑，所以可以改为(1).toString()或者1..toString()。</p>
+</li>
+</ol>
+<h2 id="9-知识扩展区">9. 知识扩展区</h2>
+<p>更多JS的奇葩之处可看<a href="http://bonsaiden.github.io/JavaScript-Garden/zh/">JS秘密花园</a></p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/javascript/">JavaScript</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">数据类型</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>进制那点事儿</title>
+                <link>https://twinklelixn.top/posts/else-transform/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/else-transform/</guid>
+                <pubDate>Fri, 31 Jan 2020 19:48:11 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<p>数字虽然被分成不同的进制形式表示，但是其实际意义一样大，只是表示形式不一样。每类进制数的特点是，每一位都不准超过该类进制对应的值，如我们常用的是十进制数，逢10就进1，一位的最大数字是9，二进制数，一位对应的最大数字是1，十六进制的一位表示的最大数字是15，八进制的是7，规则是一样的。</p>
+<h2 id="1-二进制与十进制间不得不说的事">1. 二进制与十进制间不得不说的事</h2>
+<p>关于数字，我们常用的是十进制的数字，但是计算机只能识别二进制的机器语言，二进制下的数字只有0或1两种形式，因为计算机的存储原理是用高电平和低电平两种电平来存储0和1。只要涉及到和电脑打交道，就必须面临二进制与十进制间的相互转换，具体转换方式如下：</p>
+<h4 id="二进制转十进制">二进制转十进制</h4>
+<p>二进制转化为十进制有两种方法，如下所示：</p>
+<p><strong>1) 通用法：</strong>(2)表示该数字是用二进制表示的数字，(10)表示十进制数，转化即如下例所示：</p>
+<p><img src="/imgs/number_tranform_pic01.JPG" alt="number_tranform_pic01"></p>
+<p>分别是在小数点前面的整数，从右往左为，2<sup>0</sup>,2<sup>1</sup>,2<sup>2</sup>......，再依次乘以对应位的数字，小数部分，是从左往右为2<sup>-1</sup>，2<sup>-2</sup>，2<sup>-3</sup>......，再依次乘以对应位置的数字，最后相加即可。</p>
+<p><strong>2) 取巧法：</strong>，记住每一位对应的十进制数，即2<sup>0</sup>=1，2<sup>1</sup>=2，2<sup>2</sup>=4.....，然后按位相加即可。整数部分从右往左如下所示：</p>
+<p>​	1		1		1		1		1		1		1		1    .(小数点)</p>
+<p>128	64	 32	 16	 8	    4  	 2        1    .(小数点)</p>
+<p>如一个二进制数为1101，则按照上面所示将对应位置为1的数字按位相加为 1+4+8=13(10)</p>
+<h4 id="十进制转二进制">十进制转二进制</h4>
+<p>十进制转二进制也有两种方法，如下所示：</p>
+<p>**1) 通用法：**也叫除2取余，逆序排列法，下图来源百度，具体如下：</p>
+<p><img src="/imgs/number_tranform_pic02.JPG" alt="number_tranform_pic02"></p>
+<p>**2) 取巧法：**和上述的二进制取巧法一样，记住前8位置，每位对应的十进制数</p>
+<p>1		1		1		1		1		1		1		1    .(小数点)</p>
+<p>128	64	 32	 16	 8	    4  	 2        1    .(小数点)</p>
+<p>然后这8位，最大表示的十进制数是最高位的前一位置对应的数字减1，即2<sup>8</sup>-1=255，这八位二进制数表示的最大整数是255，所以例如对于255以下的十进制数的转化，如173，则按照上述位置得128+32+8+4+1=173，则对应的二进制数为10101101。</p>
+<h2 id="2-二进制与十六进制间不得不说的事">2. 二进制与十六进制间不得不说的事</h2>
+<p>从上述二进制与十进制的转换可知，若一个很大的十进制数用二进制表示的话，需要很长一串二进制数字，电脑可以，人手写存入可麻烦了，因此便有了新的进制，十六进制和八进制。这里介绍十六进制和二进制的关系，八进制和其思想一样。具体转化如下：</p>
+<h4 id="二进制转十六进制">二进制转十六进制</h4>
+<p>低位往高位转是比较好转的，十六进制数是每4位二进制数是一位十进制数，4位二进制数可表示的十进制数最小为0，最大为1111(2)=1+2+4+8=15，符合十六进制的标准，但是进制数只能一位表示一个数，因此十六进制的基数为0、 1、2、3、4、5、6、7、8、9、A(10)、B(11)、C(12)、D(13)、E(14)、F(15)。二进制转十六进制，每四位为一组，从后往前取，不足的补0。例如：11010011分为1101(2)=13=D，0011=3即11010011(2)=D3。</p>
+<h4 id="十六进制转二进制">十六进制转二进制</h4>
+<p>一个十六进制数对应四位二进制数，</p>
+<p>​	1		1		1		1    .(小数点)</p>
+<p>​    8	  4  	 2        1    .(小数点)</p>
+<p>如十六进制数3FD即，3(8)=0011，F(8)=1111，D(8)=1101，则3DF(8)=001111111101(2)。</p>
+<h2 id="3-二进制与八进制间的转换">3. 二进制与八进制间的转换</h2>
+<p>和二进制与十六进制的转换类似，八进制数是对应3个二进制数。基数为0、1、2、3、4、5、6、7。</p>
+<h2 id="4-十六进制八进制与十进制的转换">4. 十六进制、八进制与十进制的转换</h2>
+<p>那就先将十六进制转化成二进制，再转化成十进制，这样最容易。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/else/">Else</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2/">进制转换</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>编码那些事儿</title>
+                <link>https://twinklelixn.top/posts/else-encoding/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/else-encoding/</guid>
+                <pubDate>Fri, 31 Jan 2020 19:45:41 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-编码的开始">1. 编码的开始</h2>
+<p>我们常见用到十进制数字可以通过进制转换的方式转换成二进制存进电脑里，除了数字，我们常说的语言都是字符，那么如何将字符存入电脑里呢？最容易想到的方式就是为所有字符进行编号，每一个字符对应一个特定的编号，存入电脑，然后根据其编号，再解析出对应的字符。于是电脑出现后，编码这个词就出现了，编码方式就是指将数据、字符存储在计算机中的编号规则。随着计算机的发展，编码方式各家百花齐放。</p>
+<h2 id="2-ascii码">2. ASCII码</h2>
+<p>计算机最早是由西方国家发明出来的，由于西方国家说英语，因此英文字母、数字、特殊符号成了西方人编码的考虑内容，就像我们电脑键盘上的字母、字符基本都可以找到其对应的电脑编码。西方人发明了ASCII码(American Standard Code for Information Interchange: 美国信息交换标准代码)，是基于拉丁字母的一套编码系统。到目前为止一共收录了128个字符，毕竟是要用二进制存储，因此128个字符用7位二进制位来存储就够了，因为你比如，两个二进制位有2*2中组合，可以表示四个字符，00、01、10、11，2<sup>7</sup>=128，因此7位二进制位即可编号表示128个字符，但计算机存储一般是以字节为单位的，一个字节即8个二进制位，因此ASCII用8个二进制位存储，首位为0，也可以有其他含义。编码号可以用十进制0-127表示，也可用二进制、八进制、十六进制表示，0-127十进制编码号对应的ASCII码表如下：</p>
+<p><img src="/imgs/encode_pic01.JPG" alt="encode_pic01"></p>
+<p>以后的编码格式，需要将拉丁字母编码进去的，一般兼容ASCII码，也就是说其编码的前127位也是和ASCII码一样，为了方便和兼容。然后常用的需要记忆的编码为：</p>
+<p>0：48表示</p>
+<p>A：65表示</p>
+<p>a：97表示</p>
+<h2 id="2-gb2312编码">2. GB2312编码</h2>
+<p>随着时代发展，计算机开始传入中国，中国人也开始用电脑了，那么问题就来了，电脑里存储编号的只是英文字符，中文字符无法存入，于是，中国国家标注局介入开始为汉字编码，名称为【国标2312】标准，是中国第一个计算机编码标准。取国标拼音首字母，即【GB2312】编码标准。由于中国汉字比较多，有上千个，因此一个字节肯定不够用，中国国标局就用2个字节，即16个二进制位表示一个汉字，即可以表示2<sup>16</sup>=65536个字符。收录一些常用汉字足够了，当时GB2312只收录了6000多汉字，西文字母和日文假名，并没有收录中国汉字的生僻字、繁体字和韩文等。由于16位二进制太长了，因此汉字编码编号一般用十六进制位表示，即是十六进制0000-FFFF。太多了表太长，具体可自行百度，如“爸”的GB2312编号为B0G6，只截取部分编码表如下：</p>
+<p><img src="/imgs/encode_pic02.JPG" alt="encode_pic02"></p>
+<h2 id="3-gbk编码">3. GBK编码</h2>
+<p>由于GB2312编码中没有将汉字字符包括完全，导致一些生僻字、繁体字存不到电脑里，如我们常见的有的同学的名字里有个生僻字，存入电脑就无法解析出来，只用*表示。因此，微软就出手了，微软在GB2312的基础上制定了GBK编码，也就是国标扩，K即为扩展的扩字的首拼音字母。GBK编码包含21886个汉字和图形符号，收录的是中日韩使用的所有汉字，并且是完全兼容GB2312的，兼容意思就是说只是在GB2312编码的后续编号扩充，前面的编号也是和GB2312一样的。由于21886&lt;&lt;65536，所以，GBK也是用两个字节进行编码的。因此，在一段时间内，GBK编码在中国很受欢迎。</p>
+<h2 id="4-gb18030编码">4. GB18030编码</h2>
+<p>在微软制订了GBK编码后，中国国标局就出手了，毕竟汉字是中国占据大多数，理应由中国掌握标准，于是国标局又制定了GB18030，想取代微软的GBK，但是GB18030存在一个很大的问题导致其无法盛行，那就是其不兼容GB2312，也就是说以前在使用GB2312编码下写的汉字在GB18030编码下全乱了或者看不见了，因此很少人会去用它，GB18030编码取代失败。</p>
+<h2 id="5-unicode编码">5. Unicode编码</h2>
+<p>随着电脑的普及，几乎世界各地都在用电脑了，那么问题就又出现了，一些国家的奇怪字符就无法被存入电脑了，如中国的西藏地区的藏文，泰国的泰文等奇怪字符，在目前的编码中都尚未录入。那只能再接着扩充编号，将其加入进去，为了不再发生类似的问题，就发明了万国码，Unicode，Uni即是Unify统一的简称，即统一的编码方式，已经收录了13万的字符，在全世界通用，并在不断扩充中。那么13万&gt;&gt;65536，因此2个字节的编码已经不再够用了，每个字符的存储都要在3个字节或及其以上了。这样也暴露了Unicode编码格式的一个大缺点，即相比于GBK，Unicode的一个字符的存储所占的内存扩大了50%，这样所有文件大小都要扩大50%，当时的硬盘内存可是很贵的，因此这个缺点注定Unicode编码在当时无法盛行。</p>
+<h2 id="6-utf-8编码">6. UTF-8编码</h2>
+<p>UTF-8编码是在Unicode编码方式上的进一步优化，采取变长的方式存储字符，对于前127位的英文字符，Unicode前16位二进制位都为0，其采用一个字节存储，对于汉字“爸”这样的字符Unicode前8位的二进制数为0，其就采用两个字节存储，并对确实占用三个字节的符号的存储也是有其更简单的特殊的方式存储。变长的字符如何区分分别是占几位呢？这就是UTF-8的巧妙之处，可具体搜索UTF-8的存储原理。由于UTF-8采取变长的方式存储，可能比定长存储的GBK编码还要省空间，并且支持的字符多，因此很受欢迎。并且UTF-8中的8表示的是一个字符至少是需要8位存储的，即是8位、16位、24位等。</p>
+<p>特别注意：UTF-8还是用到Unicode的字符集，只是存储方式不一样。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/else/">Else</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/%E7%BC%96%E7%A0%81%E6%96%B9%E5%BC%8F/">编码方式</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>JS语法基础</title>
+                <link>https://twinklelixn.top/posts/javascript-basic-grammar/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/javascript-basic-grammar/</guid>
+                <pubDate>Fri, 31 Jan 2020 19:41:06 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-写在前面">1. 写在前面</h2>
+<p>随着JS版本的不断升级，原有标准不断改变，很多旧的语法都被淘汰，新的语法不断补充。但JS有一个好处是高版本标准是始终兼容旧版本的，旧的语法只是如今不再使用，但以前的语法还是起作用的。看到我前面介绍的JS发展历史可知，JS是在2015年ES6标准发布后开始了新的发展，也是在ES6版本之后JS开始正式步入正轨，之后每年都跟新的版本也是在ES6版本的基础上变化的，差别不大，因此这里介绍的JS知识是基于ES6标准的基础知识，适用于最新的大多数浏览器，也会注明哪些是新的知识。</p>
+<h2 id="2-表达式语句变量与标识符">2. 表达式、语句、变量与标识符</h2>
+<h4 id="表达式">表达式</h4>
+<p>表达式是一个为了得到某个值的计算式，类似于我们做数学题时等号左边的式子，但JS中的表达式的含义有所延伸，如下几种形式都是表达式，表达式一般都有值</p>
+<ol>
+<li>
+<p>计算式 3 + 5，值为8</p>
+</li>
+<li>
+<p>函数add(3,5)也是表达式，也有值其值叫做返回值。</p>
+</li>
+<li>
+<p>console.log也是一个表达式，其值是log函数本身。</p>
+</li>
+<li>
+<p>console.log(3)和add(1,2)一样是函数的调用的函数表达式，其值为函数返回值，该函数没有返回值，为undefine。</p>
+</li>
+</ol>
+<h4 id="语句">语句</h4>
+<p>语句是执行某种操作的描述，可用于改变环境，一般没有返回值，语句以分号结束，一个语句加一个分号表示该语句的结束。但在JS脚本语言中，JS程序的执行单位是行，因此在这一行没有分号的情况下，一行就是一个语句。由此可知，JS脚本编写时，有的程序员写语句不写分号，有的写分号，是都可以的，看个人习惯。不写分号按照一行一个语句执行，写了分号按照分号执行语句。</p>
+<h4 id="变量">变量</h4>
+<p>变量就是为值取名，引用这个名字就是使用这个值，变量和值在内存中的存储位置也不一样，变量是在变量区，值是在栈区或堆区。且JS的变量名区分大小写，var a 和 var A 是两个不同的变量，Object和object也是两个不同的东西。</p>
+<h4 id="标识符">标识符</h4>
+<p>标识符是用来识别不同值的合法命名，最常见的标识符是变量名。标识符的定义是要遵循一定的规则的，具体如下：</p>
+<ol>
+<li>
+<p>首字母必须是、Unicode字母、$美元符号、_下划线、中文</p>
+</li>
+<li>
+<p>第二个及其以后的字母是除了以上以外可以是数字</p>
+</li>
+<li>
+<p>中文是合法的标识符</p>
+</li>
+</ol>
+<h4 id="总结js语法注意点">总结JS语法注意点</h4>
+<ol>
+<li>语句是否必须加分号</li>
+</ol>
+<p>JS是按行执行，若一行只有一个语句可以不加分号，默认这一行是一个语句，根据编程习惯自己选择。</p>
+<ol start="2">
+<li>大小写敏感</li>
+</ol>
+<p>JS标识符区分大小写，var A 和 var a是两个不同的变量</p>
+<ol start="3">
+<li>空格的作用</li>
+</ol>
+<p>空格没有实际意义，加再多空格也不影响语句。加回车也不影响语句。</p>
+<p><strong>在return语句的后面不能加回车，return这一行会被执行，然后直接返回了，不会执行回车换行后面的了</strong></p>
+<h2 id="3-条件语句">3. 条件语句</h2>
+<p>条件语句是用于判断，如果满足什么情况，就执行什么操作。JS提供了两种条件判断语句，分别是if语句和switch语句，具体用法如下：</p>
+<h4 id="if语句">if语句</h4>
+<p><strong>单if语句结构为：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span><span class="p">(</span><span class="nx">表达式</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">语句1</span>
+<span class="p">}</span><span class="c1">//如果满足表达式，就执行语句1
+</span></code></pre></td></tr></table>
+</div>
+</div><p>当{ 代码块 }中的语句是只有一句时，是可以省略花括号{ }的，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span><span class="p">(</span><span class="nx">表达式</span><span class="p">)</span>
+    <span class="nx">语句1</span>
+    <span class="nx">语句2</span> <span class="c1">//该语句不属于if条件成立的代码中，因为没有花括号{}就只是包含一行一个语句。只是缩进有问题，            使其看起来像，这是一个坑也是一个考点。因此不管几个语句，最好使用{}括起来
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>if else语句结构为：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span><span class="p">(</span><span class="nx">表达式</span><span class="p">)</span><span class="p">{</span>
+   <span class="nx">满足条件执行的语句1</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="p">{</span>
+   <span class="nx">不满足条件执行的语句2</span> 
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>并且if和else中的语句还可以再嵌套if、else语句，例如在else语句中嵌套if、else语句如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span><span class="p">(</span><span class="nx">表达式1</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">语句1</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">表达式2</span><span class="p">)</span><span class="p">{</span>
+        <span class="nx">语句2</span>
+    <span class="p">}</span>
+    <span class="k">else</span><span class="p">{</span>
+        <span class="nx">语句3</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上则又引申简写为另外一种形式如下，即成了if 、else if、else语句。但其实这种语句并不存在，是在else语句中嵌套if else语句的简写。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">if</span><span class="p">(</span><span class="nx">表达式1</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">语句1</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="nx">表达式2</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">语句2</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="p">{</span>
+    <span class="nx">语句3</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上的if、else if、else语句也可用单if语句组合实现，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">表达式1</span><span class="p">)</span><span class="p">{</span>
+       <span class="nx">语句1</span>
+       <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">表达式2</span><span class="p">)</span><span class="p">{</span>
+        <span class="nx">语句2</span>
+       <span class="k">return</span>
+    <span class="p">}</span>
+    <span class="k">if</span><span class="p">(</span><span class="nx">表达式3</span><span class="p">)</span><span class="p">{</span>
+        <span class="nx">语句3</span>
+       <span class="k">return</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="switch语句">switch语句</h4>
+<p>当有多种情况可供选择时，使用if语句太麻烦，可使用switch选择语句，具体语法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">switch</span><span class="p">(</span><span class="nx">变量或表达式</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">case</span> <span class="nx">值1或表达式1</span><span class="o">:</span>
+        <span class="nx">语句1</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nx">值2或表达式2</span><span class="o">:</span>
+        <span class="nx">语句2</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">case</span> <span class="nx">值3或表达式3</span><span class="o">:</span>
+        <span class="nx">语句3</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">default</span><span class="o">:</span>
+        <span class="nx">语句4</span><span class="p">;</span> <span class="c1">//是除上述情况外的其他剩余情况值
+</span><span class="c1"></span><span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>进入switch语句后的变量值或表达式和值1或表达式1的判断是用严格等于(===)判断的，即严格相等运算符，即意味着比较时不会进行类型转换，如1和true是不等的。若是表达式，则用其表达式的运算结果比较，不比较运算过程，如 1+3 和 2+2 是相等的表达式。</p>
+<p><strong>注意：</strong></p>
+<p>每个case选择情况执行完后要加break，加了break则意味着当前选择已结束，不再往后选择。若不加break，则会继续往后执行语句，直到遇到break语句或结束位置。这样设计break的原因其实是为了方便多种情况对应一个结果的写法，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">switch</span><span class="p">(</span><span class="nx">变量或表达式</span><span class="p">)</span><span class="p">{</span>
+	<span class="k">case</span> <span class="nx">值1或表达式1</span><span class="o">:</span>
+    <span class="k">case</span> <span class="nx">值2或表达式2</span><span class="o">:</span>
+        <span class="nx">语句1</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span> <span class="c1">//以上1、2两种情况下都会执行语句1
+</span><span class="c1"></span>    <span class="k">case</span> <span class="nx">值3或表达式3</span><span class="o">:</span>
+    <span class="k">case</span> <span class="nx">值4或表达式4</span><span class="o">:</span>
+        <span class="nx">语句2</span><span class="p">;</span>
+        <span class="k">break</span><span class="p">;</span><span class="c1">//以上3、4两种情况下都会执行语句2
+</span><span class="c1"></span>    <span class="k">default</span><span class="o">:</span>
+        <span class="nx">语句3</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="4-循环语句">4. 循环语句</h2>
+<p>循环语句是用于当满足某一条件时，就一直执行某一操作的情况。JS提供了三种循环语句，分别是while循环、do while循环和for循环，具体语法结构如下：</p>
+<h4 id="while循环">while循环</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">while</span><span class="p">(</span><span class="nx">条件</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">循环体语句</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div><p>以上结构的意思是当条件为真时，执行循环体语句，然后再判断条件是否为真，再执行，一直循环下去，直至条件为假或遇到break退出循环。</p>
+<h4 id="do-while循环">do while循环</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">do</span><span class="p">{</span>
+    <span class="nx">循环体</span>
+<span class="p">}</span><span class="k">while</span><span class="p">(</span><span class="nx">条件</span><span class="p">)</span><span class="p">;</span> <span class="c1">//后面的分号不能少
+</span></code></pre></td></tr></table>
+</div>
+</div><p>以上结构和while循环类似，唯一不同是，do while是先执行一次循环体再判断条件是否为真，若为真，再执行循环体，依次类推循环。也就是说，不管条件是否为真，循环体都至少执行1次。</p>
+<h4 id="for循环">for循环</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="nx">初始表达式</span><span class="p">;</span> <span class="nx">条件</span><span class="p">;</span> <span class="nx">递增表达式</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">循环体</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>以上结构的执行过程为，初始表达式只执行一次，判断条件是否为真，若问真，则执行循环体，然后执行递增表达式，再执行条件判断，若条件为真，则再次执行循环体，再执行递增表达式，以此类推，直至遇到break语句或者结束。</p>
+<h4 id="循环中的两个重要语句">循环中的两个重要语句</h4>
+<p><strong>break：</strong></p>
+<p>退出当前所在的整个循环</p>
+<p><strong>continue：</strong></p>
+<p>退出这一次的循环，执行下一次循环</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/javascript/">JavaScript</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/js%E8%AF%AD%E6%B3%95/">JS语法</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>JavaScript的发展</title>
