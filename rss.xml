@@ -23,7 +23,7 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sat, 01 Feb 2020 21:51:54 +0800</lastBuildDate>
+        <lastBuildDate>Sun, 02 Feb 2020 00:01:10 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="https://twinklelixn.top/rss.xml" />
         
@@ -340,11 +340,18 @@
 <h5 id="4---用户可通过构造函数创建自定义的对象分类并自定义其原型对象内容">4)   用户可通过构造函数创建自定义的对象分类，并自定义其原型对象内容。</h5>
 <p>好了，记住以上问题就可以看如下关系草图了：</p>
 <p><img src="/imgs/JS%E5%8E%9F%E5%9E%8B%E4%B8%96%E7%95%8C.jpg" alt="JS原型世界"></p>
-<p>以上草图将各类对象间的联系画的很清楚，也可以看出，在JS中，对象之间都是有联系的，以上只需要搞清楚三个区域即可，原型就是在原型区。而且，其实对象根本就没有名字，只有一个地址，上面赋予的对象名字其实是值等于该对象地址的属性名或者变量名。</p>
-<p>而且再钻牛角尖一点可以看到，上图的Function函数对象的prototype属性和__proto__属性没有画指向对象，这个比较复杂，而且难以理解，其实，Function对象的prototype属性指向的对象是自己，然后指向对象的__proto__属性指向的是祖宗对象Object.prototype。也就是说，prototype属性从自己饶了一圈指向祖宗对象。然后Function对象的__proto__属性指向的对象是自己，然后指向对象的__proto__属性指向的是祖宗对象Object.prototype，也就是说，__proto__属性也是从自己饶了一圈指向祖宗对象。</p>
-<p>奇怪不，prototype自己绕一圈可以理解，你个__proto__绕一圈是为啥？</p>
-<p>所以，暂时不深究，只需要理解原型的由来和可自定义即可。</p>
-<h2 id="3-原型运用">3. 原型运用</h2>
+<p>以上草图将各类对象间的联系画的很清楚，也可以看出，在JS中，对象之间都是有联系的，以上只需要搞清楚三个区域即可，即构造函数区、原型区、实例区。window是属于浏览器的，不在JS世界里，不用深究。我们提到的原型就是在原型区。</p>
+<p>而且，其实对象根本就没有名字，只有一个地址，上面赋予的对象名字其实是值等于该对象地址的属性名或者变量名，为了方便画图才给对象命名的，实际是对象没名字，只有个地址。</p>
+<h2 id="3-原型定律">3. 原型定律</h2>
+<h4 id="31--js公式">3.1  JS公式</h4>
+<h4 id="对象__proto__----其构造函数prototype">对象.__proto__  ===  其构造函数.prototype</h4>
+<h4 id="32--根公理">3.2  根公理</h4>
+<h4 id="objectprototype是所有对象的直接或间接原型">Object.prototype是所有对象的(直接或间接)原型</h4>
+<h4 id="33-函数公理">3.3 函数公理</h4>
+<h4 id="所有函数都是由function构造的">所有函数都是由Function构造的</h4>
+<h4 id="任意函数__proto__-----functionprototype">任意函数.__proto__   ===  Function.prototype</h4>
+<p>以上公式是原型的通用定律，根据定律正推反推均可搞清楚原型，比如，问，一个对象的构造函数是啥，那就是问谁的prototype属性指向的对象是该对象的原型对象。</p>
+<h2 id="4-原型运用">4. 原型运用</h2>
 <p>以上只是介绍了什么是原型，理解了原型是什么，就可以灵活运行原型了，这个设计到JS对象原型的操作和JS构造函数的实现，具体可看构造函数的实现。</p>
 ]]></description>
                 
