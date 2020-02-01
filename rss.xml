@@ -23,10 +23,591 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Fri, 31 Jan 2020 19:57:01 +0800</lastBuildDate>
+        <lastBuildDate>Sat, 01 Feb 2020 21:51:54 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="https://twinklelixn.top/rss.xml" />
         
+        
+            <item>
+                <title>JS的奇葩之处</title>
+                <link>https://twinklelixn.top/posts/javascript-bug/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/javascript-bug/</guid>
+                <pubDate>Sat, 01 Feb 2020 21:50:47 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-let房里房外">1. let房里房外</h2>
+<p>有以下两个代码，看似没区别，但结果天差地别，其中setTimeout时间间隔为0时表示尽快执行该代码，尽快那也得等到语句从头到尾执行完再执行了。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">i</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="p">(</span><span class="p">)</span><span class="p">=&gt;</span><span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span> <span class="c1">//打印出6个6
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">setTimeout</span><span class="p">(</span><span class="p">(</span><span class="p">)</span><span class="p">=&gt;</span><span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="p">;</span>
+    <span class="p">}</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+<span class="p">}</span> <span class="c1">//打印出0,1,2,3,4,5，因为每次循环都复制了一个i，实际一共7个i了
+</span></code></pre></td></tr></table>
+</div>
+</div><p>这样是不是使用setTimeout打印出0,1,2,3,4,5就没意义了，不如直接打印i，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">i</span><span class="p">;</span>
+<span class="k">for</span><span class="p">(</span><span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="mi">6</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+     <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">i</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span> 
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/javascript/">JavaScript</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/js%E5%A5%87%E8%91%A9/">JS奇葩</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>JS三座大山之this</title>
+                <link>https://twinklelixn.top/posts/javascript-mountain-this/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/javascript-mountain-this/</guid>
+                <pubDate>Sat, 01 Feb 2020 21:48:33 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-this是什么">1. this是什么</h2>
+<p>在JS中，每个函数都有一个隐藏的属性叫做this，其属性值默认是对象的地址，用于指向一个对象。通常情况下this常用于用作构造函数的函数中，普通函数一般用不到this属性。普通函数中用不到的this通常指向的是window对象，因为调用它的是window对象。构造函数中的this是用于指定未知的对象，当一个对象obj通过构造函数构造出来时，该对象中的this属性就是指向该对象本身。</p>
+<h5 id="注意箭头函数没有this其余函数都有this">注意箭头函数没有this，其余函数都有this</h5>
+<h2 id="2-自定义this">2. 自定义this</h2>
+<h4 id="21-强制封装成对象">2.1 强制封装成对象</h4>
+<p>this指向的对象一般是随函数或者对象的创建而内定的，只有通过一个接口可以修改this指向的对象，即</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">functionName</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">自定义this值</span><span class="err">，</span><span class="nx">arguments值</span><span class="p">)</span> 
+<span class="nx">functionName</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">自定义this值</span><span class="p">)</span>
+
+<span class="c1">//或者
+</span><span class="c1"></span><span class="nx">functionName</span><span class="p">.</span><span class="nx">apply</span><span class="p">(</span><span class="nx">自定义this值</span><span class="err">，</span><span class="p">[</span><span class="nx">arguments值</span><span class="p">]</span><span class="p">)</span> 
+<span class="c1">//该方法的arguments值必须用中括号[]包含起来
+</span></code></pre></td></tr></table>
+</div>
+</div><p>而且，this接收的值只能是对象，因此若通过call指定的this值不是对象类型，如是number类型1，那么JS会自动将1封装成对象。</p>
+<h4 id="22-不要给我强制封装">2.2 不要给我强制封装</h4>
+<p>当然了，也可以通过修改，告诉JS不让其将自定义的this值强制封装成对象，那么就是如下方法：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="s1">&#39;use strict&#39;</span> <span class="c1">//就是添加这句话
+</span><span class="c1"></span>    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>那么this值就是1，不会被封装成对象，不过这样做没什么用，只是有这样的实现方法而已。</p>
+<h4 id="23-bind函数绑定this">2.3 bind函数绑定this</h4>
+<p>函数有一个bindAPI，可用于this指向的对象和arguments值，这样可以让this始终指向一个固定的对象</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">f1</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">f1</span><span class="p">.</span><span class="nx">bind</span><span class="p">(</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span><span class="s1">&#39;haha&#39;</span><span class="p">}</span><span class="p">)</span><span class="p">;</span>
+<span class="kd">let</span> <span class="nx">f2</span> <span class="o">=</span> <span class="nx">f1</span><span class="p">;</span>
+<span class="nx">f2</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">//f2() === f1.call({name:&#39;haha&#39;})
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="3-为什么要用this">3. 为什么要用this</h2>
+<p>由以上可知，this是用来指向一个未知对象的，那么为什么会用到一个未知对象呢？情况其实是，假如我们自定义一个功能为自我介绍的函数，即函数里输出一个对象的name属性，那么这个对象可能还没有被创建出来，不知道这个对象怎么能输出其名字呢？因此就用到了给该函数设置一个形式参数当作该对象放那里，直接写输出形式参数的name属性，当该对象被创建出来时，该对象在调用自我介绍函数的同时将自己作为参数传入函数，这样就能正确自我介绍了。</p>
+<p>因此this就是上述函数中对象形参的演变，JS给每个函数统一规定了这样一个隐形参数this，每个对象在调用一个函数时都会将对象本身作为参数传入，在函数中就以this这个隐形形参接受该对象，并对其进行各种操作。也就是说，我们在调用一个函数时，尽管写的是 obj . functionName(); 看似没有传参，但实际上JS已经将调用该函数的对象obj传入函数了，并被函数的this属性接收。</p>
+<p>那么为什么说this指向的对象未知呢？因为你不知道谁会调用这个函数，A调用这个函数那this就是指向的A，并且通过this对A进行操作。B调用这个函数那this就是指向B了，并对B进行操作。</p>
+<h2 id="4-函数的两种调用方法">4. 函数的两种调用方法</h2>
+<p>既然知道了this是什么和用来干什么的，那么对于函数的调用其实有两种形式：</p>
+<h4 id="41-看不到this的常用法">4.1 看不到this的常用法</h4>
+<p>函数的常用调用方法就是看不到隐藏属相this的产生过程，常用调用方法如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">A</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">(</span><span class="p">)</span><span class="p">;</span> <span class="c1">//默认是将A作为this调用sayHi函数
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="42-看到到this的清晰法">4.2 看到到this的清晰法</h4>
+<p>知道this的实际产生原理后可以用自己看得到this值的方法调用函数，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">A</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">(</span><span class="nx">A</span><span class="p">)</span><span class="p">;</span> <span class="c1">//这种方法在JS中是错误的，JS不允许这样指定this
+</span><span class="c1"></span>
+<span class="nx">A</span><span class="p">.</span><span class="nx">sayHi</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">A</span><span class="p">,</span> <span class="nx">arguments</span><span class="p">)</span><span class="p">;</span> <span class="c1">//这样才是正确指定this的方法，即将A作为this调用sayHi函数
+</span><span class="c1"></span>
+<span class="c1">//注意使用call的时候要传参数时一定要写上传的this值，否则就将第一个arguments参数当作this了
+</span></code></pre></td></tr></table>
+</div>
+</div><p>所以我们看到，放在对象里的函数的this和该对象没什么关系，this只和调用该函数的对象有关，当然了，放在该对象里的函数只是该对象的属性，只能被该对象调用，可用call指定，不过没必要。</p>
+<p>普通函数调用时没有指明对象名字，如add(1,2)。那是默认window对象调用的，所有函数的调用都需要对象调用的，并且该函数必须是作为其调用对象的属性获取到的。</p>
+<h5 id="函数只有作为对象的属性才能被调用到">函数只有作为对象的属性才能被调用到</h5>
+<h2 id="5-对象创建符new">5. 对象创建符new</h2>
+<p>在JS中规定，用new操作符创建出来的对象的this就是指向该新创建的对象，这是new操作符决定的。因此如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">obj</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Object</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+
+<span class="c1">//则this指向的对象就是新创建得到的obj对象
+</span></code></pre></td></tr></table>
+</div>
+</div><h2 id="6-理解this后">6. 理解this后</h2>
+<p>在理解了this后，JS中的某些API的具体实现就可以明了了，如数组的forEach遍历接口的实现：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//forEach的this实现
+</span><span class="c1"></span><span class="kd">function</span> <span class="nx">forEach</span><span class="p">(</span><span class="nx">fn</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">for</span><span class="p">(</span><span class="kd">let</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="k">this</span><span class="p">.</span><span class="nx">lenght</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span><span class="p">{</span>
+        <span class="nx">fn</span><span class="p">(</span><span class="k">this</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">,</span><span class="nx">i</span><span class="p">,</span><span class="k">this</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">//forEach的隐式常用法
+</span><span class="c1"></span><span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span><span class="p">)</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span>
+
+<span class="c1">//forEach的清晰使用法
+</span><span class="c1"></span><span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">=&gt;</span> <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span><span class="p">)</span>
+<span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">array</span><span class="p">,</span> <span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/js%E4%B8%89%E5%BA%A7%E5%A4%A7%E5%B1%B1/">JS三座大山</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/this/">this</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>JS三座大山之原型</title>
+                <link>https://twinklelixn.top/posts/javascript-mountain-proto/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/javascript-mountain-proto/</guid>
+                <pubDate>Sat, 01 Feb 2020 21:43:40 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-什么是原型">1. 什么是原型</h2>
+<p>原型这个东西真的是JavaScript原创的，和别的语言的抽象和继承不太一样，自己创了个自认为相对简单的原型链出来，不过在新版转折点的ES6标准后，增加了类class的概念，但也是在原型的基础上修改的，因此搞清楚原型的来历再用class类会更容易。</p>
+<p>JS中的原型是针对于JS七种数据类型中的对象这一复杂数据类型设计的，原型是为对象服务的，同时原型也是对象。那么原型对象是个什么对象？其实，我们都知道世间万物都有分类，属于同一类的都有一些共同属性，如中国人这一分类，共同属性是黑眼睛、黑头发、黄皮肤等，jS就将中国人这一分类单独构成一个对象，中国人的共同属性组合到一块构成另外一个独立的对象，并将这两个对象链接起来作为中国人这一个整体，那么是如何将两个对象联系在一起的呢，那就是赋予中国人这一分类对象一个prototype属性，该属性值为中国人共同属性对象的地址，通过该prototype属性就可以访问到中国人这一分类对象的共同属性。prototype属性指向的中国人共同属性对象就叫做原型。</p>
+<p>针对中国人这一类，只是一个分类，并不是具体到一个中国人，因此要根据中国人这个分类创建一个中国人出来，那就是通过创建对象的方式具体创建一个具体的中国人，如叫张三，(也可先确定原型再创建对象，具体创建对象方法看对象对应的博客)，那么张三是一个中国人，应该具有中国人这一分类的共同属性，那么如何将张三和中国人共同属性联系在一起呢？这时中国人共同属性这个对象就派上用场了，中国人这一分类对象在创建张三这个中国人时就赋予了它一个特殊的隐藏属性__proto__，该属性的值为中国人共同属性对象的地址，这样就把中国人这一分类、中国人共同属性、中国人张三联系起来了。并且张三在使用某些属性介绍自己时，可以先从自己特有的属性上介绍，如张三身高180，性别男等，然后可以介绍其原型的属性，如张三是中国人，具有黄皮肤等，同时张三也可访问到其原型的原型，如中国人这一分类对象的原型是世界人类共有的属性，是个人，两条胳膊两条腿，那么张三也可以使用两条胳膊两条腿介绍自己是个人，这就形成了一个原型链，实例对象可以使用当前所在原型往上数的原型链上的所有原型包括的属性得到信息。</p>
+<p>由以上分析可得到一个等式为：</p>
+<h5 id="中国人这一分类的prototype属性值--中国人张三的-__proto__值--中国人原型对象地址">中国人这一分类的prototype属性值 === 中国人张三的 __proto__值 === 中国人原型对象地址</h5>
+<h2 id="2-关系草图">2. 关系草图</h2>
+<p>以下为根据对象和原型间的关系绘制的草图，在看下图之前应该明白几个问题：</p>
+<h5 id="1---js将数据划分成了七种数据类型对象是js的数据类型之一对象又根据不同特征进行了分类具体分为普通对象object数组对象array函数对象function用户自定义对象类型等等并且js已经帮忙划分出了数组对象函数对象普通对象日期对象等对象类型并写好了该类对象的共同属性存放在其原型中用户可以直接调用具体函数使用">1)   JS将数据划分成了七种数据类型，对象是JS的数据类型之一，对象又根据不同特征进行了分类，具体分为普通对象(Object)、数组对象(Array)、函数对象(Function)、用户自定义对象类型等等。并且JS已经帮忙划分出了数组对象、函数对象、普通对象、日期对象等对象类型，并写好了该类对象的共同属性存放在其原型中，用户可以直接调用具体函数使用。</h5>
+<h5 id="2---在js中只要是对象就有原型并且由该对象的隐藏属性__proto__记录原型对象地址">2)   在JS中只要是对象就有原型，并且由该对象的隐藏属性__proto__记录原型对象地址。</h5>
+<h5 id="3---并不是所有对象都有prototype属性只有能创建对象的对象才有prototype属性且该对象是以函数的方式实现函数对象都有prototype属性但并不是所有函数的prototype都有用可以记忆成大写字母开头的对象名如array有prototype属性并且有用小写字母开头的对象如console或自定义函数对象fn等要么没有prototype属性要么有但是没有用相当于没有">3)   并不是所有对象都有prototype属性，只有能创建对象的对象才有prototype属性，且该对象是以函数的方式实现。函数对象都有prototype属性，但并不是所有函数的prototype都有用。可以记忆成大写字母开头的对象名如Array有prototype属性并且有用，小写字母开头的对象如console或自定义函数对象fn等要么没有prototype属性，要么有但是没有用，相当于没有。</h5>
+<h5 id="4---用户可通过构造函数创建自定义的对象分类并自定义其原型对象内容">4)   用户可通过构造函数创建自定义的对象分类，并自定义其原型对象内容。</h5>
+<p>好了，记住以上问题就可以看如下关系草图了：</p>
+<p><img src="/imgs/JS%E5%8E%9F%E5%9E%8B%E4%B8%96%E7%95%8C.jpg" alt="JS原型世界"></p>
+<p>以上草图将各类对象间的联系画的很清楚，也可以看出，在JS中，对象之间都是有联系的，以上只需要搞清楚三个区域即可，原型就是在原型区。而且，其实对象根本就没有名字，只有一个地址，上面赋予的对象名字其实是值等于该对象地址的属性名或者变量名。</p>
+<p>而且再钻牛角尖一点可以看到，上图的Function函数对象的prototype属性和__proto__属性没有画指向对象，这个比较复杂，而且难以理解，其实，Function对象的prototype属性指向的对象是自己，然后指向对象的__proto__属性指向的是祖宗对象Object.prototype。也就是说，prototype属性从自己饶了一圈指向祖宗对象。然后Function对象的__proto__属性指向的对象是自己，然后指向对象的__proto__属性指向的是祖宗对象Object.prototype，也就是说，__proto__属性也是从自己饶了一圈指向祖宗对象。</p>
+<p>奇怪不，prototype自己绕一圈可以理解，你个__proto__绕一圈是为啥？</p>
+<p>所以，暂时不深究，只需要理解原型的由来和可自定义即可。</p>
+<h2 id="3-原型运用">3. 原型运用</h2>
+<p>以上只是介绍了什么是原型，理解了原型是什么，就可以灵活运行原型了，这个设计到JS对象原型的操作和JS构造函数的实现，具体可看构造函数的实现。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/js%E4%B8%89%E5%BA%A7%E5%A4%A7%E5%B1%B1/">JS三座大山</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/%E5%8E%9F%E5%9E%8B/">原型</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>JS对象分类之函数</title>
+                <link>https://twinklelixn.top/posts/javascript-object-function/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/javascript-object-function/</guid>
+                <pubDate>Sat, 01 Feb 2020 21:41:08 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-函数的定义">1. 函数的定义</h2>
+<p>函数体里面是普通的操作语句，不是对象的键值对。</p>
+<h4 id="1-构造函数">1) <strong>构造函数</strong></h4>
+<p>(完整详细的写法，但很少用)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">sum</span> <span class="o">=</span> <span class="k">new</span> <span class="nb">Function</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;console.log(a); return a + b&#39;</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="2-具名函数">2) 具名函数</h4>
+<p>(有名字的函数)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="p">{</span>
+   <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>  
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="3-匿名函数">3) 匿名函数</h4>
+<p>(没有名字的函数，也叫函数表达式)该方法创建的函数sum不会挂到window上</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span>  
+
+<span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span> 
+<span class="nx">fn</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1">//语法错误，fn不存在，如果函数定义在等号右边则是以表达式的方式存在，其fn函数的作用域也只在表达式右边，不是全局，出了表达式就不存在。
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="4-箭头函数没有this和arguments属性">4) 箭头函数(没有this和arguments属性)</h4>
+<p>ES6函数定义新语法,sum不会挂到window上，且箭头函数没有this和arguments属性</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="p">=&gt;</span> <span class="nx">a</span><span class="o">+</span><span class="nx">b</span> <span class="c1">//函数体只有一个语句时，箭头左边是传入参数，右边是函数体
+</span><span class="c1"></span>
+<span class="c1">//返回对象
+</span><span class="c1"></span><span class="p">(</span><span class="nx">错误</span><span class="p">)</span> <span class="kd">let</span> <span class="nx">fn</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="p">=&gt;</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="nx">x</span><span class="p">}</span> <span class="c1">//若返回值为一个对象时，花括号默认是代码块标志，
+</span><span class="c1"></span><span class="p">(</span><span class="nx">正确</span><span class="p">)</span> <span class="kd">let</span> <span class="nx">fn</span> <span class="o">=</span> <span class="p">(</span><span class="nx">x</span><span class="p">)</span><span class="p">=&gt;</span> <span class="p">(</span><span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="nx">x</span><span class="p">}</span><span class="p">)</span> <span class="c1">//给对象加个括号，标明里面是一个整体，即可正确返回对象
+</span><span class="c1"></span>
+<span class="kd">let</span> <span class="nx">sum</span> <span class="o">=</span> <span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="nx">b</span><span class="p">)</span><span class="p">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="nx">a</span> <span class="o">+</span> <span class="nx">b</span><span class="p">;</span>
+<span class="p">}</span> <span class="c1">//函数体有多个语句
+</span></code></pre></td></tr></table>
+</div>
+</div><h5 id="每个函数都有返回值若不写return默认返回一个undefined并且返回值是在函数执行时返回">每个函数都有返回值，若不写return，默认返回一个undefined，并且返回值是在函数执行时返回</h5>
+<h5 id="任何函数的构造函数都是自己">任何函数的构造函数都是自己</h5>
+<h2 id="2-函数自身属性">2. 函数自身属性</h2>
+<h4 id="1-name">1) name</h4>
+<p>name这个属性值就是函数本身的名字</p>
+<h4 id="2-length">2) length</h4>
+<p>该属性是用来记录函数的形参个数，其属性值是number类型的数字，是形参个数。</p>
+<h4 id="3-arguments--箭头函数没有该属性">3) arguments  (箭头函数没有该属性)</h4>
+<p>在JS中，函数的定义中形参可以不写，在函数调用时可以直接传参，函数会接收传进来的参数，并且依次放进函数的arguments属性里，arguments属性值看似是个数组，但其实说对象更准确，里面数据是按照数组存储的方式存储的，所以arguments就是数组里提到的伪数组。当调用函数test(1,2)时，输出arguments组成如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">arguments</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="p">{</span>
+    <span class="mi">0</span><span class="o">:</span> <span class="mi">1</span>
+    <span class="mi">1</span><span class="o">:</span> <span class="mi">2</span>
+    <span class="nx">length</span><span class="o">:</span> <span class="mi">2</span>
+    <span class="nx">callee</span><span class="o">:</span> <span class="nx">ƒ</span> <span class="nx">test</span><span class="p">(</span><span class="p">)</span>
+    <span class="nx">Symbol</span><span class="p">(</span><span class="nx">Symbol</span><span class="p">.</span><span class="nx">iterator</span><span class="p">)</span><span class="o">:</span> <span class="nx">ƒ</span> <span class="nx">values</span><span class="p">(</span><span class="p">)</span>
+    <span class="nx">__proto__</span><span class="o">:</span> <span class="nb">Object</span>		
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>**总结一句就是：**arguments是包含了函数所有参数的伪数组</p>
+<p>伪数组不具有数组的公共属性，如push、pop等，如想把伪数组变成数组，可通过Array.from实现。</p>
+<h4 id="4-caller">4) caller</h4>
+<h2 id="3-函数公共属性">3. 函数公共属性</h2>
+<h2 id="4-闭包">4. 闭包</h2>
+<h4 id="41-什么是闭包">4.1 什么是闭包</h4>
+<p>如果一个函数用到了外部的变量，那么这个函数加这个变量就叫做闭包</p>
+<p>未完待续。。。。</p>
+<h2 id="5-调用栈">5. 调用栈</h2>
+<h4 id="51-什么是调用栈">5.1 什么是调用栈</h4>
+<p>JS引擎在执行一个函数前，需要把函数所在的环境push到一个数组里，这个数组叫做调用栈。等函数执行完了，就会把环境pop弹出来，然后return到之前的环境，继续执行后续代码</p>
+<h2 id="6-立即执行函数">6. 立即执行函数</h2>
+<h4 id="61-来源">6.1 来源</h4>
+<p>在JS中，在函数外用var声明一个变量得到的是一个全局变量，那么如何得到一个局部变量呢？只用通过在函数内声明一个变量才能得到一个局部变量，如下所示：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span> <span class="nx">fn</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nx">fn</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>那么a就是局部变量了，可是函数fn却是局部变量啊，为了得到一个局部变量，定义了一个全局函数变量，得不偿失，因此，就想到声明一个匿名函数如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>那么问题来了，匿名函数咋执行啊，没有名字怎么执行函数得到局部变量啊，因此就将函数的声明和执行统一在一起了，形成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><p>但是这样一来，JS认为该语法是错误的，是不对的，经过实验发现，如果在该函数面前加一个操作符，如+、-等就可成功运行了，也可以用括号将其括起来，如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span><span class="p">(</span><span class="p">)</span><span class="p">)</span><span class="p">;</span>
+
+<span class="o">!</span><span class="kd">function</span><span class="p">(</span><span class="p">)</span><span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">a</span><span class="p">;</span>
+<span class="p">}</span><span class="p">(</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="62-结论">6.2 结论</h4>
+<p>但经过测试，最保险的方法有如下两种：</p>
+<ol>
+<li>
+<p>在前面加感叹号</p>
+</li>
+<li>
+<p>用括号将其包起来，但是要保证前一个语句后有分号隔开。</p>
+</li>
+</ol>
+<p>这样的函数就是立即执行函数。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/javascript/">JavaScript</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/js%E5%87%BD%E6%95%B0/">JS函数</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>JS对象分类之数组</title>
