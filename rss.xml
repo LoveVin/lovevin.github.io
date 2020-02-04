@@ -23,10 +23,686 @@
         
             <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
         
-        <lastBuildDate>Sun, 02 Feb 2020 00:01:10 +0800</lastBuildDate>
+        <lastBuildDate>Tue, 04 Feb 2020 22:50:36 +0800</lastBuildDate>
         
             <atom:link rel="self" type="application/rss+xml" href="https://twinklelixn.top/rss.xml" />
         
+        
+            <item>
+                <title>git远程仓库连接</title>
+                <link>https://twinklelixn.top/posts/git-remote/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/git-remote/</guid>
+                <pubDate>Tue, 04 Feb 2020 22:47:53 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-git远程仓库有哪些">1. git远程仓库有哪些？</h2>
+<h5 id="1githubhttpsgithubcom目前最流行的国外的代码托管仓库大佬比较多纯英文">1）<a href="https://github.com/">GitHub</a>：目前最流行的国外的代码托管仓库，大佬比较多，纯英文。</h5>
+<h5 id="2码云httpsgiteecom开源中国提供的代码托管产品">2）<a href="https://gitee.com/">码云</a>：开源中国提供的代码托管产品</h5>
+<h5 id="3gitlabhttpsaboutgitlabcom国外的git仓库管理系统">3）<a href="https://about.gitlab.com/">GitLab</a>：国外的git仓库管理系统。</h5>
+<h5 id="3codinghttpscodingnet腾讯战略投资的代码托管产品">3）<a href="https://coding.net/">Coding</a>：腾讯战略投资的代码托管产品</h5>
+<h2 id="2-本地git仓库与远程仓库的连接方式">2. 本地git仓库与远程仓库的连接方式</h2>
+<p>这里以远程连接github仓库为例，本地仓库与远程仓库是两个独立的仓库，我们要做的是将本地的仓库内容复制一份传到远程仓库中，并且方便以后再从远程仓库下载下来继续编辑。</p>
+<p>本地git仓库与远程仓库的连接有两种方式，一种是https连接，一种是ssh连接，https每次连接都需要输入账号密码，并且还不安全，很少人用，大部分都用更方便和更安全的ssh连接。</p>
+<p>ssh连接是根据公钥、私钥加密解密的方式进行连接，原理就是在本地仓库所在的设备上(你的电脑)上放置私钥，在远程仓库设备上(github)放置公钥，然后就可以轻松传东西了。</p>
+<h2 id="3-ssh连接步骤">3. ssh连接步骤</h2>
+<p>GitHub上有具体帮助文档可供参考：<a href="https://help.github.com/en/github/authenticating-to-github/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent">GitHub帮助文档</a></p>
+<p>码云上也有具体帮助文档可供参考：<a href="https://gitee.com/help/articles/4181#article-header0">码云帮助文档</a></p>
+<p>以下命令是运行在git bash命令终端的命令</p>
+<h4 id="31-生成公钥私钥密匙对">3.1 生成公钥、私钥密匙对</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh-keygen -t rsa -b <span class="m">4096</span> -C 你的邮箱地址 //github
+
+//ssh-keygen -t rsa -C 你的邮箱地址  //码云
+
+//然后会出现提问的问题，按三次回车就可以
+</code></pre></td></tr></table>
+</div>
+</div><p>生成的ssh文件在用户目录中<code>C:\Users\Administrator\.ssh</code>，如果有用户名的就是用户名，我的直接是Administrator，该.ssh文件夹下放置的就是生成的公钥私钥密匙对，文件如下：</p>
+<p>1）id_rsa：私钥文件，不能给别人看，自己解密用的。</p>
+<p>2）id_rsa.pub：公钥文件，放到远程仓库所在的地方。</p>
+<p>3）known_hosts：记录和当前设备(电脑)远程连接的设备，如github、码云等(配对成功后才写入的)。</p>
+<h4 id="32-获取公钥内容">3.2 获取公钥内容</h4>
+<p>可用命令行获取到公钥内容，并复制放置在远程仓库设备对应位置中。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">cat ~/.ssh/id_rsa.pub
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="33-将公钥放置远程仓库处">3.3 将公钥放置远程仓库处</h4>
+<p><img src="/imgs/git_pic01.jpg" alt="git_pic01"></p>
+<p><img src="/imgs/git_pic02.jpg" alt="git_pic02"></p>
+<p><img src="/imgs/git_pic03.jpg" alt="git_pic03"></p>
+<p><img src="/imgs/git_pic04.jpg" alt="git_pic04"></p>
+<h4 id="34-查看是否连接成功">3.4 查看是否连接成功</h4>
+<p>在终端输入以下命令，其中的-T是test的意思</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">ssh -T git@github.com //github
+
+//ssh -T git@gitee.com // 码云
+</code></pre></td></tr></table>
+</div>
+</div><p>输入上述命令后，github会给你一个公钥证明是它，让你接收，输入yes接收就好，只在开始的时候会需要输入，以后访问就不需要了。</p>
+<p>然后yes回车后显示hi，“你的用户名”,You've successfully authenticated。。。</p>
+<p>好了，你连接成功了。可以将本地仓库推到远程仓库了，连接命令在github或者码云新建仓库（不要勾选添加README文件），里面有对应的连接命令，不用记。</p>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/git/">Git</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/git%E8%BF%9C%E7%A8%8B%E4%BB%93%E5%BA%93/">git远程仓库</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>Bash命令行</title>
+                <link>https://twinklelixn.top/posts/git-bash-command/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/git-bash-command/</guid>
+                <pubDate>Tue, 04 Feb 2020 22:47:35 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="1-命令缩写">1. 命令缩写</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">file                                         make -&gt; mk
+
+directory -&gt; d / dir                         change -&gt; c
+
+change directory -&gt; <span class="nb">cd</span>                       move -&gt; mv
+
+remove -&gt; rm                                 copy -&gt; cp
+
+list -&gt; ls                                   link -&gt; ln
+
+clear -&gt; 清屏                                 recursive -&gt; r <span class="o">(</span>递归<span class="o">)</span>
+
+/ :根目录                                     ~ ：用户目录
+
+./ :当前目录                                  ../：父级目录
+
+<span class="nb">pwd</span> -&gt; processing working directory   //查看当前绝对路径
+</code></pre></td></tr></table>
+</div>
+</div><h4 id="救命键-ctrl--c-终止命令的执行">救命键： ctrl + c 终止命令的执行</h4>
+<h2 id="2-查命令">2. 查命令</h2>
+<h5 id="默认用户目录">~：默认用户目录</h5>
+<h5 id="tab键自动补全子目录名">tab键自动补全子目录名</h5>
+<h6 id="alt可将上一个命令的最后的参数复制下来">Alt+'.'可将上一个命令的最后的参数复制下来</h6>
+<h5 id="按上下键找上面执行过的命令">按上下键找上面执行过的命令</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">
+ls //显示当前目录文件，默认不显示点开头的文件
+
+ls -a //all的意思，可显示点开头的文件
+
+ls 子目录文件名 //显示子目录下文件
+
+<span class="nb">pwd</span> //查看当前目录绝对路径
+
+<span class="nb">cd</span> .. //退出到上一级目录
+
+<span class="nb">cd</span> 子目录名 //进入子目录
+
+cat 文件名 //查看文件内容的，不接受文件目录
+
+head 文件名 //查看文件前10行
+
+tail 文件名 //查看文件后10行
+
+head 文件名 -n 数字<span class="o">(</span>如15<span class="o">)</span> //查看前多少行<span class="o">(</span>如前15行<span class="o">)</span>内容
+
+tail 文件名 -n 数字<span class="o">(</span>如15<span class="o">)</span> //查看后多少行<span class="o">(</span>如后15行<span class="o">)</span>内容
+
+less 文件名 //上下箭头滑动查看长文件，或J/K滑动查看，Q退出，选中状态时按ESC，再按Q退出
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="3-增命令">3. 增命令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">
+touch 文件名.类型 //若有该文件，则摸一下，若没有，则创建该文件（创建空文件）
+
+touch 文件1 文件2 文件3 。。。 //创建多个文件
+
+mkdir 目录名 //创建文件目录
+
+mkdir 目录1 目录2 目录3。。。 //创建多个目录
+
+mkdir -p 多级目录名<span class="o">(</span>如a/b/c/d<span class="o">)</span> //创建多层目录，-p是path的意思
+
+cp 文件1 文件2 //复制文件1到文件2
+
+cp -r 目录1 目录2 //r-&gt;recursive递归意思，递归复制文件夹
+
+<span class="nb">echo</span> 内容 //回声显示该内容
+
+<span class="nb">echo</span> 内容 &gt; 文件名 //若该文件不存在，则创建该文件并将内容写入该文件；若文件存在，则将该内容写入文件                  并完全覆盖原来文件内容。（可用于创建有内容的文件）
+
+<span class="nb">echo</span> <span class="s1">&#39;&#39;</span> &gt; 文件名 //用空覆盖文件则可用于清空文件内容
+
+<span class="nb">echo</span> 内容 &gt;&gt; 文件名 //两个&gt;表示追加，将内容追加至该文件末尾
+
+<span class="nb">echo</span> -e 带回车的内容<span class="o">(</span>如<span class="s2">&#34;125\nhaha&#34;</span><span class="o">)</span> &gt;&gt; 文件名 //-e会让内容中的<span class="se">\n</span>手动换行起作用，且内容因为含特殊字符必须加双引号包起来
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="4-删命令">4. 删命令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">
+rm 文件名 //删除文件
+
+rm -r 目录名 //递归删除文件夹
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="5-修改命令">5. 修改命令</h2>
+<pre><code class="language-ba" data-lang="ba">
+start 文件名 //以文件默认的打开方式打开文件
+
+mv 文件名 目录名 //将文件移入目录
+
+mv 文件名 新文件名 //重命名文件，即文件移动到当前文件夹下会同名覆盖，相当于./新文件名，即可重命名
+
+ls -l //查看文件时间
+
+touch 文件名 //摸一下文件可更新该文件的时间
+
+</code></pre><h2 id="6-命令帮助">6. 命令帮助</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">
+xxx --help <span class="p">|</span> less //查看该命令用法，并以less上下滑动的方式展示
+
+使用tldr工具查看某一命令的常用命令 too long, didn<span class="err">&#39;</span>t <span class="nb">read</span> -&gt; tldr 需要安装
+
+tldr ls //查看ls的常用命令
+
+npm i -g tldr //npm安装命令
+
+yarn global add tldr //yarn安装命令
+
+tldr --version //查看tldr版本号，查看是否安装成功
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="7-组合命令">7. 组合命令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">
+命令执行失败会返回一个错误编码，可用echo查看，成功则返回0
+
+<span class="nb">echo</span> <span class="nv">$?</span> //在命令执行失败后运行该语句，可返回上条失败命令的错误编号，若上条命令成功，则返回0
+
+命令1 <span class="o">&amp;&amp;</span> 命令2 <span class="o">&amp;&amp;</span> <span class="nb">echo</span> 成功 //命令的与操作，只有前面命令全部成功后才会返回成功
+
+命令1<span class="p">;</span> 命令2<span class="p">;</span> <span class="nb">echo</span> 成功 //命令的或操作，不管前面命令执行与否，都会往后执行，都会返回成功
+
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="8-自定义命令bash-script">8. 自定义命令(bash script)</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-bash" data-lang="bash">
+自己在一个没有后缀名的文件中写一串命令行命令，回车可代替分号，因此每句命令后加分号或不加分号直接回车，这就是自己创建的命令，如叫test
+
+chmod +x ./文件名 //赋予文件可执行权限，+x就是加上可执行权限。在windows中不执行这句也可执行命令文件，但在Unix类系统中必须加这句话才能执行
+
+./test //必须是以当前目录下该文件名的方式执行该文件，即./文件名 执行才可正常执行命令集文件，若不可以，则加shebang 再运行该命令
+sh <span class="nb">test</span> //不加./可以直接用bash执行该文件，sh即bash的缩写
+
+同时自定义的命令集合中也可以传参，通过<span class="nv">$1</span>,<span class="nv">$2</span>等的方式传参，同时在执行文件时为
+
+./test 参数1 参数2 //这样传参执行自定义命令
+
+同时可用shebang指定用什么执行该文件，shebang是一行注释，添加在自定义命令文件的首行，可指定用什么执行该文件，#!/usr/bin/env sh，在window上不用，在Unix类系统中要用
+
+将自定义命令文件的路径放置环境变量中，则可直接输入命令文件名，在任意位置执行该文件，命令行的本质就是一个可执行文件，并被放到环境变量中，可通过文件名直接运行。可执行文件可以不加后缀.exe，也可以加，.exe不会影响该文件本身，只是用来标识是个可执行文件的
+
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/git/">Git</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/bash%E5%91%BD%E4%BB%A4/">bash命令</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>命令行解释器</title>
+                <link>https://twinklelixn.top/posts/git-shell/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/git-shell/</guid>
+                <pubDate>Tue, 04 Feb 2020 22:45:34 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="写在前面">写在前面</h2>
+<p>命令行解释器是一个单独的软件程序，它可在用户和操作系统之间提供直接的通讯。命令行解释器是解释器的一种，用于对命令行进行解释执行。</p>
+<h4 id="shell">shell</h4>
+<p>俗称&quot;壳&quot;，用来区别于操作系统内核，shell是一种命令语言，又是一种程序设计语言。用于负责用户和操作系统的交互。shell提供了用户与内核进行交互操作的一种接口，它接收用户输入的命令并把它送入内核去执行。shell在内核、系统调用之外，所以叫shell。</p>
+<p>以下所列的命令行解释器是shell的一种。</p>
+<h2 id="1-window操作系统">1. Window操作系统</h2>
+<h4 id="cmd-command-shellwin7之前的旧版本">cmd (Command shell)：win7之前的旧版本</h4>
+<h4 id="powershellwin7之后提供的更高级的版本cmd的升级版">Powershell：win7之后提供的更高级的版本，cmd的升级版。</h4>
+<p>以上两个命令执行程序都在window中可找到。</p>
+<h2 id="2-unixlinuxmacos等类unix操作系统">2. Unix/Linux/MacOS等类Unix操作系统</h2>
+<h4 id="bash-bash-shell最常用的一种shell">Bash (Bash Shell)：最常用的一种shell</h4>
+<h2 id="3-关于git的一些知识">3. 关于Git的一些知识</h2>
+<p>我们初学git都知道是要安装git bash才能运行git命令，那么关于git bash你又知道多少？</p>
+<h4 id="git">Git</h4>
+<p>Git是一个用于版本控制的工具，最开始设计的时候是用在Unix风格的环境中，因此，一些基于Unix的类Unix操作系统如Linux、MacOS等都内置了Unix命令行终端Bash，因此git运行在类Unix的系统中不需要额外安装设什么东西，直接在其终端使用即可。</p>
+<h4 id="git-bash">git Bash</h4>
+<p>由于Window操作系统是一个非Unix终端环境，其有自己的终端cmd和Powershell，因此无法运行git命令，因此才有了Git Bash工具，安装在Window环境上，提供模拟Unix环境，让在window上轻松运行git命令成为可能。因此git bash是git的模拟终端。</p>
+<h4 id="git-shell">git Shell</h4>
+<p>Git shell是一个通过SSH访问的Git服务器的程序。</p>
+<h2 id="4-在windows上使用bash">4. 在Windows上使用bash</h2>
+<h4 id="41-cmder命令集合工具">4.1 Cmder命令集合工具</h4>
+<h4 id="42-cygwin环境unix模拟环境">4.2 Cygwin环境(Unix模拟环境)</h4>
+<h2 id="5-在windows上使用git">5. 在Windows上使用Git</h2>
+<h4 id="51-安装git-bash工具">5.1 安装git bash工具</h4>
+<h4 id="52-安装cmder命令集合工具里面自带bash">5.2 安装Cmder命令集合工具(里面自带bash)</h4>
+]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/git/">Git</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/%E5%91%BD%E4%BB%A4%E8%A1%8C%E8%A7%A3%E9%87%8A%E5%99%A8/">命令行解释器</category>
+                                
+                            
+                        
+                    
+                
+            </item>
+        
+            <item>
+                <title>CSS定位之position属性</title>
+                <link>https://twinklelixn.top/posts/css-position/</link>
+                <guid isPermaLink="true">https://twinklelixn.top/posts/css-position/</guid>
+                <pubDate>Tue, 04 Feb 2020 22:41:14 +0800</pubDate>
+                
+                    <author>twinkelixn@qq.com (LoveVin)</author>
+                
+                <copyright>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</copyright>
+                
+                    <description><![CDATA[<h2 id="前言">前言</h2>
+<p>css中对html元素的管理是基于分层的管理，整个页面看起来是一个平面，实际是由浏览器解析每一层的元素布局和多层元素间的定位关系后汇总渲染成一个平面图片后展示出来的。</p>
+<p>布局和定位是css中两个重要的知识点，二者是针对完全不同的方面。</p>
+<p><strong>布局</strong>：是管理同一层元素间的布局方式</p>
+<p><strong>定位</strong>：是管理元素所在层级的定位方式</p>
+<h2 id="非定位元素">非定位元素</h2>
+<h4 id="position-static">position: static</h4>
+<p>非定位元素是指position值未曾修改，是默认的static值的元素。</p>
+<p>该类元素待在文档流中，并遵循文档流布局方式。此时 <code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> 和 <code>z-index </code>属性无效。</p>
+<h2 id="定位元素">定位元素</h2>
+<p>定位元素的位置偏移属性是<code>top、bottom、left、right</code>，结合使用。</p>
+<h4 id="1-相对定位元素">1. 相对定位元素</h4>
+<h4 id="position-relative">position: relative</h4>
+<p><strong>相对于自身定位</strong></p>
+<p>该类元素在正常文档流中原本所占的位置仍会以预留空间的方式存在，元素被放置在定位元素层，并可通过<code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> 的方式设置元素相对于自身在正常文档流中原本的位置偏移。</p>
+<p>若不设置偏移值，元素在视觉上的位置不变，只是所在层变了。可以配合absolute绝对定位元素使用，作为absolute绝对定位元素参考的父元素。</p>
+<h4 id="2-绝对定位元素">2. 绝对定位元素</h4>
+<p><strong>绝对定位元素一般必须配合<code>设置top、bottom、left、right</code>中的上下、左右中各一个属性的值才可正常显示，否则有的浏览器会出错。</strong></p>
+<h4 id="21-position-absolute">2.1 position: absolute</h4>
+<p><strong>相对于祖先元素中第一个定位元素定位（即position值不是static默认值的元素）</strong></p>
+<p>该类元素会被完全移出正常文档流，并不为元素预留空间。该元素的<code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> 值的参考是其祖先元素中第一个定位元素，如 top: 0; left: 0; 则元素是在其参考元素的左上角位置。</p>
+<p>一般配合设置参考定位元素为的position值为relative使用。</p>
+<p><strong>要善用left: 100%或50%，和负margin。</strong></p>
+<p><strong>用途举例1：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="o">/</span><span class="o">/</span><span class="nt">用于关闭按钮的定位</span>
+<span class="p">.</span><span class="nc">div</span><span class="p">{</span>
+  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">red</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">200</span><span class="kt">px</span><span class="p">;</span>
+    
+  <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="p">.</span><span class="nc">close</span><span class="p">{</span>
+  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">blue</span><span class="p">;</span>
+  <span class="k">width</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">height</span><span class="p">:</span> <span class="mi">30</span><span class="kt">px</span><span class="p">;</span>
+  <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+    
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">top</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+  <span class="k">right</span><span class="p">:</span> <span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/imgs/position_pic01.JPG" alt="position_pic01"></p>
+<p><strong>用途举例2：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-html" data-lang="html"><span class="p">&lt;</span><span class="nt">button</span><span class="p"></span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">span</span><span class="p"></span><span class="p">&gt;</span>这是个按钮上的鼠标悬浮提示<span class="p">&lt;</span><span class="p">/</span><span class="nt">span</span><span class="p">&gt;</span>
+      点击这里
+<span class="p">&lt;</span><span class="p">/</span><span class="nt">button</span><span class="p">&gt;</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">button</span><span class="p">{</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">relative</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">button</span> <span class="nt">span</span><span class="p">{</span>
+  <span class="k">border</span><span class="p">:</span> <span class="mi">1</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">red</span><span class="p">;</span>
+  <span class="k">white-space</span><span class="p">:</span> <span class="kc">nowrap</span><span class="p">;</span> <span class="err">/</span><span class="err">/</span><span class="err">文</span><span class="err">字</span><span class="err">不</span><span class="err">换</span><span class="err">行</span>
+  <span class="k">position</span><span class="p">:</span> <span class="kc">absolute</span><span class="p">;</span>
+  <span class="k">bottom</span><span class="p">:</span> <span class="nb">calc</span><span class="p">(</span><span class="mi">100</span><span class="kt">%</span> <span class="o">+</span> <span class="mi">10</span><span class="kt">px</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">left</span><span class="p">:</span> <span class="mi">50</span><span class="kt">%</span><span class="p">;</span>
+  <span class="k">transform</span><span class="p">:</span> <span class="nb">translateX</span><span class="p">(</span><span class="mi">-50</span><span class="kt">%</span><span class="p">)</span><span class="p">;</span>
+  <span class="k">display</span><span class="p">:</span> <span class="kc">none</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="nt">button</span><span class="p">:</span><span class="nd">hover</span> <span class="nt">span</span><span class="p">{</span>
+  <span class="k">display</span><span class="p">:</span><span class="kc">inline</span><span class="o">-</span><span class="kc">block</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><p><img src="/imgs/position_pic02.JPG" alt="position_pic02"></p>
+<h4 id="22-position-fixed移动端手机页面不要用bug多">2.2 position: fixed（移动端手机页面不要用，bug多）</h4>
+<p><strong>相对于屏幕视口定位</strong></p>
+<p>该类元素会被移出正常文档流，并不为元素预留空间，而是通过指定元素相对于屏幕视口（viewport）的位置来指定元素位置。元素的位置在屏幕滚动时不会改变。</p>
+<p>当元素祖先的 <code>transform</code>, <code>perspective</code> 或 <code>filter</code> 属性非 <code>none</code> 时，容器由视口改为该祖先。该种情况会出错，因此不要将该元素放在有以上属性的元素里。</p>
+<h4 id="3-粘性定位元素">3. 粘性定位元素</h4>
+<h4 id="position-sticky兼容性差">position: sticky（兼容性差）</h4>
+<p><strong>粘性定位可被认为是相对定位和固定定位的混合。元素在跨越特定阈值前为相对定位，之后为固定定位</strong></p>
+<p>元素根据正常文档流进行定位，当其滚动祖先滚动到该元素位置时，会黏贴在固定偏移位置。</p>
+<p>须指定<code> top</code>, <code>right</code>, <code>bottom</code>, <code>left</code> 四个阈值其中之一，才可使粘性定位生效。否则其行为与相对定位相同。</p>
+<p>注意，一个sticky元素会“固定”在离它最近的一个拥有“滚动机制”的祖先上（当该祖先的<code>overflow</code> 是 <code>hidden</code>, <code>scroll</code>, <code>auto</code>, 或 <code>overlay</code>时），即便这个祖先不是真的滚动祖先。这个阻止了所有“sticky”行为</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-css" data-lang="css"><span class="nt">position</span><span class="o">:</span> <span class="nt">-webkit-sticky</span><span class="o">;</span>
+<span class="nt">position</span><span class="o">:</span> <span class="nt">sticky</span><span class="o">;</span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></description>
+                
+                
+                
+                
+                
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/categories/css/">CSS</category>
+                                
+                            
+                        
+                    
+                        
+                            
+                                
+                                
+                                
+                                    <category domain="https://twinklelixn.top/tags/position/">position</category>
+                                
+                            
+                        
+                    
+                
+            </item>
         
             <item>
                 <title>JS的奇葩之处</title>
