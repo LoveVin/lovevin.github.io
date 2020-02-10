@@ -4,7 +4,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-CN">
     <title type="text">LoveVin</title>
     <subtitle type="html">MemE 是一个强大且可高度定制的 GoHugo 博客主题，专为个人博客设计。</subtitle>
-    <updated>2020-02-09T18:20:11+08:00</updated>
+    <updated>2020-02-10T14:07:18+08:00</updated>
     <id>https://twinklelixn.top/</id>
     <link rel="alternate" type="text/html" href="https://twinklelixn.top/" />
     <link rel="self" type="application/atom+xml" href="https://twinklelixn.top/atom.xml" />
@@ -16,6 +16,654 @@
             </author>
     <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
     <generator uri="https://gohugo.io/" version="0.63.0">Hugo</generator>
+        <entry>
+            <title type="text">DOM的API</title>
+            <link rel="alternate" type="text/html" href="https://twinklelixn.top/posts/dom-api/" />
+            <id>https://twinklelixn.top/posts/dom-api/</id>
+            <updated>2020-02-10T14:06:59+08:00</updated>
+            <published>2020-02-10T14:05:32+08:00</published>
+            <author>
+                    <name>LoveVin</name>
+                    <uri>https://io-oi.me/</uri>
+                    <email>twinkelixn@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    
+    <summary type="html"><![CDATA[写在前面 DOM的全称是Document Object Model(文档对象模型)，是浏览器提供给J……]]></summary>
+            
+                <content type="html"><![CDATA[<h2 id="写在前面">写在前面</h2>
+<p>DOM的全称是Document Object Model(文档对象模型)，是浏览器提供给JS用来操作整个html页面的元素的，在JS中通过<code>window.document</code>语句获取。基本原理就是浏览器将整个网页抽象成一个DOM，并通过树的数据结构划分页面元素。</p>
+<h2 id="1-获取页面元素的api">1. 获取页面元素的API</h2>
+<h4 id="11-获取元素标签">1.1 获取元素标签</h4>
+<p>需要兼容IE浏览器的必须用document.getElementByxxxxx语法。</p>
+<h5 id="1通过id获取">1)）通过id获取</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">window</span><span class="p">.</span><span class="nx">idxx</span><span class="p">;</span>
+
+<span class="nx">idxx</span><span class="p">;</span> <span class="c1">//widow可省略，当id名为全局属性名关键字时不可用这种方法
+</span><span class="c1"></span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;idxxx&#39;</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="2通过class获取">2）通过class获取</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;classxxx&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">//获得到的是一个class值为classxx的元素数组
+</span><span class="c1"></span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByClassName</span><span class="p">(</span><span class="s1">&#39;classxxx&#39;</span><span class="p">)</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span> <span class="c1">//获得第i个元素
+</span></code></pre></td></tr></table>
+</div>
+</div><h5 id="3通过标签名获取">3）通过标签名获取</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;xxx&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">//获得的是一个xxx标签元素数组，如div/span
+</span><span class="c1"></span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s1">&#39;xxx&#39;</span><span class="p">)</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">;</span> <span class="c1">//获得第i个元素
+</span></code></pre></td></tr></table>
+</div>
+</div><h5 id="4通过jquery选择器获取">4）通过JQuery选择器获取</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;#idxxx&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">//通过id获得单个元素
+</span><span class="c1"></span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;.classxxx&#39;</span><span class="p">)</span><span class="p">[</span><span class="nx">i</span><span class="p">]</span><span class="p">;</span> <span class="c1">//通过class名获取元素数组
+</span><span class="c1"></span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelector</span><span class="p">(</span><span class="s1">&#39;div &gt; span:nth-child(2)&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">//里面通过css的获取方法获取元素
+</span><span class="c1"></span>
+<span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;div &gt; span:nth-child(2)&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">//获取数组
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="12-获取页面元素">1.2 获取页面元素</h4>
+<h5 id="1获取html标签">1）获取html标签</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="2获取head元素">2）获取head元素</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">head</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="3获取body元素">3）获取body元素</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">body</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="5获取窗口窗口不是元素">5）获取窗口(窗口不是元素)</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">window</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="6获取所有元素可用于判断浏览器类型">6）获取所有元素（可用于判断浏览器类型）</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nb">document</span><span class="p">.</span><span class="nx">all</span> <span class="c1">//该值是一个falsy值
+</span><span class="c1"></span>
+<span class="c1">//可用于判断当前浏览器是否是ie浏览器，该值在ie浏览器的ie11之前的版本中都是真，在其他浏览器是假，在其他浏览器可以直接用，该语句可以判断是否是ie11之前的版本，新的ie11也是假了。
+</span><span class="c1"></span>
+<span class="k">if</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">all</span><span class="p">)</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;ie11之前的ie版本&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="p">{</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;ie11或Edge其他浏览器&#39;</span><span class="p">)</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="2-dom获取的元素的原型链">2. DOM获取的元素的原型链</h2>
+<p>显然，根据浏览器提供的DOM接口可以获取到html页面的元素，获取到的元素很显然是一个对象，拥有很多自身属性和公有属性，搞清楚共有属性，那就需要搞清楚该元素的原型链，以一个DOM获取到的div元素的原型链展示，具体如下：</p>
+<h5 id="1第一层原型是htmldivelementprototype">1）第一层原型是HTMLDivElement.prototype</h5>
+<p>里面是所有div元素共有的属性</p>
+<h5 id="2第二层原型是htmlelementprototype">2）第二层原型是HTMLElement.prototype</h5>
+<p>里面是所有HTML标签(也叫元素)共有的属性</p>
+<h5 id="3第三层原型是elementprototype">3）第三层原型是Element.prototype</h5>
+<p>里面是浏览器支持的所有文件如HTML、XML、SVG标签的共有属性</p>
+<h5 id="4第四层原型是nodeprototype">4）第四层原型是Node.prototype</h5>
+<p>里面是所有节点共有的属性，节点包括浏览器支持的所有文件类型的标签、文字、注释等等。因此可知文字是节点，不是标签，注释也是节点。</p>
+<h5 id="5第五层原型是eventtargetprototype">5）第五层原型是EventTarget.prototype</h5>
+<p>里面是所有节点事件相关的属性，比较常用的属性是addEventListener。</p>
+<h5 id="6第六层也是最后一-层原型是objectprototype">6）第六层也是最后一 层原型是Object.prototype</h5>
+<p>终极原型，所有原型的祖先，到这几没了。</p>
+<h2 id="3-节点的增删改查">3. 节点的增删改查</h2>
+<h4 id="31-增">3.1 增</h4>
+<h5 id="1创建一个标签节点">1）创建一个标签节点</h5>
+<p><code>document.createElement('xxx');</code></p>
+<p>例如 <code>div = document.createElement('div');</code></p>
+<h5 id="2创建一个文本节点">2）创建一个文本节点</h5>
+<p><code>document.createTextNode('stringxxx');</code></p>
+<p>例如 <code>text = document.createTextNode('这是个文本');</code></p>
+<h5 id="3标签里插入文本">3）标签里插入文本</h5>
+<h5 id="在js中创建的节点默认是处在js线程中必须添加到html中的元素中才能生效并且一个节点只能添加到一个元素中不能一个节点添加到两个元素中除非复制一份">在JS中创建的节点默认是处在JS线程中，必须添加到html中的元素中才能生效，并且一个节点只能添加到一个元素中，不能一个节点添加到两个元素中，除非复制一份。</h5>
+<p><code>标签节点.appendChild('文本节点');</code></p>
+<p>例如 <code>div.appendChild(text);</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">div</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s2">&#34;这是个文本&#34;</span>
+
+<span class="nx">div</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">&#34;这是个文本&#34;</span> <span class="c1">//这两种方法都可以改文本内容
+</span><span class="c1"></span>
+<span class="nx">但是不能是div</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="s1">&#39;这是个文本&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="4克隆节点">4）克隆节点</h5>
+<p><code>新节点 = 节点.cloneNode();</code></p>
+<p>例如<code>div2 = div.cloneNode();</code></p>
+<h4 id="32-删">3.2 删</h4>
+<h5 id="1旧方法只能由父亲删除自己">1）旧方法，只能由父亲删除自己</h5>
+<p>这种方法需要先找到要删除元素的父元素，让其父元素删除它，这种删除只是将其从html中删除，节点还在内存中，可随时再添加，彻底删除的方法是将该删除节点置为空即可被内存管理回收。</p>
+<p><code>要删除节点.parentNode.removeChild(要删除节点);</code></p>
+<p><code>父元素节点.appendChild(删除的节点);</code></p>
+<h5 id="2新方法可自己删除自己ie不支持">2）新方法，可自己删除自己，IE不支持</h5>
+<p><code>要删除节点.remove();</code></p>
+<h4 id="33-改">3.3 改</h4>
+<h5 id="1改id">1）改id</h5>
+<p><code>节点.id = '新id名';</code></p>
+<h5 id="2改class">2）改class</h5>
+<p>由于class是JS的关键字，所以不能直接节点.class修改，要如下方式：</p>
+<p><strong>旧方法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">节点</span><span class="p">.</span><span class="nx">className</span> <span class="o">=</span> <span class="s1">&#39;新cass名字&#39;</span><span class="p">;</span><span class="sb">`</span><span class="sb">  //这样会完全覆盖原来的class属性值
+</span><span class="sb">
+</span><span class="sb">节点.className += &#39; 新的class名&#39;; //这样才会是添加class值，前面要有个空格
+</span></code></pre></td></tr></table>
+</div>
+</div><p><strong>新方法</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//新方法的添加Class
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">classList</span> <span class="c1">//可查看当前节点的所有class值
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;新的class名&#39;</span><span class="p">)</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="3改style">3）改style</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">节点</span><span class="p">.</span><span class="nx">style</span> <span class="o">=</span> <span class="s1">&#39;width: 100px; color: red;&#39;</span> <span class="c1">//一下改多个样式
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">width</span> <span class="o">=</span> <span class="s1">&#39;100px&#39;</span><span class="p">;</span> <span class="c1">//修改单个样式
+</span><span class="c1"></span>
+<span class="c1">//JS不支持有中划线的key值，会被当成减号的，如background-color，则要以字符串形式表示或者改中划线为首字母大写
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">style</span><span class="p">[</span><span class="s1">&#39;background-color&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span>
+
+<span class="c1">//or
+</span><span class="c1"></span><span class="nx">节点</span><span class="p">.</span><span class="nx">style</span><span class="p">.</span><span class="nx">backgroundColor</span> <span class="o">=</span> <span class="s1">&#39;red&#39;</span><span class="p">;</span> <span class="c1">//或者首字母大写
+</span><span class="c1"></span>
+<span class="c1">//特殊地，该data-*开头的属性名的属性值时为
+</span><span class="c1"></span><span class="nx">节点</span><span class="p">.</span><span class="nx">dataSet</span><span class="p">.</span><span class="o">*</span> <span class="o">=</span> <span class="s1">&#39;xxx&#39;</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="4改属性">4）改属性</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="c1">//可直接通过节点.属性名来修改，
+</span><span class="c1"></span><span class="nx">div</span><span class="p">.</span><span class="nx">classList</span><span class="o">/</span><span class="nx">a</span><span class="p">.</span><span class="nx">href等</span>
+
+<span class="c1">//但是有的属性这样获取会出错，如a.href，浏览器会补全路径，因此用如下方法：
+</span><span class="c1"></span><span class="nx">节点</span><span class="p">.</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s1">&#39;属性名&#39;</span><span class="p">,</span><span class="s1">&#39;属性值&#39;</span><span class="p">)</span><span class="p">;</span><span class="c1">//该种方式最完整
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;属性名&#39;</span><span class="p">)</span><span class="p">;</span> <span class="c1">//获得属性
+</span></code></pre></td></tr></table>
+</div>
+</div><h5 id="5改文本内容">5）改文本内容</h5>
+<p>和增加文本内容是一样的语句</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">div</span><span class="p">.</span><span class="nx">innerText</span> <span class="o">=</span> <span class="s2">&#34;这是个文本&#34;</span>
+
+<span class="nx">div</span><span class="p">.</span><span class="nx">textContent</span> <span class="o">=</span> <span class="s2">&#34;这是个文本&#34;</span> <span class="c1">//这两种方法都可以改文本内容
+</span></code></pre></td></tr></table>
+</div>
+</div><h5 id="6改html内容">6）改HTML内容</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">节点</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;html语句&#39;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="7改标签">7）改标签</h5>
+<p>改标签可以先用innerHTML将内容清空，再添加节点</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">节点</span><span class="p">.</span><span class="nx">innerHTML</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">;</span>
+
+<span class="nx">节点</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">节点</span><span class="p">)</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="8改爸爸">8）改爸爸</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">新爸爸节点</span><span class="p">.</span><span class="nx">appendChild</span><span class="p">(</span><span class="nx">节点</span><span class="p">)</span><span class="p">;</span> 
+
+<span class="c1">//这样就可以改变父亲节点，因为一个节点只能添加到一个节点上，因此该节点会被从原父亲节点移除，加入新的父亲节点下
+</span></code></pre></td></tr></table>
+</div>
+</div><h4 id="34-查返回的是值">3.4 查（返回的是值）</h4>
+<h5 id="1查爸爸">1）查爸爸</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript"><span class="nx">节点</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">;</span>
+<span class="c1">//or
+</span><span class="c1"></span><span class="nx">节点</span><span class="p">.</span><span class="nx">parentElement</span><span class="p">;</span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="2查子代">2）查子代</h5>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">
+<span class="c1">//查看所有孩子
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">;</span> <span class="c1">//返回的是一个子节点数组，节点类型包括标签、文字、注释、多个回车或空格被html转化成的一个空格也是其子节点
+</span><span class="c1"></span>
+<span class="c1">//or
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">children</span><span class="p">;</span> <span class="c1">//解决了childNodes的问题，是Element提供的，只计算元素，即标签节点
+</span><span class="c1"></span>
+<span class="c1">//查看单个孩子
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">firstChild</span><span class="p">;</span> <span class="c1">//查看第一个孩子
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">lastChild</span><span class="p">;</span> <span class="c1">//查看最后一个孩子
+</span><span class="c1"></span>
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="3查兄弟姐妹">3）查兄弟姐妹</h5>
+<p>DOM没有提供查找所有兄弟姐妹节点的API，可以通过查看其父亲节点的所有孩子节点，再排除掉自己，只提供了查看临近兄弟姐妹的API</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-javascript" data-lang="javascript">
+<span class="nx">节点</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">;</span> <span class="c1">//不仅排除自己还要排除文本节点
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">parentNode</span><span class="p">.</span><span class="nx">children</span><span class="p">;</span> <span class="c1">//排除自己
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">previousSibling</span><span class="p">;</span> <span class="c1">//临近的上个兄弟节点可能有文本节点
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">nextSibling</span><span class="p">;</span> <span class="c1">//下个兄弟节点，可能有文本节点
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">previousElementSibling</span><span class="p">;</span> <span class="c1">//上一个元素兄弟
+</span><span class="c1"></span>
+<span class="nx">节点</span><span class="p">.</span><span class="nx">nextElementSibling</span><span class="p">;</span> <span class="c1">//下一个元素兄弟
+</span><span class="c1"></span>
+</code></pre></td></tr></table>
+</div>
+</div>]]></content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://twinklelixn.top/categories/dom/" term="DOM" label="DOM" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://twinklelixn.top/tags/dom-api/" term="DOM API" label="DOM API" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
+        <entry>
+            <title type="text">jQuery的API</title>
+            <link rel="alternate" type="text/html" href="https://twinklelixn.top/posts/jquery-api/" />
+            <id>https://twinklelixn.top/posts/jquery-api/</id>
+            <updated>2020-02-10T14:06:26+08:00</updated>
+            <published>2020-02-10T14:01:57+08:00</published>
+            <author>
+                    <name>LoveVin</name>
+                    <uri>https://io-oi.me/</uri>
+                    <email>twinkelixn@qq.com</email>
+                    </author>
+            <rights>[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)</rights>
+    
+    <summary type="html"><![CDATA[<ol>
+<li>选择页面元素 jQuery的设计思想就是 [ 选择某个元素，然后对其进行操作 ]，因此，通……</li>
+</ol>]]></summary>
+            
+                <content type="html"><![CDATA[<h4 id="1-选择页面元素">1. 选择页面元素</h4>
+<p>jQuery的设计思想就是 [ 选择某个元素，然后对其进行操作 ]，因此，通过jQuery直接选择到元素得到的返回值是一个包含各种操作方法的对象，具体想对选择到的元素进行何种操作，只需调用对应的函数(接口)即可。</p>
+<p>jQuery即$，只接受一个参数，这个参数有两种类型。</p>
+<h5 id="11-css选择器">1.1 CSS选择器</h5>
+<pre><code>
+$(document) //选择整个文档对象
+
+$('#myId') //选择ID为myId的元素
+
+$('.myClass') // 选择class为myClass的元素
+
+$('input[name=first]') // 选择name属性等于first的input元素
+
+</code></pre><h5 id="12-jquery特有表达式">1.2 jQuery特有表达式</h5>
+<pre><code>
+$('a:first') //选择网页中第一个a元素
+
+$('tr:odd') //选择表格的奇数行
+
+$('#myForm :input') // 选择表单中的input元素
+
+$('div:visible') //选择可见的div元素
+
+$('div:gt(2)') // 选择所有的div元素，除了前三个
+
+$('div:animated') // 选择当前处于动画状态的div元素
+
+</code></pre><h4 id="2-过滤性选择元素">2. 过滤性选择元素</h4>
+<pre><code>
+$('div').has('p'); // 选择包含p元素的div元素
+
+$('div').filter('.myClass'); //选择class等于myClass的div元素
+
+$('div').not('.myClass'); //选择class不等于myClass的div元素
+
+$('div').first(); //选择第1个div元素
+
+$('div').eq(5); //选择下标为5即第6个div元素
+
+</code></pre><h4 id="3-选择元素的亲戚们">3. 选择元素的亲戚们</h4>
+<pre><code>
+$('div').parent(); //选择div元素的父元素
+
+$('div').children(); //选择div的所有子元素
+
+$('div').siblings(); //选择div的同级元素
+
+$('div').next('p'); //选择div元素后面的第一个p元素
+
+$('div').closest('form'); //选择离div最近的那个form父元素
+
+</code></pre><h4 id="4-元素的基本操作">4. 元素的基本操作</h4>
+<p><strong>创建元素</strong></p>
+<pre><code>
+let newLi = $('&lt;li class=&quot;new&quot;&gt;new list item&lt;/li&gt;'); //创建新元素
+
+$('ul').append(newLI);//先创建再添加
+
+$('ul').append('&lt;li&gt;list item&lt;/li&gt;'); //直接添加
+
+</code></pre><p><strong>清空元素内容</strong></p>
+<pre><code>$( &quot;.hello&quot; ).empty(); //清空class为hello的元素的所有子节点，但不删除元素
+</code></pre><p><strong>删除元素</strong></p>
+<pre><code>
+$( &quot;.hello&quot; ).remove(); //删除class为hello的元素本身和其所有子节点。除了元素本身之外，还删除与元素关联的所有绑定事件和 jQuery 数据。
+
+$(&quot;.hello&quot;).detach(); //与remove类似，不同之处是不删除与元素关联的所有绑定事件和 jQuery 数据。
+
+</code></pre><p><strong>复制元素</strong></p>
+<pre><code>$( &quot;.hello&quot; ).clone();
+</code></pre><h4 id="5-元素的位置移动">5. 元素的位置移动</h4>
+<p>元素的位置移动有两种方法，一种方法是直接移动该元素，另一种方法是移动其他元素，使得目标元素达到我们想要的位置。</p>
+<p>假定我们选中了一个div元素，需要把它移动到p元素后面。</p>
+<p>第一种方法是使用.insertAfter()把div元素移动p元素后面：</p>
+<pre><code>$('div').insertAfter($('p'));
+</code></pre><p>第二种方法是使用.after()，把p元素加到div元素前面：</p>
+<pre><code>$('p').after($('div'));
+</code></pre><p>表面上看，这两种方法的效果是一样的，唯一的不同似乎只是操作视角的不同。但是实际上，它们有一个重大差别，那就是返回的元素不一样。第一种方法返回div元素，第二种方法返回p元素。你可以根据需要，选择到底使用哪一种方法。</p>
+<p>使用这种模式的操作方法，一共有四对：</p>
+<pre><code>.insertAfter()和.after()：在现存元素的外部，从后面插入元素
+
+.insertBefore()和.before()：在现存元素的外部，从前面插入元素
+
+子.appendTo()和父.append()：在现存元素的内部，从后面插入元素
+
+子.prependTo()和父.prepend()：在现存元素的内部，从前面插入元素
+</code></pre><h4 id="6-取值赋值合一api">6. 取值赋值合一API</h4>
+<pre><code>$('h1').html(); //html()没有参数，表示取出h1的值
+
+$('h1').html('Hello'); //html()有参数Hello，表示对h1进行赋值
+</code></pre><p>常用的取值赋值函数如下：</p>
+<pre><code>.html() 取出或设置html内容
+
+.val() 取出某个表单input元素的值
+
+.text() 取出或设置text内容
+
+.attr(attributeName) 取出或设置某个属性的值
+
+.width() 取出或设置某个元素的宽度
+
+.height() 取出或设置某个元素的高度
+</code></pre><p>需要注意的是，如果结果集包含多个元素，那么赋值的时候，将对其中所有的元素赋值；取值的时候，则是只取出第一个元素的值 (.text()例外，它取出所有元素的text内容）。</p>
+<p><strong>.attr()</strong></p>
+<pre><code>
+$('h1').attr('class'); //获取h1元素的class值
+
+$('h1').attr('class','newClass'); //设置h1元素的class值为newClass
+
+$('h1').attr({
+	'class': 'newClass',
+	id: 'newId'
+}); //设置h1元素的class和id等多个属性,class属性名必须加引号，其他随便
+
+$('h1').attr('class',function(index, oldval){
+	return 'new' + val + index;
+}); //函数的index值是每个h1元素的下标，oldval是其旧的属性值，return返回新值，若不return或return undefined，则保持原有值不变
+
+</code></pre><p>以上的取值赋值合一方法的赋值参数都可以是函数，函数中的参数值为index下标和oldval旧的值。</p>
+<h4 id="7-链式操作">7. 链式操作</h4>
+<pre><code>$('div').find('h3').eq(2).html('Hello');
+
+</code></pre><p>上述的链式操作一步步解释为：</p>
+<pre><code>$('div') //找到div元素
+
+　　　.find('h3') //选择其中的h3元素
+
+　　　.eq(2) //选择第3个h3元素
+
+　　　.html('Hello'); //将它的内容改为Hello
+</code></pre><p>后退一步到上个节点，用end()方法</p>
+<pre><code>$('div')
+
+　　　.find('h3')
+
+　　　.eq(2)
+
+　　　.html('Hello')
+
+　　　.end() //退回到选中所有的h3元素的那一步
+
+　　　.eq(0) //选中第一个h3元素
+
+　　　.html('World'); //将它的内容改为World
+</code></pre><h4 id="8-参考推荐文章">8. 参考/推荐文章</h4>
+<p>阮一峰的《<a href="http://www.ruanyifeng.com/blog/2011/07/jquery_fundamentals.html">jQuery设计思想</a>》</p>
+<p>jQuery <a href="https://www.jquery123.com/">中文文档</a></p>
+]]></content>
+            
+            
+            
+            
+            
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://twinklelixn.top/categories/jquery/" term="jQuery" label="jQuery" />
+                            
+                        
+                    
+                
+                    
+                        
+                            
+                            
+                            
+                                <category scheme="https://twinklelixn.top/tags/jquery-api/" term="jQuery API" label="jQuery API" />
+                            
+                        
+                    
+                
+            
+        </entry>
+    
         <entry>
             <title type="text">git远程仓库连接</title>
             <link rel="alternate" type="text/html" href="https://twinklelixn.top/posts/git-remote/" />
